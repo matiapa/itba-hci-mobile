@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "531029249663",
+    "firebase_url": "https://avancer-20.firebaseio.com",
+    "project_id": "avancer-20",
+    "storage_bucket": "avancer-20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531029249663:android:510ce45b55d9e465d9794a",
+        "android_client_info": {
+          "package_name": "com.avancer.avancer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531029249663-9ob0epl5ee35pf7gaapbrdj3ngjotfo6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.avancer.avancer",
+            "certificate_hash": "664bbb0eab48622dfcb3ee340a47fa03685866cd"
+          }
+        },
+        {
+          "client_id": "531029249663-7dc91o8kct8on01r70qfv06osnp99898.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGniOoHugqf7YNf2sSxZXD-z0PQV8Hty8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531029249663-7dc91o8kct8on01r70qfv06osnp99898.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
