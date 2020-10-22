@@ -4,6 +4,7 @@ import 'package:avancer/others/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SignInScreen extends StatefulWidget {
 
@@ -48,7 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
               Padding(
                 padding: EdgeInsets.all(24),
                 child: Container(
-                  height: 325,
+                  height: 400,
                   width: 290,
                   child: Card(
                     child: Padding(
@@ -97,6 +98,19 @@ class _SignInScreenState extends State<SignInScreen> {
                                 signIn(context);
                               }
                             ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Text('Al registrarte aceptás los:'),
+                          ),
+
+                          FlatButton(
+                            child: Text(
+                              'Términos y Condiciones',
+                              style: Theme.of(context).textTheme.button.copyWith(color: Colors.black)
+                            ),
+                            onPressed: () => launch('https://www.avancer.com.ar/terminos-y-condiciones'),
                           )
 
                         ]

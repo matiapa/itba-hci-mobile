@@ -33,14 +33,14 @@ class WelcomeScreen extends StatelessWidget {
 
         Slide(
           description: "Tenés hasta el día posterior al cobro de tu salario para hacer la devolución." +
-          " No cobramos intereses tardíos, pero el no cumplimiento de los plazos afecta negativamente tu calificación crediticia.",
+          " El no cumplimiento de los plazos genera intereses tardíos y afecta negativamente tu calificación crediticia.",
           pathImage: "assets/welcome_images/calendar.png",
           backgroundColor: Theme.of(context).primaryColor,
           marginTitle: EdgeInsets.fromLTRB(0, topImageMargin, 0, bottomImageMargin)
         ),
 
         Slide(
-          description: "Podés devolver le préstamo a través de transferencia bancaria o por Mercado Pago",
+          description: "Podés devolver el préstamo a través de transferencia bancaria o por Mercado Pago",
           pathImage: "assets/welcome_images/payments.png",
           backgroundColor: Theme.of(context).primaryColor,
           marginTitle: EdgeInsets.fromLTRB(0, topImageMargin, 0, bottomImageMargin)
