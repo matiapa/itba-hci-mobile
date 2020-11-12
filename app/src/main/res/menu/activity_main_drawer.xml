@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Principal" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_baseline_perm_identity_24"
+            android:title="Perfil" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_baseline_show_chart_24"
+            android:title="Progreso" />
+        <item
+            android:title="Calificanos"
+            tools:icon="@drawable/ic_baseline_star_24" />
+        <item
+            android:title="Ayuda"
+            tools:icon="@drawable/ic_baseline_help_24" />
+        <item
+            android:title="Cerrar sesion"
+            tools:icon="@drawable/ic_baseline_exit_to_app_24" />
+    </group>
+</menu>
