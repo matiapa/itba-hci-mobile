@@ -80,7 +80,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/controlButtonsFrame"
+                            android:src="@drawable/control_buttons_frame"
                             android:layout_centerInParent="true"
                             android:contentDescription="@string/playExerciseButtonHint" />
 
@@ -90,14 +90,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <ImageButton
+v                            <ImageButton
                                 android:id="@+id/prevButton"
                                 android:layout_width="50dp"
                                 android:layout_height="match_parent"
                                 android:adjustViewBounds="true"
                                 android:background="@null"
                                 android:contentDescription="@string/prevExerciseButtonHint"
-                                android:src="@drawable/prevButton" />
+                                android:src="@drawable/prev_button" />
 
                             <ImageButton
                                 android:id="@+id/playButton"
@@ -105,7 +105,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:adjustViewBounds="true"
-                                android:src="@drawable/playButton"
+                                android:src="@drawable/play_button"
                                 android:contentDescription="@string/playExerciseButtonHint" />
 
                             <ImageButton
@@ -115,7 +115,7 @@
                                 android:adjustViewBounds="true"
                                 android:background="@null"
                                 android:contentDescription="@string/nextExerciseButtonHint"
-                                android:src="@drawable/nextButton" />
+                                android:src="@drawable/next_button" />
 
                         </LinearLayout>
 

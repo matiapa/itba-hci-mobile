@@ -4,24 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_height="192dp"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:toolbarId="@+id/toolbar"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-            app:contentScrim="?attr/colorPrimary">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_width="match_parent" />
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -95,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/controlButtonsFrame"
+                    android:src="@drawable/control_buttons_frame"
                     android:layout_centerInParent="true"
                     android:contentDescription="@string/playExerciseButtonHint" />
 
@@ -112,7 +108,7 @@
                         android:adjustViewBounds="true"
                         android:background="@null"
                         android:contentDescription="@string/prevExerciseButtonHint"
-                        android:src="@drawable/prevButton" />
+                        android:src="@drawable/prev_button" />
 
                     <ImageButton
                         android:id="@+id/playButton"
@@ -120,7 +116,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/playButton"
+                        android:src="@drawable/play_button"
                         android:contentDescription="@string/playExerciseButtonHint" />
 
                     <ImageButton
@@ -130,7 +126,7 @@
                         android:adjustViewBounds="true"
                         android:background="@null"
                         android:contentDescription="@string/nextExerciseButtonHint"
-                        android:src="@drawable/nextButton" />
+                        android:src="@drawable/next_button" />
 
                 </LinearLayout>
 
