@@ -18,4 +18,10 @@
     <string name="signUpWeightHint">Weight (kg)</string>
     <string name="signupSexHint">Sex</string>
 
+    <string name="playExerciseImageHint">Exercise image</string>
+    <string name="instructionsPanelHeaderText">Instructions</string>
+    <string name="prevExerciseButtonHint">Previous exercise</string>
+    <string name="nextExerciseButtonHint">Next exercise</string>
+    <string name="playExerciseButtonHint">Start</string>
+
 </resources>

@@ -32,7 +32,7 @@
         android:gravity="center"
         android:text="@string/signInForgotPassLabel"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorSecondary"
         android:textSize="16sp" />
 
     <Button
