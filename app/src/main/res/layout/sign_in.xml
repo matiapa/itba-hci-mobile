@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="50px"
-    android:layout_marginRight="50px"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -12,25 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/signInUsernameHint"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50px"
+        android:layout_marginTop="25dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/signInPasswordHint"
         android:inputType="numberPassword" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50px"
+        android:layout_marginTop="25dp"
         android:gravity="center"
-        android:text="Forgot Password"
+        android:text="@string/signInForgotPassLabel"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
@@ -39,15 +39,15 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100px"
+        android:layout_marginTop="50dp"
         android:background="@color/colorAccent"
-        android:text="Sign in" />
+        android:text="@string/signInButton" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50px"
-        android:text="Sign up" />
+        android:layout_marginTop="25dp"
+        android:text="@string/signUpButton" />
 
 </LinearLayout>

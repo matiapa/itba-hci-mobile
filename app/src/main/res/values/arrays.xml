@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="trainingLevels">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Hard</item>
+        <item>Expert</item>
+    </string-array>
+
+    <string-array name="goals">
+        <item>Fat burn</item>
+        <item>Muscle train</item>
+        <item>Aerobic resistance</item>
+    </string-array>
+
+    <string-array name="sex">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+</resources>
