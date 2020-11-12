@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_height="192dp"
+        android:layout_width="match_parent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:toolbarId="@+id/toolbar"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+
+            app:contentScrim="?attr/colorPrimary">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/simpleImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/exercise"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/playExerciseImageHint" />
+
+            <com.robertlevonyan.views.expandable.Expandable
+                android:id="@+id/expandable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@string/instructionsPanelHeaderText" />
+
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:text="..."/>
+
+            </com.robertlevonyan.views.expandable.Expandable>
+
+            <TextView
+                android:id="@+id/playExerciseLeftTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="1:00"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+
+            <TextView
+                android:id="@+id/playExerciseLeftRoutines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Faltan 9 ejercicios"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/controlButtonsFrame"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/playExerciseButtonHint" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_margin="50dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/prevButton"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/prevButton"
+                        android:contentDescription="@string/prevExerciseButtonHint" />
+
+                    <ImageButton
+                        android:id="@+id/playButton"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/playButton"
+                        android:contentDescription="@string/playExerciseButtonHint" />
+
+                    <ImageButton
+                        android:id="@+id/nextButton"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/nextButton"
+                        android:contentDescription="@string/nextExerciseButtonHint" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
