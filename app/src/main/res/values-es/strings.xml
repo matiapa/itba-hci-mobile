@@ -2,4 +2,20 @@
 <resources>
     <string name="app_name">GymApp</string>
     <string name="action_settings">Configuracion</string>
+
+    <string name="signUpEditNameHint">Nombre</string>
+    <string name="signUpTrainingLevelLabel">Nivel de Entrenamiento</string>
+    <string name="signUpGoalLabel">Objetivo</string>
+
+    <string name="nextStepButton">Siguiente</string>
+    <string name="signInUsernameHint">Usuario</string>
+    <string name="signInPasswordHint">Contraseña</string>
+    <string name="signInForgotPassLabel">Olvidaste la contraseña</string>
+    <string name="signInButton">Iniciar Sesion</string>
+    <string name="signUpButton">Registrate</string>
+    <string name="signUpStepAboutLabel">Sobre ti</string>
+    <string name="signUpAgeHint">Edad</string>
+    <string name="signUpHeightHint">Altura (cm)</string>
+    <string name="signUpWeightHint">Peso (kg)</string>
+    <string name="signupSexHint">Sexo</string>
 </resources>
