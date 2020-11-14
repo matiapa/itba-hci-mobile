@@ -25,6 +25,27 @@
     <string name="nextExerciseButtonHint">Próximo ejercicio</string>
     <string name="playExerciseButtonHint">Ejecutar</string>
 
+    <string name="menu_home">Principal</string>
+    <string name="menu_gallery">Galeria</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="email">Correo</string>
+    <string name="name">Nombre Completo</string>
+    <string name="phone_number">Numero de Telefono</string>
+    <string name="birthday">Fecha de Nacimiento</string>
+    <string name="gender">Sexo</string>
+
+    <string name="boton_more_rutines">Ver Mas</string>
+    <string name="Home_Title_favourites">Favoritos</string>
+    <string name="Home_Title_Routine">Rutinas</string>
+    <string name="Home_VerMas_Rutinas">Ver Mas</string>
+    <string name="Favourites_sortby">Ordenar por</string>
+    <string name="title_activity_home">Mi actividad</string>
+    <string name="navigation_drawer_open">Abrir cajón de navegacioń</string>
+    <string name="navigation_drawer_close">Cerrar cajón de navegación</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
     <string name="excerciseDetailsCrossedAbs">Abdominales oblicuos</string>
     <string name="excerciseDetailsWorkingMuscles">Músculo trabajado</string>
     <string name="excerciseDetailsEquipement">Equipamiento</string>
@@ -33,7 +54,7 @@
     <string name="excerciseDetailsStep1">1) Recostarse boca arriba con las piernas dobladas y las plantas de los pies apoyadas. Brazos doblados, manos detrás de la nuca.</string>
     <string name="excerciseDetailsStep2">2) Hacer un abdominal, llevando el codo izquierdo hacia la rodilla derecha, siempre yendo hacia arriba. Ir y volver intercambiando lados.</string>
     <string name="excerciseDetailsStep3">3) Al terminar dar pequeños golecitos sobre los abdominales trabajados.</string>
+
     <string name="rutineWarmupListRopeJump">Salto con soga</string>
     <string name="rutineWarmupListBurpees">Burpees</string>
-
 </resources>
