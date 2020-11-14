@@ -60,11 +60,12 @@
         android:layout_marginTop="10dp"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signInButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:background="@color/colorAccent"
+        android:onClick="finishSignUp"
         android:text="@string/nextStepButton" />
 
 </LinearLayout>
