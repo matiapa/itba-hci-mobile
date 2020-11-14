@@ -24,4 +24,14 @@
     <string name="nextExerciseButtonHint">Next exercise</string>
     <string name="playExerciseButtonHint">Start</string>
 
+    <string name="excerciseDetailsCrossedAbs">Crossed Abs</string>
+    <string name="excerciseDetailsWorkingMuscles">Working muscles</string>
+    <string name="excerciseDetailsEquipement">Equipment</string>
+    <string name="excerciseDetailsMat">Gymnastic Mat</string>
+    <string name="ExcerciseDetailsInstructions">Instructions</string>
+    <string name="excerciseDetailsStep1">1) Lay down on your back, with knees blended and the palm of the feet on the ground. Blend the arms, hands behind the neck.</string>
+    <string name="excerciseDetailsStep2">2) Do a push-up, taking the left elbow towards the right knee, always going up. Switch sides.</string>
+    <string name="excerciseDetailsStep3">3) When finished, tap softly your stomach.</string>
+
+
 </resources>
