@@ -33,5 +33,9 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="boton_more_rutines">See More</string>
+    <string name="Home_Title_favourites">Favourites</string>
+    <string name="Home_Title_Rutine">Rutines</string>
+    <string name="Home_VerMas_Rutinas">See More</string>
 
 </resources>
