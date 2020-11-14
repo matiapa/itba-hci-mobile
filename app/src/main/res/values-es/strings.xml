@@ -26,6 +26,7 @@
     <string name="playExerciseButtonHint">Ejecutar</string>
     <string name="boton_more_rutines">Ver Mas</string>
     <string name="Home_Title_favourites">Favoritos</string>
-    <string name="Home_Title_Rutine">Rutinas</string>
+    <string name="Home_Title_Routine">Rutinas</string>
     <string name="Home_VerMas_Rutinas">Ver Mas</string>
+    <string name="Favourites_sortby">Ordenar por</string>
 </resources>

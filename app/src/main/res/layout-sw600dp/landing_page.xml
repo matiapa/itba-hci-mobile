@@ -81,7 +81,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:text="@string/Home_Title_Rutine"
+                android:text="@string/Home_Title_Routine"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
