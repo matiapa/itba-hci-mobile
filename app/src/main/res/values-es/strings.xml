@@ -24,4 +24,13 @@
     <string name="prevExerciseButtonHint">Ejercicio anterior</string>
     <string name="nextExerciseButtonHint">Próximo ejercicio</string>
     <string name="playExerciseButtonHint">Ejecutar</string>
+
+    <string name="menu_home">Principal</string>
+    <string name="menu_gallery">Galeria</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="email">Correo</string>
+    <string name="name">Nombre Completo</string>
+    <string name="phone_number">Numero de Telefono</string>
+    <string name="birthday">Fecha de Nacimiento</string>
+    <string name="gender">Sexo</string>
 </resources>
