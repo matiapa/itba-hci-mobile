@@ -38,5 +38,9 @@
     <string name="phone_number">Phone Number</string>
     <string name="birthday">Birthday</string>
     <string name="gender">Gender</string>
+    <string name="boton_more_rutines">See More</string>
+    <string name="Home_Title_favourites">Favourites</string>
+    <string name="Home_Title_Rutine">Rutines</string>
+    <string name="Home_VerMas_Rutinas">See More</string>
 
 </resources>
