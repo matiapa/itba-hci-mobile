@@ -33,5 +33,7 @@
     <string name="excerciseDetailsStep1">1) Recostarse boca arriba con las piernas dobladas y las plantas de los pies apoyadas. Brazos doblados, manos detrás de la nuca.</string>
     <string name="excerciseDetailsStep2">2) Hacer un abdominal, llevando el codo izquierdo hacia la rodilla derecha, siempre yendo hacia arriba. Ir y volver intercambiando lados.</string>
     <string name="excerciseDetailsStep3">3) Al terminar dar pequeños golecitos sobre los abdominales trabajados.</string>
+    <string name="rutineWarmupListRopeJump">Salto con soga</string>
+    <string name="rutineWarmupListBurpees">Burpees</string>
 
 </resources>

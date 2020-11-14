@@ -42,6 +42,8 @@
     <string name="excerciseDetailsStep1">1) Lay down on your back, with knees blended and the palm of the feet on the ground. Blend the arms, hands behind the neck.</string>
     <string name="excerciseDetailsStep2">2) Do a push-up, taking the left elbow towards the right knee, always going up. Switch sides.</string>
     <string name="excerciseDetailsStep3">3) When finished, tap softly your stomach.</string>
+    <string name="rutineWarmupListRopeJump">Rope jump</string>
+    <string name="rutineWarmupListBurpees">Burpees</string>
 
 
 </resources>
