@@ -16,7 +16,7 @@
     <string name="signUpAgeHint">Age</string>
     <string name="signUpHeightHint">Height (cm)</string>
     <string name="signUpWeightHint">Weight (kg)</string>
-    <string name="signupSexHint">Sex</string>
+    <string name="signUpSexHint">Sex</string>
 
     <string name="playExerciseImageHint">Exercise image</string>
     <string name="instructionsPanelHeaderText">Instructions</string>
@@ -35,24 +35,24 @@
     <string name="phone_number">Phone Number</string>
     <string name="birthday">Birthday</string>
     <string name="gender">Gender</string>
-    <string name="boton_more_rutines">See More</string>
-    <string name="Home_Title_favourites">Favourites</string>
-    <string name="Home_Title_Routine">Rutines</string>
-    <string name="Home_VerMas_Rutinas">See More</string>
-    <string name="Favourites_sortby">Order by</string>
+    <string name="see_more_routines">See More</string>
+    <string name="home_title_favourites">Favourites</string>
+    <string name="home_title_routine">Routines</string>
+    <string name="home_see_more_routines">See More</string>
+    <string name="favourites_sort_by">Order by</string>
 
-    <string name="excerciseDetailsCrossedAbs">Crossed Abs</string>
-    <string name="excerciseDetailsWorkingMuscles">Working muscles</string>
-    <string name="excerciseDetailsEquipement">Equipment</string>
-    <string name="excerciseDetailsMat">Gymnastic Mat</string>
-    <string name="ExcerciseDetailsInstructions">Instructions</string>
-    <string name="excerciseDetailsStep1">1) Lay down on your back, with knees blended and the palm of the feet on the ground. Blend the arms, hands behind the neck.</string>
-    <string name="excerciseDetailsStep2">2) Do a push-up, taking the left elbow towards the right knee, always going up. Switch sides.</string>
-    <string name="excerciseDetailsStep3">3) When finished, tap softly your stomach.</string>
-    <string name="rutineWarmupListRopeJump">Rope jump</string>
-    <string name="rutineWarmupListBurpees">Burpees</string>
+    <string name="exerciseDetailsCrossedAbs">Crossed Abs</string>
+    <string name="exerciseDetailsWorkingMuscles">Working muscles</string>
+    <string name="exerciseDetailsEquipment">Equipment</string>
+    <string name="exerciseDetailsMat">Gymnastic Mat</string>
+    <string name="exerciseDetailsInstructions">Instructions</string>
+    <string name="exerciseDetailsStep1">1) Lay down on your back, with knees blended and the palm of the feet on the ground. Blend the arms, hands behind the neck.</string>
+    <string name="exerciseDetailsStep2">2) Do a push-up, taking the left elbow towards the right knee, always going up. Switch sides.</string>
+    <string name="exerciseDetailsStep3">3) When finished, tap softly your stomach.</string>
+    <string name="routineWarmUpListRopeJump">Rope jump</string>
+    <string name="routineWarmUpListBurpees">Burpees</string>
 
-    <string name="rutineWarmupListBreak">Break</string>
+    <string name="routineWarmUpListBreak">Break</string>
     <string name="helpAboutUs">About Us</string>
     <string name="helpAboutUsInfo">We are students at ITBA and we developed the GymApp as a project for an assignment.</string>
     <string name="helpContactUsInfo">In case of any issue, comment or feedback you want to share with us, please make sure to contact us through or mail contact@gymapp.com\n In case you want to join our team, please contact us to recruitment@gymapp.com</string>
@@ -61,6 +61,7 @@
     <string name="helpQ1">How can I add a routine to my favourites?</string>
     <string name="helpA1">Use the button that has a heart shape. You can find it on the routine you want to add to this list.</string>
     <string name="helpQ2">How can I change my personal data?</string>
-    <string name="helpA2">Go to profile and use the pencil shapped button to edit your information.</string>
+    <string name="helpA2">Go to profile and use the pencil shaped button to edit your information.</string>
+    <string name="activityAddFavouriteButton">Add to favourite</string>
 
 </resources>

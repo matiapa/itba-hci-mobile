@@ -50,7 +50,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:text="@string/signupSexHint" />
+        android:text="@string/signUpSexHint" />
 
     <Spinner
         android:id="@+id/sexSpinner"

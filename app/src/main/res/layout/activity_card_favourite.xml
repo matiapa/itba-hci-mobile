@@ -1,62 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/colorSecondary">
 
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="325dp"
         android:layout_height="161dp"
-
         android:background="@drawable/exercise"
-        android:gravity="top|left">
+        android:gravity="bottom">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
             android:background="@drawable/card_background_favourites"
             android:orientation="vertical"
-            android:layout_alignParentStart="true">
+            android:padding="5dp">
 
             <TextView
-                android:id="@+id/NombreRutina"
+                android:id="@+id/routineName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="name"
-                android:textStyle="bold" />
+                android:text="Routine"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp">
 
                 <TextView
-                    android:id="@+id/RutinaTime"
+                    android:id="@+id/routineDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_baseline_timer_24"
                     android:text="60'"
                     android:textStyle="bold"
-                    android:drawableLeft="@drawable/ic_baseline_timer_24" />
+                    app:drawableLeftCompat="@drawable/ic_baseline_timer_24"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/FavRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_baseline_star_border_24"
                     android:text="4.5"
                     android:textStyle="bold"
-                    android:drawableLeft="@drawable/ic_baseline_star_border_24" />
+                    app:drawableLeftCompat="@drawable/ic_baseline_star_border_24"
+                    tools:ignore="HardcodedText" />
+
             </LinearLayout>
+
         </LinearLayout>
-    </RelativeLayout>
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
