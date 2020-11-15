@@ -1,10 +1,12 @@
-package com.pi.gymapp;
+package com.pi.gymapp.ui.account;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.pi.gymapp.R;
 
 public class SignUpS1 extends AppCompatActivity {
 

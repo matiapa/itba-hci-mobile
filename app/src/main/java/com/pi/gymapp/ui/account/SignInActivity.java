@@ -1,9 +1,11 @@
-package com.pi.gymapp;
+package com.pi.gymapp.ui.account;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.pi.gymapp.R;
+import com.pi.gymapp.ui.MainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +21,7 @@ public class SignInActivity extends AppCompatActivity {
 
         // API sign in
         if(Math.random() > 0.05)
-            startActivity(new Intent(this, HomeActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
         else
             Snackbar.make(view, "Ups! Something went wrong", Snackbar.LENGTH_LONG).show();
 
@@ -33,7 +35,7 @@ public class SignInActivity extends AppCompatActivity {
 
         // API check sign in
         if(false)
-            startActivity(new Intent(this, HomeActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
 
     }
 

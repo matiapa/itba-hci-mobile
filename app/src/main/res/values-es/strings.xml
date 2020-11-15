@@ -24,4 +24,9 @@
     <string name="prevExerciseButtonHint">Ejercicio anterior</string>
     <string name="nextExerciseButtonHint">Próximo ejercicio</string>
     <string name="playExerciseButtonHint">Ejecutar</string>
+
+    <string name="menu_home">Inicio</string>
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_help">Ayuda</string>
+
 </resources>

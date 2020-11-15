@@ -11,9 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
         <activity
-            android:name=".SignInActivity"
+            android:name=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ui.account.SignInActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,17 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".SignUpS1"
+            android:name=".ui.account.SignUpS1"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
-            android:name=".SignUpS2"
+            android:name=".ui.account.SignUpS2"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".HomeActivity" />
-
     </application>
 
 </manifest>

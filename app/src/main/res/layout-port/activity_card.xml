@@ -5,8 +5,7 @@
     android:id="@+id/cardView"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    app:cardBackgroundColor="#CF0F0F"
-    tools:showIn="@layout/landing_page_portrait">
+    app:cardBackgroundColor="#CF0F0F">
 
     <ImageView
         android:id="@+id/imageView2"
