@@ -150,7 +150,7 @@
                         android:layout_weight="1"
                         android:background="@color/colorAccent"
                         android:gravity="center"
-                        android:text="Break"
+                        android:text="@string/rutineWarmupListBreak"
                         android:textColor="@color/colorPrimary" />
                 </androidx.cardview.widget.CardView>
 
