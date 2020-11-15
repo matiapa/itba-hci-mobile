@@ -54,6 +54,16 @@
     <string name="rutineWarmupListRopeJump">Rope jump</string>
     <string name="rutineWarmupListBurpees">Burpees</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="rutineWarmupListBreak">Break</string>
+    <string name="helpAboutUs">About Us</string>
+    <string name="helpAboutUsInfo">We are students at ITBA and we developed the GymApp as a project for an assignment.</string>
+    <string name="helpContactUsInfo">In case of any issue, comment or feedback you want to share with us, please make sure to contact us through or mail contact@gymapp.com\n In case you want to join our team, please contact us to recruitment@gymapp.com</string>
+    <string name="helpContactUs">Contact Us</string>
+    <string name="helpFAQ">FAQ</string>
+    <string name="helpQ1">How can I add a routine to my favourites?</string>
+    <string name="helpA1">Use the button that has a heart shape. You can find it on the routine you want to add to this list.</string>
+    <string name="helpQ2">How can I change my personal data?</string>
+    <string name="helpA2">Go to profile and use the pencil shapped button to edit your information.</string>
 
 
 </resources>

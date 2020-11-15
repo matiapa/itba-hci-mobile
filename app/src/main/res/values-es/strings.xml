@@ -57,4 +57,16 @@
 
     <string name="rutineWarmupListRopeJump">Salto con soga</string>
     <string name="rutineWarmupListBurpees">Burpees</string>
+    <string name="rutineWarmupListBreak">Descanso</string>
+
+    <string name="helpAboutUs">Sobre nosotros</string>
+    <string name="helpAboutUsInfo">Somos estudiantes del ITBA y desarrollamos la GymApp como un proyecto de una materia.</string>
+    <string name="helpContactUs">Contactanos</string>
+    <string name="helpContactUsInfo">En caso de algún problema, comentario o feedback que quieras compartirnos, por favor escribinos un mail a contact@gymapp.com\n Si querés unirte a nuestro equipo, contactanos al siguiente mail recruitment@gymapp.com</string>
+    <string name="helpFAQ">Preguntas frecuentes</string>
+    <string name="helpQ1">¿Cómo puedo agregar rutinas a mis favoritos?</string>
+    <string name="helpA1">Usar el botón en forma de corazón. Lo podés encontrar sobre la rutina que quieras agregar a la lista.</string>
+    <string name="helpQ2">¿Cómo puedo modificar mi información personal?</string>
+    <string name="helpA2">Ir a perfil y editar con el botón en forma de lápiz.</string>
+
 </resources>
