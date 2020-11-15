@@ -30,4 +30,26 @@
     <string name="menu_rate_us">Rate us</string>
     <string name="menu_sign_out">Sign out</string>
 
+    <string name="email">Email</string>
+    <string name="name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="birthday">Birthday</string>
+    <string name="gender">Gender</string>
+    <string name="boton_more_rutines">See More</string>
+    <string name="Home_Title_favourites">Favourites</string>
+    <string name="Home_Title_Routine">Rutines</string>
+    <string name="Home_VerMas_Rutinas">See More</string>
+    <string name="Favourites_sortby">Order by</string>
+
+    <string name="excerciseDetailsCrossedAbs">Crossed Abs</string>
+    <string name="excerciseDetailsWorkingMuscles">Working muscles</string>
+    <string name="excerciseDetailsEquipement">Equipment</string>
+    <string name="excerciseDetailsMat">Gymnastic Mat</string>
+    <string name="ExcerciseDetailsInstructions">Instructions</string>
+    <string name="excerciseDetailsStep1">1) Lay down on your back, with knees blended and the palm of the feet on the ground. Blend the arms, hands behind the neck.</string>
+    <string name="excerciseDetailsStep2">2) Do a push-up, taking the left elbow towards the right knee, always going up. Switch sides.</string>
+    <string name="excerciseDetailsStep3">3) When finished, tap softly your stomach.</string>
+    <string name="rutineWarmupListRopeJump">Rope jump</string>
+    <string name="rutineWarmupListBurpees">Burpees</string>
+
 </resources>
