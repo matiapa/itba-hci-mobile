@@ -1,18 +1,17 @@
 package com.pi.gymapp.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.pi.gymapp.R;
+import com.pi.gymapp.ui.RoutineList;
 
 public class HomeFragment extends Fragment {
 
@@ -32,6 +31,19 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 
+        root.findViewById(R.id.allFavRoutinesButton).setOnClickListener(c -> {
+            startActivity(new Intent(getActivity(), RoutineList.class));
+        });
+
+        root.findViewById(R.id.allRoutinesButton).setOnClickListener(c -> {
+            startActivity(new Intent(getActivity(), RoutineList.class));
+        });
+
         return root;
     }
+
+    public void seeMoreRoutines(View view){
+        startActivity(new Intent(getActivity(), RoutineList.class));
+    }
+
 }

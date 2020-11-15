@@ -29,7 +29,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/moreFavouritesButton"
+                android:id="@+id/allFavRoutinesButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
@@ -85,7 +85,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/moreRoutinesButton"
+                android:id="@+id/allRoutinesButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
