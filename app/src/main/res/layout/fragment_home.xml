@@ -9,14 +9,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start|top">
+                android:layout_marginTop="50dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -37,36 +37,14 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:text="@string/see_more_routines"
                     android:textColor="@color/colorSecondary" />
+
             </LinearLayout>
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/favRoutinesList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:baselineAligned="false">
-
-                    <include
-                        layout="@layout/activity_card_favourite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginEnd="20dp" />
-
-                    <include
-                        layout="@layout/activity_card_favourite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginEnd="20dp" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,25 +73,11 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/allRoutinesList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <include
-                    layout="@layout/activity_card_routine"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp" />
-
-                <include
-                    layout="@layout/activity_card_routine"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp" />
-
-            </LinearLayout>
+                android:scrollbars="horizontal" />
 
         </LinearLayout>
 

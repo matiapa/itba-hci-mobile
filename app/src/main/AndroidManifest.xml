@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:theme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.RoutineList"></activity>
+        <activity android:name=".ui.routine_list.RoutineList"></activity>
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
