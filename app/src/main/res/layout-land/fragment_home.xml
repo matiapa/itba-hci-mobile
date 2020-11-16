@@ -51,14 +51,14 @@
                 android:baselineAligned="false">
 
                 <include
-                    layout="@layout/activity_card_favourite"
+                    layout="@layout/routine_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:layout_marginEnd="20dp" />
 
                 <include
-                    layout="@layout/activity_card_favourite"
+                    layout="@layout/routine_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
@@ -106,14 +106,14 @@
                 android:baselineAligned="false">
 
                 <include
-                    layout="@layout/activity_card_favourite"
+                    layout="@layout/routine_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:layout_marginEnd="20dp" />
 
                 <include
-                    layout="@layout/activity_card_favourite"
+                    layout="@layout/routine_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"

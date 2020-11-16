@@ -62,6 +62,11 @@
     <string name="helpA1">Use the button that has a heart shape. You can find it on the routine you want to add to this list.</string>
     <string name="helpQ2">How can I change my personal data?</string>
     <string name="helpA2">Go to profile and use the pencil shaped button to edit your information.</string>
-    <string name="activityAddFavouriteButton">Add to favourite</string>
+
+    <string name="activityAddFavouriteButton">Add to favourites</string>
+    <string name="allRoutinesTitle">All routines</string>
+    <string name="favRoutinesTitle">Favourite routines</string>
+    <string name="secondsFormat">%.0fs</string>
+    <string name="rateFormat">%.2f</string>
 
 </resources>

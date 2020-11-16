@@ -13,9 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:theme"
+
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         android:networkSecurityConfig="@xml/network_security_config">
-        <activity android:name=".ui.RoutineList"></activity>
+
+
+
+        <activity android:name=".ui.routine_list.RoutineList"></activity>
+
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />

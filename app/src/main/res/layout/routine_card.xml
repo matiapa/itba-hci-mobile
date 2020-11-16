@@ -8,6 +8,7 @@
     app:cardBackgroundColor="@color/colorSecondary">
 
     <LinearLayout
+        android:layout_margin="10dp"
         android:layout_width="350dp"
         android:layout_height="180dp"
         android:background="@drawable/exercise">
@@ -44,7 +45,7 @@
                     tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:id="@+id/FavRating"
+                    android:id="@+id/routineRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -63,9 +64,10 @@
             android:layout_weight="1" />
 
         <ImageButton
-            android:id="@+id/Fav_button"
+            android:id="@+id/favButton"
             android:layout_width="50dp"
             android:layout_height="70dp"
+            android:background="@null"
             android:contentDescription="@string/activityAddFavouriteButton"
             android:src="@drawable/activity_fav_button"
             android:textColor="@color/colorSecondary" />
