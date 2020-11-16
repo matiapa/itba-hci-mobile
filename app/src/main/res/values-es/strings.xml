@@ -65,5 +65,6 @@
     <string name="helpA1">Usar el botón en forma de corazón. Lo podés encontrar sobre la rutina que quieras agregar a la lista.</string>
     <string name="helpQ2">¿Cómo puedo modificar mi información personal?</string>
     <string name="helpA2">Ir a perfil y editar con el botón en forma de lápiz.</string>
+    <string name="activityAddFavouriteButton">Agregar a favoritos</string>
 
 </resources>
