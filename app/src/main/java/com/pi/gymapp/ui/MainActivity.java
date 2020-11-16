@@ -1,13 +1,22 @@
 package com.pi.gymapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.pi.gymapp.R;
+import com.pi.gymapp.api.ApiClient;
+import com.pi.gymapp.api.ApiUserService;
+import com.pi.gymapp.api.AppPreferences;
+import com.pi.gymapp.api.models.Credentials;
+import com.pi.gymapp.ui.account.SignInActivity;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -40,6 +49,27 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        navigationView.getMenu().findItem(R.id.nav_sign_out).setOnMenuItemClickListener(menuItem -> {
+            ApiUserService userService= ApiClient.create(this,ApiUserService.class);
+
+            userService.logout().observe(this,r->{
+                if (r.getError()!= null){
+                    Log.d("UI","Logout not successfull");
+
+                   // Snackbar.make( findViewById(R.id.),"Ups! Something went wrong", Snackbar.LENGTH_LONG).show();
+                }else {
+                    Log.d("UI","Logout successfull");
+                    AppPreferences preferences = new AppPreferences(this);
+                    preferences.setAuthToken(null);
+
+                    Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+
+                }
+            });
+            return true;
+        });
     }
 
     @Override
