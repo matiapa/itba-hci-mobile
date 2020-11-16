@@ -26,8 +26,7 @@ public class Error {
     @Expose
     private List<String> details = null;
 
-    public Error()  {
-    }
+
 
     public Error(Integer code, String description) {
         this(code, description, null);

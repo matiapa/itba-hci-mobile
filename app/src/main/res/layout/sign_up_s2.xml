@@ -17,25 +17,25 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
-        android:id="@+id/editWeight"
+        android:id="@+id/signUpName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:ems="10"
-        android:hint="@string/signUpWeightHint"
-        android:inputType="numberSigned" />
+        android:hint="@string/signUpEditNameHint"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editHeight"
+        android:id="@+id/signUpPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:ems="10"
-        android:hint="@string/signUpHeightHint"
-        android:inputType="numberSigned" />
+        android:hint="@string/signUpPhoneHint"
+        android:inputType="phone" />
 
     <EditText
-        android:id="@+id/editAge"
+        android:id="@+id/signUpAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"

@@ -3,8 +3,8 @@
     <string name="action_settings">Settings</string>
 
     <string name="signUpEditNameHint">Name</string>
-    <string name="signUpTrainingLevelLabel">Training level</string>
-    <string name="signUpGoalLabel">Goal</string>
+<!--    <string name="signUpTrainingLevelLabel">Training level</string>-->
+<!--    <string name="signUpGoalLabel">Goal</string>-->
 
     <string name="nextStepButton">Next</string>
     <string name="signInUsernameHint">Username</string>
@@ -14,8 +14,8 @@
     <string name="signUpButton">Sign up</string>
     <string name="signUpStepAboutLabel">About You</string>
     <string name="signUpAgeHint">Age</string>
-    <string name="signUpHeightHint">Height (cm)</string>
-    <string name="signUpWeightHint">Weight (kg)</string>
+<!--    <string name="signUpHeightHint">Height (cm)</string>-->
+<!--    <string name="signUpWeightHint">Weight (kg)</string>-->
     <string name="signUpSexHint">Sex</string>
 
     <string name="playExerciseImageHint">Exercise image</string>
@@ -68,5 +68,12 @@
     <string name="favRoutinesTitle">Favourite routines</string>
     <string name="secondsFormat">%.0fs</string>
     <string name="rateFormat">%.2f</string>
+    <string name="signUpPasswordHint">Password</string>
+    <string name="signUpUsernameHint">Username</string>
+    <string name="signUpEmailHint">Email</string>
+    <string name="signUpPhoneHint">Cel Number</string>
+    <string name="resend_verification_email">Resend Verification Email</string>
+    <string name="VerificationCodeHint">Verification Code</string>
+    <string name="VerificationCodeHelper">Please insert the code you received via email below</string>
 
 </resources>

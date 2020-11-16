@@ -19,7 +19,7 @@
 
 
 
-        <activity android:name=".ui.routine_list.RoutineList"></activity>
+        <activity android:name=".ui.routine_list.RoutineList"/>
 
         <activity
             android:name=".ui.MainActivity"
@@ -38,6 +38,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.account.SignUpS2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.account.VerifyEmail"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

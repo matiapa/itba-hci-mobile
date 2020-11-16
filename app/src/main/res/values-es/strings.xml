@@ -4,8 +4,8 @@
     <string name="action_settings">Configuracion</string>
 
     <string name="signUpEditNameHint">Nombre</string>
-    <string name="signUpTrainingLevelLabel">Nivel de Entrenamiento</string>
-    <string name="signUpGoalLabel">Objetivo</string>
+<!--    <string name="signUpTrainingLevelLabel">Nivel de Entrenamiento</string>-->
+<!--    <string name="signUpGoalLabel">Objetivo</string>-->
 
     <string name="nextStepButton">Siguiente</string>
     <string name="signInUsernameHint">Usuario</string>
@@ -15,8 +15,8 @@
     <string name="signUpButton">Registrate</string>
     <string name="signUpStepAboutLabel">Sobre ti</string>
     <string name="signUpAgeHint">Edad</string>
-    <string name="signUpHeightHint">Altura (cm)</string>
-    <string name="signUpWeightHint">Peso (kg)</string>
+<!--    <string name="signUpHeightHint">Altura (cm)</string>-->
+<!--    <string name="signUpWeightHint">Peso (kg)</string>-->
     <string name="signUpSexHint">Sexo</string>
 
     <string name="playExerciseImageHint">Imagen del ejercicio</string>
@@ -72,5 +72,12 @@
 
     <string name="secondsFormat">%.0fs</string>
     <string name="rateFormat">%.2f</string>
+    <string name="signUpEmailHint">Email</string>
+    <string name="signUpPasswordHint">Contraseña</string>
+    <string name="signUpUsernameHint">Nombre de Usuario</string>
+    <string name="signUpPhoneHint">Numero de Celular</string>
+    <string name="resend_verification_email">Reenviar Email de Verificacion</string>
+    <string name="VerificationCodeHint">Codigo de Verificacion</string>
+    <string name="VerificationCodeHelper">Por favor ingrese el codigo que recibio en su casilla de correo</string>
 
 </resources>

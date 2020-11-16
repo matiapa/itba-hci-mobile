@@ -15,33 +15,27 @@
         android:gravity="center"
         android:text="@string/signUpStepAboutLabel"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-    <EditText
-        android:id="@+id/Username_signup"
+    <TextView
+        android:id="@+id/VerificationCodeHelper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="@string/VerificationCodeHelper" />
+
+    <EditText
+        android:id="@+id/VerificationCodeEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="@string/signUpUsernameHint"
+        android:hint="@string/VerificationCodeHint"
         android:inputType="text" />
 
-    <EditText
-        android:id="@+id/Email_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="@string/signUpEmailHint"
-        android:inputType="textEmailAddress" />
 
-    <EditText
-        android:id="@+id/password_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="@string/signUpPasswordHint"
-        android:inputType="textPassword" />
+
+
 
     <Button
         android:id="@+id/signInButton"
@@ -49,7 +43,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:background="@color/colorAccent"
-        android:onClick="nextStep"
+        android:onClick="verify"
         android:text="@string/nextStepButton" />
+    <Button
+        android:id="@+id/resendVerificationButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorAccent"
+
+
+        android:text="@string/resend_verification_email" />
 
 </LinearLayout>

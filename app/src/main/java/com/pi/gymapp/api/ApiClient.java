@@ -14,9 +14,9 @@ import java.util.Date;
 
 public class ApiClient {
 
-    public static final int CONNECT_TIMEOUT = 60;
-    public static final int READ_TIMEOUT = 60;
-    public static final int WRITE_TIMEOUT = 60;
+    public static final int CONNECT_TIMEOUT = 120;
+    public static final int READ_TIMEOUT = 120;
+    public static final int WRITE_TIMEOUT = 120;
 
     // No usar localhost o la IP 127.0.0.1 porque es la interfaz de loopback
     // del emulador. La forma de salir del emulador para acceder al localhost
