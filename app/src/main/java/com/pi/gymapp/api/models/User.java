@@ -20,9 +20,9 @@ public class User {
 
     @Expose private String avatarUrl;
 
-    @Expose private int dateCreated;
+    @Expose private long dateCreated;
 
-    @Expose private int dateLastActive;
+    @Expose private long dateLastActive;
 
     @Expose private boolean deleted;
 
@@ -92,7 +92,7 @@ public class User {
         this.avatarUrl = avatarUrl;
     }
 
-    public int getDateCreated() {
+    public long getDateCreated() {
         return dateCreated;
     }
 
@@ -100,11 +100,11 @@ public class User {
         this.dateCreated = dateCreated;
     }
 
-    public int getDateLastActive() {
+    public long getDateLastActive() {
         return dateLastActive;
     }
 
-    public void setDateLastActive(int dateLastActive) {
+    public void setDateLastActive(long dateLastActive) {
         this.dateLastActive = dateLastActive;
     }
 
