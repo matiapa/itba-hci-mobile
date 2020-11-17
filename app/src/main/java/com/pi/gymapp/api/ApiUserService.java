@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 
 
 import com.pi.gymapp.api.models.Credentials;
+import com.pi.gymapp.api.models.Email;
 import com.pi.gymapp.api.models.Token;
 import com.pi.gymapp.api.models.User;
 import com.pi.gymapp.api.models.UserData;
@@ -28,4 +29,7 @@ public interface ApiUserService {
 
     @POST("user/verify_email")
     LiveData<ApiResponse<Void>> verifyEmail(@Body VerifyEmailData verifyEmailData);
+
+    @POST("user/resend_verification")
+    LiveData<ApiResponse<Void>> resendVerificationEmail(@Body Email email);
 }

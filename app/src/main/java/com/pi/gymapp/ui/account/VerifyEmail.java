@@ -12,6 +12,7 @@ import com.pi.gymapp.R;
 import com.pi.gymapp.api.ApiClient;
 import com.pi.gymapp.api.ApiUserService;
 
+import com.pi.gymapp.api.models.Email;
 import com.pi.gymapp.api.models.VerifyEmailData;
 import com.pi.gymapp.ui.MainActivity;
 
@@ -34,10 +35,33 @@ public class VerifyEmail extends AppCompatActivity {
         }
         userService.verifyEmail(new VerifyEmailData(bundle.getString("email"),verification_code.getText().toString())).observe(this, r-> {
             if (r.getError() != null) {
+                Snackbar.make(view, "Invalid Code", Snackbar.LENGTH_LONG).show();
+            } else {
+                Intent intent=new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+            }
+
+        });
+    }
+
+    public void resendVerification(View view){
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle==null)
+            throw new IllegalStateException("no estoy recibiendo mis argumentos del otro lado");
+
+        ApiUserService userService= ApiClient.create(getApplication(),ApiUserService.class);
+
+        userService.resendVerificationEmail(new Email(bundle.getString("email"))).observe(this, r-> {
+            if (r.getError() != null) {
                 Snackbar.make(view, "Ups! Something went wrong", Snackbar.LENGTH_LONG).show();
             } else {
 
-                startActivity(new Intent(this, MainActivity.class));
+                Snackbar.make(view, "Email has been sent!", Snackbar.LENGTH_LONG).show();
 
             }
 
