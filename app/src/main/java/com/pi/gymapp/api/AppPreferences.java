@@ -24,3 +24,4 @@ public class AppPreferences {
         return sharedPreferences.getString(AUTH_TOKEN, null);
     }
 }
+

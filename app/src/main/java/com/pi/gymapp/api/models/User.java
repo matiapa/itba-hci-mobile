@@ -12,7 +12,7 @@ public class User {
 
     @Expose private String gender;
 
-    @Expose private int birthdate;
+    @Expose private long birthdate;
 
     @Expose private String email;
 
@@ -60,11 +60,11 @@ public class User {
         this.gender = gender;
     }
 
-    public int getBirthdate() {
+    public long getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(int birthdate) {
+    public void setBirthdate(long birthdate) {
         this.birthdate = birthdate;
     }
 

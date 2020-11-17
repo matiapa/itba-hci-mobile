@@ -14,7 +14,7 @@
     <string name="signInButton">Iniciar Sesion</string>
     <string name="signUpButton">Registrate</string>
     <string name="signUpStepAboutLabel">Sobre ti</string>
-    <string name="signUpAgeHint">Edad</string>
+    <string name="signUpAgeHint">Por favor ingrese su fecha de nacimiento</string>
 <!--    <string name="signUpHeightHint">Altura (cm)</string>-->
 <!--    <string name="signUpWeightHint">Peso (kg)</string>-->
     <string name="signUpSexHint">Sexo</string>
