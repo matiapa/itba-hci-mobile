@@ -75,5 +75,6 @@
     <string name="resend_verification_email">Resend Verification Email</string>
     <string name="VerificationCodeHint">Verification Code</string>
     <string name="VerificationCodeHelper">Please insert the code you received via email below</string>
+    <string name="profileBottonEdit">Edit</string>
 
 </resources>

@@ -79,5 +79,6 @@
     <string name="resend_verification_email">Reenviar Email de Verificacion</string>
     <string name="VerificationCodeHint">Codigo de Verificacion</string>
     <string name="VerificationCodeHelper">Por favor ingrese el codigo que recibio en su casilla de correo</string>
+    <string name="profileBottonEdit">Editar</string>
 
 </resources>
