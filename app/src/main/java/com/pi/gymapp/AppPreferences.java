@@ -1,4 +1,4 @@
-package com.pi.gymapp.api;
+package com.pi.gymapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;

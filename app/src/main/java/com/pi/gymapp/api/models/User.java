@@ -12,7 +12,7 @@ public class User {
 
     @Expose private String gender;
 
-    @Expose private int birthdate;
+    @Expose private long birthdate;
 
     @Expose private String email;
 
@@ -20,9 +20,9 @@ public class User {
 
     @Expose private String avatarUrl;
 
-    @Expose private int dateCreated;
+    @Expose private long dateCreated;
 
-    @Expose private int dateLastActive;
+    @Expose private long dateLastActive;
 
     @Expose private boolean deleted;
 
@@ -60,11 +60,11 @@ public class User {
         this.gender = gender;
     }
 
-    public int getBirthdate() {
+    public long getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(int birthdate) {
+    public void setBirthdate(long birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -92,19 +92,19 @@ public class User {
         this.avatarUrl = avatarUrl;
     }
 
-    public int getDateCreated() {
+    public long getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(int dateCreated) {
+    public void setDateCreated(long dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public int getDateLastActive() {
+    public long getDateLastActive() {
         return dateLastActive;
     }
 
-    public void setDateLastActive(int dateLastActive) {
+    public void setDateLastActive(long dateLastActive) {
         this.dateLastActive = dateLastActive;
     }
 

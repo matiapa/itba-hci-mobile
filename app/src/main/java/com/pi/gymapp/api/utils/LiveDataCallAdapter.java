@@ -1,4 +1,4 @@
-package com.pi.gymapp.api;
+package com.pi.gymapp.api.utils;
 
 import androidx.lifecycle.LiveData;
 

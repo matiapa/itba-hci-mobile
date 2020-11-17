@@ -3,6 +3,7 @@ package com.pi.gymapp.api;
 import androidx.lifecycle.LiveData;
 
 
+import com.pi.gymapp.api.utils.ApiResponse;
 import com.pi.gymapp.api.models.Credentials;
 import com.pi.gymapp.api.models.Token;
 import com.pi.gymapp.api.models.User;

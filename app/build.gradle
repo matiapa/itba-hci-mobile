@@ -1,11 +1,11 @@
-apply plugin: 'com.android.application'
+apply plugin: "com.android.application"
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.pi.gymapp"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -19,11 +19,11 @@ android {
         release {
             buildConfigField "Boolean", "DEBUG", "false"
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
-    buildFeatures{
-        dataBinding true
+    buildFeatures {
+        viewBinding true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -32,41 +32,60 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'com.robertlevonyan.view:MaterialExpansionPanel:2.0.8'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    // Appcompat
+    def appCompatVersion = "1.2.0"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // Legacy support
+    def legacySupportVersion = "1.0.0"
+    implementation "androidx.legacy:legacy-support-v4:$legacySupportVersion"
 
-    def nav_version = "2.3.1"
+    // Lifecycle
+    def lifeCycleVersion = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
 
-    // Java language implementation
-    implementation "androidx.navigation:navigation-fragment:$nav_version"
-    implementation "androidx.navigation:navigation-ui:$nav_version"
+    // Material
+    def materialVersion = "1.2.1"
+    implementation "com.google.android.material:material:$materialVersion"
 
-    // Kotlin
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // ConstraintLayout
+    def constraintLayoutVersion = "2.0.4"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
-    // Feature module Support
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    // RecyclerView
+    def recyclerViewVersion = "1.1.0"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 
-    // Testing Navigation
-    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    // Expansion panel
+    def expansionPanelVersion = "2.0.8"
+    implementation "com.robertlevonyan.view:MaterialExpansionPanel:$expansionPanelVersion"
 
-    // Jetpack Compose Integration
-//    implementation "androidx.navigation:navigation-compose:1.0.0-alpha01"
+    // Navigation
+    def navVersion = "2.3.1"
+    implementation "androidx.navigation:navigation-fragment:$navVersion"
+    implementation "androidx.navigation:navigation-ui:$navVersion"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navVersion"
+
+    // Retrofit
+    def retrofitVersion = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    // HTTP interceptor
+    def httpInterceptorVersion = "4.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:$httpInterceptorVersion"
+
+    // Room
+    def roomVersion = "2.2.5"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+
+    // Testing
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "androidx.test.ext:junit:1.1.2"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
 }
