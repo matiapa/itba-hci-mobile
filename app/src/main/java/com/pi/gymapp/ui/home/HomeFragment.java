@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pi.gymapp.R;
 import com.pi.gymapp.db.entity.RoutineEntity;
-import com.pi.gymapp.adapters.RoutineListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -17,31 +17,37 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
-        android:id="@+id/editWeight"
+        android:id="@+id/signUpName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:ems="10"
-        android:hint="@string/signUpWeightHint"
-        android:inputType="numberSigned" />
-
-    <EditText
-        android:id="@+id/editHeight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="@string/signUpHeightHint"
-        android:inputType="numberSigned" />
-
-    <EditText
-        android:id="@+id/editAge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="@string/signUpAgeHint"
+        android:hint="@string/signUpEditNameHint"
         android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/signUpPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/signUpPhoneHint"
+        android:inputType="phone" />
+    <TextView
+        android:id="@+id/ageText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="@string/signUpAgeHint" />
+
+    <DatePicker android:id="@+id/datePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"/>
 
     <TextView
         android:id="@+id/sexText"
@@ -67,5 +73,10 @@
         android:background="@color/colorAccent"
         android:onClick="finishSignUp"
         android:text="@string/nextStepButton" />
+
+
+
+
+
 
 </LinearLayout>
