@@ -82,5 +82,6 @@
     <string name="routineInfoCoolDown">Cool Down</string>
 
     <string name="favourite_routines_chip">Favourites</string>
+    <string name="play_routine_button">Play Routine</string>
 
 </resources>

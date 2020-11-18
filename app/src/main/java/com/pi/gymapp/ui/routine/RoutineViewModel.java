@@ -30,14 +30,54 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
             }
         });
 
+        routines = repository.getAllRoutines();
+
         favourites = repository.getFavourites();
     }
 
+
+    // ----------------------------- List of all routines -----------------------------
+
+    private final LiveData<Resource<List<Routine>>> routines;
+
+    public LiveData<Resource<List<Routine>>> getRoutines() {
+        return routines;
+    }
+
+
+    // ----------------------------- List of favourite routines -----------------------------
+
+    private final LiveData<Resource<List<Routine>>> favourites;
+
+    public LiveData<Resource<List<Routine>>> getFavourites() {
+        return favourites;
+    }
+
+
+    // ----------------------------- Selected routine -----------------------------
+
+    private final MutableLiveData<Integer> routineId = new MutableLiveData<>();
+    private final LiveData<Resource<Routine>> routine;
+
+    public LiveData<Resource<Routine>> getRoutine() {
+        return routine;
+    }
+
+    public void setRoutineId(int routineId) {
+        if ((this.routineId.getValue() != null) &&
+                (routineId == this.routineId.getValue())) {
+            return;
+        }
+
+        this.routineId.setValue(routineId);
+    }
+
+
     // ----------------------------- List of paged routines -----------------------------
 
-    private int routinesPage = 0;
+    /*private int routinesPage = 0;
     private boolean isLastRoutinesPage = false;
-    
+
     private final List<Routine> loadedRoutines = new ArrayList<>();
     private final MediatorLiveData<Resource<List<Routine>>> routines = new MediatorLiveData<>();
 
@@ -68,33 +108,5 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
     public void resetRoutinesList(){
         loadedRoutines.clear();
         routinesPage = 0;
-    }
-
-
-    // ----------------------------- List of favourite routines -----------------------------
-
-    private final LiveData<Resource<List<Routine>>> favourites;
-
-    public LiveData<Resource<List<Routine>>> getFavourites() {
-        return favourites;
-    }
-
-
-    // ----------------------------- Selected routine -----------------------------
-
-    private final MutableLiveData<Integer> routineId = new MutableLiveData<>();
-    private final LiveData<Resource<Routine>> routine;
-
-    public LiveData<Resource<Routine>> getRoutine() {
-        return routine;
-    }
-
-    public void setRoutineId(int routineId) {
-        if ((this.routineId.getValue() != null) &&
-                (routineId == this.routineId.getValue())) {
-            return;
-        }
-
-        this.routineId.setValue(routineId);
-    }
+    }*/
 }

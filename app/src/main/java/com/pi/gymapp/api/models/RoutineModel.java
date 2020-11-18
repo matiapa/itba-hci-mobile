@@ -12,7 +12,7 @@ public class RoutineModel {
 
     @Expose private long dateCreated;
 
-    @Expose private int averageRating;
+    @Expose private double averageRating;
 
     @Expose private boolean isPublic;
 
@@ -54,11 +54,11 @@ public class RoutineModel {
         this.dateCreated = dateCreated;
     }
 
-    public int getAverageRating() {
+    public double getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(int averageRating) {
+    public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
     }
 

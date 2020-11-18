@@ -22,6 +22,9 @@ public interface ApiRoutineService {
     @GET("routines/")
     LiveData<ApiResponse<PagedList<RoutineModel>>> getSlice(@Query("page") int page, @Query("size") int size);
 
+    @GET("routines/")
+    LiveData<ApiResponse<PagedList<RoutineModel>>> getAll();
+
     @GET("user/current/routines/favourites/")
     LiveData<ApiResponse<PagedList<RoutineModel>>> getFavourites();
 

@@ -89,6 +89,53 @@ public class RoutineRepository {
     }
 
 
+    public LiveData<Resource<List<Routine>>> getAllRoutines() {
+
+        return new NetworkBoundResource<List<Routine>, List<RoutineEntity>, PagedList<RoutineModel>>(
+                executors,
+                entities -> entities.stream().map(
+                        e -> new Routine(e.id, e.title, e.rate, null)
+                ).collect(toList()),
+                model -> model.getResults().stream().map(
+                        m -> new RoutineEntity(m.getId(), m.getName(), m.getAverageRating(), null)
+                ).collect(toList()),
+                model -> model.getResults().stream().map(
+                        m -> new Routine(m.getId(), m.getName(), m.getAverageRating(), null)
+                ).collect(toList())
+        ){
+            @Override
+            protected void saveCallResult(@NonNull List<RoutineEntity> entities) {
+                db.routineDao().deletAll();
+                db.routineDao().insert(entities);
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable List<RoutineEntity> entities) {
+                return ((entities == null) || (entities.size() == 0))
+                        || rateLimit.shouldFetch(RATE_LIMITER_ALL_KEY);
+            }
+
+            @Override
+            protected boolean shouldPersist(@Nullable PagedList<RoutineModel> model) {
+                return true;
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<List<RoutineEntity>> loadFromDb() {
+                return db.routineDao().getAll();
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<PagedList<RoutineModel>>> createCall() {
+                return api.getAll();
+            }
+        }.asLiveData();
+
+    }
+
+
     public LiveData<Resource<Routine>> getRoutineById(int routineId) {
         return new NetworkBoundResource<Routine, RoutineEntity, RoutineModel>(
             executors,

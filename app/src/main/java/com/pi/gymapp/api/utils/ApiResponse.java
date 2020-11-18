@@ -64,6 +64,9 @@ public class ApiResponse<T> {
 
     private static Error buildError(String message) {
         Error error = new Error(Error.LOCAL_UNEXPECTED_ERROR, "Unexpected error");
+
+        Log.e("ApiResponseError", message);
+
         if (message != null) {
             List<String> details = new ArrayList<>();
             details.add(message);
