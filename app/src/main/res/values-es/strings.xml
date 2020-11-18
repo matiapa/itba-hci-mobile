@@ -80,5 +80,10 @@
     <string name="VerificationCodeHint">Codigo de Verificacion</string>
     <string name="VerificationCodeHelper">Por favor ingrese el codigo que recibio en su casilla de correo</string>
     <string name="profileBottonEdit">Editar</string>
+    <string name="routineInfoWarmUp">Calentamiento</string>
+    <string name="routineInfoMainTraining">Entrenamiento principal</string>
+    <string name="routineInfoCoolDown">Enfriamiento</string>
+
+    <string name="favourite_routines_chip">Favoritas</string>
 
 </resources>

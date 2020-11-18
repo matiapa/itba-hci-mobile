@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:background="@color/colorAccent"
-        android:onClick="verify"
+
         android:text="@string/nextStepButton" />
     <Button
         android:id="@+id/resendVerificationButton"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@color/colorAccent"
-        android:onClick="resendVerification"
+
         android:text="@string/resend_verification_email" />
 
 </LinearLayout>

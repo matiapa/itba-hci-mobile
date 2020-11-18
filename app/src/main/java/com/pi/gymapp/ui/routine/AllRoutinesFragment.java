@@ -1,7 +1,5 @@
 package com.pi.gymapp.ui.routine;
 
-import android.app.Application;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.R;
-import com.pi.gymapp.databinding.FragmentAllRoutinesBinding;
+import com.pi.gymapp.databinding.RoutinesListAllBinding;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.ui.MainActivity;
@@ -29,15 +27,14 @@ import java.util.List;
 
 public class AllRoutinesFragment extends Fragment {
 
-    FragmentAllRoutinesBinding binding;
-
+    private RoutinesListAllBinding binding;
     private RoutineViewModel routineViewModel;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentAllRoutinesBinding.inflate(getLayoutInflater());
+        binding = RoutinesListAllBinding.inflate(getLayoutInflater());
 
         return binding.getRoot();
     }
@@ -54,19 +51,19 @@ public class AllRoutinesFragment extends Fragment {
         // --------------------------------- Adapter setup ---------------------------------
 
         List<Routine> routines = new ArrayList<>();
-        RoutineAdapter adapter = new RoutineAdapter(routines);
+        RoutinesListAdapter adapter = new RoutinesListAdapter(routines);
 
         binding.routinesList.setHasFixedSize(true);
         binding.routinesList.setLayoutManager(new LinearLayoutManager(activity));
-//        binding.routinesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//                if (!binding.routinesList.canScrollVertically(1)) {
-//                    routineViewModel.getMoreRoutines();
-//                }
-//            }
-//        });
+        binding.routinesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!binding.routinesList.canScrollVertically(1)) {
+                    routineViewModel.getMoreRoutines();
+                }
+            }
+        });
 
         binding.routinesList.setAdapter(adapter);
 
@@ -101,7 +98,7 @@ public class AllRoutinesFragment extends Fragment {
 
         // --------------------------------- Buttons setup ---------------------------------
 
-        binding.favRoutinesButton.setOnClickListener(l ->
+        binding.favRoutinesChip.setOnClickListener(l ->
                 Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_favRoutinesFragment)
         );
     }

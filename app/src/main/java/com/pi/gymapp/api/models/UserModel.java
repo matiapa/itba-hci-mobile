@@ -2,7 +2,7 @@ package com.pi.gymapp.api.models;
 
 import com.google.gson.annotations.Expose;
 
-public class User {
+public class UserModel {
 
     @Expose private int id;
 
@@ -16,7 +16,7 @@ public class User {
 
     @Expose private String email;
 
-    @Expose private String phone;
+    @Expose private long phone;
 
     @Expose private String avatarUrl;
 
@@ -76,11 +76,11 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

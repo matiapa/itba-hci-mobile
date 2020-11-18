@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,11 +14,11 @@ import com.pi.gymapp.domain.Routine;
 
 import java.util.List;
 
-public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHolder> {
+public class RoutinesListAdapter extends RecyclerView.Adapter<RoutinesListAdapter.ViewHolder> {
 
     private final List<Routine> data;
 
-    public RoutineAdapter(List<Routine> data) {
+    public RoutinesListAdapter(List<Routine> data) {
         this.data = data;
     }
 
@@ -28,7 +27,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.routine_card, parent, false);
+        View view = inflater.inflate(R.layout.routines_list_card, parent, false);
 
         return new ViewHolder(view);
     }

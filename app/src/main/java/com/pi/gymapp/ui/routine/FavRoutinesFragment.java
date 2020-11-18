@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.pi.gymapp.MyApplication;
-import com.pi.gymapp.databinding.FragmentFavRoutinesBinding;
+import com.pi.gymapp.databinding.RoutinesListFavsBinding;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.ui.MainActivity;
@@ -24,13 +24,13 @@ import java.util.List;
 
 public class FavRoutinesFragment extends Fragment {
 
-    FragmentFavRoutinesBinding binding;
+    RoutinesListFavsBinding binding;
     private RoutineViewModel routineViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentFavRoutinesBinding.inflate(getLayoutInflater());
+        binding = RoutinesListFavsBinding.inflate(getLayoutInflater());
 
         return binding.getRoot();
     }
@@ -40,6 +40,8 @@ public class FavRoutinesFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         MyApplication application = (MyApplication) getActivity().getApplication();
+        if (!getActivity().getClass().equals(MainActivity.class))
+            return;
         MainActivity activity = (MainActivity) getActivity();
 
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
@@ -49,7 +51,7 @@ public class FavRoutinesFragment extends Fragment {
 
 
         List<Routine> routines = new ArrayList<>();
-        RoutineAdapter adapter = new RoutineAdapter(routines);
+        RoutinesListAdapter adapter = new RoutinesListAdapter(routines);
 
         routineViewModel.getFavourites().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {

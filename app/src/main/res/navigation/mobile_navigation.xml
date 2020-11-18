@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
         android:name="com.pi.gymapp.ui.routine.AllRoutinesFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_all_routines" >
+        tools:layout="@layout/routines_list_all" >
         <action
             android:id="@+id/action_nav_home_to_favRoutinesFragment"
             app:destination="@id/favRoutinesFragment" />
@@ -40,8 +40,10 @@
             app:popUpTo="@id/nav_profile"
             app:popUpToInclusive="true" />
     </fragment>
+
     <fragment
         android:id="@+id/favRoutinesFragment"
         android:name="com.pi.gymapp.ui.routine.FavRoutinesFragment"
         android:label="@string/fav_routines_title" />
+
 </navigation>
