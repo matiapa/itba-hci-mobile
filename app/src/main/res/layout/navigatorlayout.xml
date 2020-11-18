@@ -27,7 +27,7 @@
             app:defaultNavHost="true"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            app:navGraph="@navigation/mobile_navegation2" />
+            app:navGraph="@navigation/signin_navigation" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

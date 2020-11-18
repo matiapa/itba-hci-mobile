@@ -10,17 +10,11 @@ import com.pi.gymapp.api.utils.ApiClient;
 import com.pi.gymapp.api.ApiUserService;
 import com.pi.gymapp.AppPreferences;
 import com.pi.gymapp.api.models.Credentials;
-import com.pi.gymapp.databinding.FragmentHomeBinding;
 import com.pi.gymapp.databinding.SignInBinding;
-import com.pi.gymapp.ui.LoginActivity;
 import com.pi.gymapp.ui.MainActivity;
-import com.pi.gymapp.ui.profile.ProfileViewModel;
-import com.pi.gymapp.ui.routine.RoutineViewModel;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -35,10 +29,10 @@ public class SignInFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-//
+
         binding = SignInBinding.inflate(getLayoutInflater());
 
-//
+
         binding.signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
