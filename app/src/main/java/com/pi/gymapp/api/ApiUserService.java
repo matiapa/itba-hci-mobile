@@ -3,17 +3,19 @@ package com.pi.gymapp.api;
 import androidx.lifecycle.LiveData;
 
 
+import com.pi.gymapp.api.models.RoutineModel;
+import com.pi.gymapp.api.models.UserModel;
 import com.pi.gymapp.api.utils.ApiResponse;
 import com.pi.gymapp.api.models.Credentials;
 import com.pi.gymapp.api.models.Email;
 import com.pi.gymapp.api.models.Token;
-import com.pi.gymapp.api.models.User;
 import com.pi.gymapp.api.models.UserData;
 import com.pi.gymapp.api.models.VerifyEmailData;
 
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiUserService {
     @POST("user/login")
@@ -23,14 +25,17 @@ public interface ApiUserService {
     LiveData<ApiResponse<Void>> logout();
 
     @GET("user/current")
-    LiveData<ApiResponse<User>> getCurrentUser();
+    LiveData<ApiResponse<UserModel>> getCurrentUser();
 
     @POST("user")
-    LiveData<ApiResponse<User>> createUser(@Body UserData userData);
+    LiveData<ApiResponse<UserModel>> createUser(@Body UserData userData);
 
     @POST("user/verify_email")
     LiveData<ApiResponse<Void>> verifyEmail(@Body VerifyEmailData verifyEmailData);
 
     @POST("user/resend_verification")
     LiveData<ApiResponse<Void>> resendVerificationEmail(@Body Email email);
+
+    @GET("user/{userId}")
+    LiveData<ApiResponse<UserModel>> getById(@Path("userId") int userId);
 }
