@@ -33,15 +33,21 @@
         android:ems="10"
         android:hint="@string/signUpPhoneHint"
         android:inputType="phone" />
-
-    <EditText
-        android:id="@+id/signUpAge"
+    <TextView
+        android:id="@+id/ageText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="@string/signUpAgeHint"
-        android:inputType="textPersonName" />
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="@string/signUpAgeHint" />
+
+    <DatePicker android:id="@+id/datePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"/>
 
     <TextView
         android:id="@+id/sexText"
@@ -67,5 +73,10 @@
         android:background="@color/colorAccent"
         android:onClick="finishSignUp"
         android:text="@string/nextStepButton" />
+
+
+
+
+
 
 </LinearLayout>

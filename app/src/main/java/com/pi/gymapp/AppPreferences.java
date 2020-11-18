@@ -1,4 +1,4 @@
-package com.pi.gymapp.api;
+package com.pi.gymapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,3 +24,4 @@ public class AppPreferences {
         return sharedPreferences.getString(AUTH_TOKEN, null);
     }
 }
+

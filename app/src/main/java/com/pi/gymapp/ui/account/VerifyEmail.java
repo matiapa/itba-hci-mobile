@@ -9,11 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.pi.gymapp.R;
-import com.pi.gymapp.api.ApiClient;
 import com.pi.gymapp.api.ApiUserService;
 
 import com.pi.gymapp.api.models.Email;
 import com.pi.gymapp.api.models.VerifyEmailData;
+import com.pi.gymapp.api.utils.ApiClient;
 import com.pi.gymapp.ui.MainActivity;
 
 public class VerifyEmail extends AppCompatActivity {
@@ -25,8 +25,8 @@ public class VerifyEmail extends AppCompatActivity {
         if (bundle==null)
             throw new IllegalStateException("no estoy recibiendo mis argumentos del otro lado");
 
-        ApiUserService userService= ApiClient.create(getApplication(),ApiUserService.class);
-        EditText verification_code =(EditText) findViewById(R.id.VerificationCodeEdit);
+        ApiUserService userService = ApiClient.create(getApplication(),ApiUserService.class);
+        EditText verification_code = (EditText) findViewById(R.id.VerificationCodeEdit);
 
         if (verification_code.getText().toString().equals("") )
         {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -11,12 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.pi.gymapp.R;
-import com.pi.gymapp.api.ApiClient;
 import com.pi.gymapp.api.ApiUserService;
-import com.pi.gymapp.api.AppPreferences;
-import com.pi.gymapp.api.models.Credentials;
 import com.pi.gymapp.api.models.UserData;
-import com.pi.gymapp.ui.MainActivity;
+import com.pi.gymapp.api.utils.ApiClient;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class SignUpS2 extends AppCompatActivity {
 
@@ -28,10 +29,10 @@ public class SignUpS2 extends AppCompatActivity {
         String regex = "^([+])?[0-9]{8,15}$";
         return phone.matches(regex);
     }
-    static boolean isAgeValid(String age) {
-        String regex = "^[0-9]+$";
-        return age.matches(regex);
-    }
+//    static boolean isAgeValid(String age) {
+//        String regex = "^[0-9]+$";
+//        return age.matches(regex);
+//    }
 
     
     public void finishSignUp(View view){
@@ -43,20 +44,24 @@ public class SignUpS2 extends AppCompatActivity {
         ApiUserService userService= ApiClient.create(this,ApiUserService.class);
         EditText name =(EditText) findViewById(R.id.signUpName);
         EditText phone = (EditText)findViewById(R.id.signUpPhone);
-        EditText age =(EditText) findViewById(R.id.signUpAge);
+        DatePicker age =(DatePicker) findViewById(R.id.datePicker1);
         String gender =((Spinner)findViewById(R.id.sexSpinner)).getSelectedItem().toString();
 
 
-        if (!(isNameValid(name.getText().toString()) && isPhoneValid(phone.getText().toString()) && isAgeValid(age.getText().toString())) )
+        if (!(isNameValid(name.getText().toString()) && isPhoneValid(phone.getText().toString()) ) )
         {
             Snackbar.make(view, "Invalid Input", Snackbar.LENGTH_LONG).show();
             return;
         }
+
+        Calendar cal=Calendar.getInstance();
+        cal.clear();
+        cal.set(age.getYear(),age.getMonth(),age.getDayOfMonth());
         userService.createUser(new UserData(
                 bundle.getString("username"),
                 name.getText().toString(),
                 gender.toLowerCase(),
-                Integer.parseInt(age.getText().toString()),
+                cal.getTimeInMillis(),
                 bundle.getString("email"),
                 phone.getText().toString(),
                 null,

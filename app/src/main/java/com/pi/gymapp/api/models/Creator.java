@@ -12,9 +12,9 @@ public class Creator {
     
     @Expose private String avatarUrl;
     
-    @Expose private int dateCreated;
+    @Expose private long dateCreated;
     
-    @Expose private int dateLastActive;
+    @Expose private long dateLastActive;
 
     public int getId() {
         return id;
@@ -48,19 +48,19 @@ public class Creator {
         this.avatarUrl = avatarUrl;
     }
 
-    public int getDateCreated() {
+    public long getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(int dateCreated) {
+    public void setDateCreated(long dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public int getDateLastActive() {
+    public long getDateLastActive() {
         return dateLastActive;
     }
 
-    public void setDateLastActive(int dateLastActive) {
+    public void setDateLastActive(long dateLastActive) {
         this.dateLastActive = dateLastActive;
     }
 

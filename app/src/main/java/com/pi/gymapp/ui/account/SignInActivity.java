@@ -6,9 +6,9 @@ import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 import com.pi.gymapp.R;
 
-import com.pi.gymapp.api.ApiClient;
+import com.pi.gymapp.api.utils.ApiClient;
 import com.pi.gymapp.api.ApiUserService;
-import com.pi.gymapp.api.AppPreferences;
+import com.pi.gymapp.AppPreferences;
 import com.pi.gymapp.api.models.Credentials;
 import com.pi.gymapp.ui.MainActivity;
 
@@ -26,17 +26,16 @@ public class SignInActivity extends AppCompatActivity {
 
     public void signIn(View view){
 
+        ApiUserService userService= ApiClient.create(this, ApiUserService.class);
+        EditText user_input = findViewById(R.id.username_signin);
+        EditText password_input = findViewById(R.id.password_signin);
 
-        ApiUserService userService= ApiClient.create(this,ApiUserService.class);
-        EditText user_input =(EditText) findViewById(R.id.username_signin);
-        EditText password_input =(EditText) findViewById(R.id.password_signin);
-
-        userService.login(new Credentials(user_input.getText().toString(),password_input.getText().toString())).observe(this,r->{
-            if (r.getError()!= null){
-
+        Credentials credentials = new Credentials(user_input.getText().toString(), password_input.getText().toString());
+        userService.login(credentials).observe(this, r -> {
+            if (r.getError() != null) {
                 Snackbar.make(view, "Ups! Something went wrong", Snackbar.LENGTH_LONG).show();
-            }else {
-                Log.d("UI","Token: "+ r.getData().getToken());
+            } else {
+                Log.d("UI", "Token: " + r.getData().getToken());
                 AppPreferences preferences = new AppPreferences(this);
                 preferences.setAuthToken(r.getData().getToken());
 
@@ -48,8 +47,6 @@ public class SignInActivity extends AppCompatActivity {
 
             }
         });
-
-
 
     }
 

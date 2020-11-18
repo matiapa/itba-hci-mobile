@@ -14,7 +14,7 @@
     <string name="signInButton">Iniciar Sesion</string>
     <string name="signUpButton">Registrate</string>
     <string name="signUpStepAboutLabel">Sobre ti</string>
-    <string name="signUpAgeHint">Edad</string>
+    <string name="signUpAgeHint">Por favor ingrese su fecha de nacimiento</string>
 <!--    <string name="signUpHeightHint">Altura (cm)</string>-->
 <!--    <string name="signUpWeightHint">Peso (kg)</string>-->
     <string name="signUpSexHint">Sexo</string>
@@ -79,5 +79,6 @@
     <string name="resend_verification_email">Reenviar Email de Verificacion</string>
     <string name="VerificationCodeHint">Codigo de Verificacion</string>
     <string name="VerificationCodeHelper">Por favor ingrese el codigo que recibio en su casilla de correo</string>
+    <string name="profileBottonEdit">Editar</string>
 
 </resources>

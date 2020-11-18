@@ -13,7 +13,7 @@
     <string name="signInButton">Sign in</string>
     <string name="signUpButton">Sign up</string>
     <string name="signUpStepAboutLabel">About You</string>
-    <string name="signUpAgeHint">Age</string>
+    <string name="signUpAgeHint">Please enter your date of birth</string>
 <!--    <string name="signUpHeightHint">Height (cm)</string>-->
 <!--    <string name="signUpWeightHint">Weight (kg)</string>-->
     <string name="signUpSexHint">Sex</string>
@@ -75,5 +75,6 @@
     <string name="resend_verification_email">Resend Verification Email</string>
     <string name="VerificationCodeHint">Verification Code</string>
     <string name="VerificationCodeHelper">Please insert the code you received via email below</string>
+    <string name="profileBottonEdit">Edit</string>
 
 </resources>

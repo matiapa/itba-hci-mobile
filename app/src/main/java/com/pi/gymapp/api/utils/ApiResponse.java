@@ -1,4 +1,4 @@
-package com.pi.gymapp.api;
+package com.pi.gymapp.api.utils;
 
 import android.util.Log;
 
@@ -71,4 +71,5 @@ public class ApiResponse<T> {
         }
         return error;
     }
+
 }

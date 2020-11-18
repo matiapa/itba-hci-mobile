@@ -1,4 +1,4 @@
-package com.pi.gymapp.api;
+package com.pi.gymapp.api.utils;
 
 import com.pi.gymapp.BuildConfig;
 import java.util.concurrent.TimeUnit;
@@ -14,17 +14,13 @@ import java.util.Date;
 
 public class ApiClient {
 
-    public static final int CONNECT_TIMEOUT = 120;
-    public static final int READ_TIMEOUT = 120;
-    public static final int WRITE_TIMEOUT = 120;
+    public static final int CONNECT_TIMEOUT = 10;
+    public static final int READ_TIMEOUT = 10;
+    public static final int WRITE_TIMEOUT = 10;
 
-    // No usar localhost o la IP 127.0.0.1 porque es la interfaz de loopback
-    // del emulador. La forma de salir del emulador para acceder al localhost
-    // de host del mismo es usando la IP 10.0.2.2.
-    public static final String BASE_URL = "http://10.0.2.2:8080/api/";
+    public static final String BASE_URL = "http://10.0.2.2:8081/api/";
 
-    private ApiClient() {
-    }
+    private ApiClient() { }
 
     public static <S> S create(Context context, Class<S> serviceClass) {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor().
@@ -51,4 +47,5 @@ public class ApiClient {
 
         return retrofit.create(serviceClass);
     }
+
 }

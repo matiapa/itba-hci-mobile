@@ -1,8 +1,10 @@
-package com.pi.gymapp.api;
+package com.pi.gymapp.api.utils;
 
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+
+import com.pi.gymapp.AppPreferences;
 
 import org.jetbrains.annotations.NotNull;
 

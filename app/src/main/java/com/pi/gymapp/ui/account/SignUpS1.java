@@ -9,8 +9,8 @@ import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.pi.gymapp.R;
-import com.pi.gymapp.api.ApiClient;
 import com.pi.gymapp.api.ApiUserService;
+import com.pi.gymapp.api.utils.ApiClient;
 
 public class SignUpS1 extends AppCompatActivity {
 

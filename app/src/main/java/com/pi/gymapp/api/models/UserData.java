@@ -13,7 +13,7 @@ public class UserData {
 
     @Expose private String gender;
 
-    @Expose private int birthdate;
+    @Expose private long birthdate;
 
     @Expose private String email;
 
@@ -25,7 +25,7 @@ public class UserData {
 
     @Expose private String password;
 
-    public UserData(String username, String fullName, String gender, int birthdate, String email, String phone, String avatarUrl, String password) {
+    public UserData(String username, String fullName, String gender, long birthdate, String email, String phone, String avatarUrl, String password) {
         this.username = username;
         this.fullName = fullName;
         this.gender = gender;
@@ -68,11 +68,11 @@ public class UserData {
         this.gender = gender;
     }
 
-    public int getBirthdate() {
+    public long getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(int birthdate) {
+    public void setBirthdate(long birthdate) {
         this.birthdate = birthdate;
     }
 

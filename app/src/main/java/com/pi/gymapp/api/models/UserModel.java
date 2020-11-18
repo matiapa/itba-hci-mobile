@@ -2,7 +2,7 @@ package com.pi.gymapp.api.models;
 
 import com.google.gson.annotations.Expose;
 
-public class User {
+public class UserModel {
 
     @Expose private int id;
 
@@ -12,11 +12,11 @@ public class User {
 
     @Expose private String gender;
 
-    @Expose private int birthdate;
+    @Expose private long birthdate;
 
     @Expose private String email;
 
-    @Expose private String phone;
+    @Expose private long phone;
 
     @Expose private String avatarUrl;
 
@@ -60,11 +60,11 @@ public class User {
         this.gender = gender;
     }
 
-    public int getBirthdate() {
+    public long getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(int birthdate) {
+    public void setBirthdate(long birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -76,11 +76,11 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 
@@ -96,7 +96,7 @@ public class User {
         return dateCreated;
     }
 
-    public void setDateCreated(int dateCreated) {
+    public void setDateCreated(long dateCreated) {
         this.dateCreated = dateCreated;
     }
 

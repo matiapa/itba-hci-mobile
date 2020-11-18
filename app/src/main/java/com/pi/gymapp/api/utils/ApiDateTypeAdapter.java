@@ -1,4 +1,4 @@
-package com.pi.gymapp.api;
+package com.pi.gymapp.api.utils;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;

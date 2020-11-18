@@ -2,7 +2,7 @@ package com.pi.gymapp.api.models;
 
 import com.google.gson.annotations.Expose;
 
-public class Routine {
+public class RoutineModel {
     
     @Expose private int id;
 
@@ -10,7 +10,7 @@ public class Routine {
 
     @Expose private String detail;
 
-    @Expose private int dateCreated;
+    @Expose private long dateCreated;
 
     @Expose private int averageRating;
 
@@ -46,11 +46,11 @@ public class Routine {
         this.detail = detail;
     }
 
-    public int getDateCreated() {
+    public long getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(int dateCreated) {
+    public void setDateCreated(long dateCreated) {
         this.dateCreated = dateCreated;
     }
 
