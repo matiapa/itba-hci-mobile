@@ -38,15 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
 
-        finish();
-        super.onBackPressed();
-    }
-    public void suicide(){
-        onBackPressed();
-    }
+
 
     public void showProgressBar() {
         binding.loading.setVisibility(View.VISIBLE);

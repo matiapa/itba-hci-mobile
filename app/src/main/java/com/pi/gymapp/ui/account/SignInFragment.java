@@ -59,7 +59,7 @@ public class SignInFragment extends Fragment {
                         Intent intent=new Intent(getContext(), MainActivity.class);
                         intent.putExtra("login",true);
                         startActivity(intent);
-                        ((LoginActivity)getActivity()).suicide();
+                        getActivity().finish();
 
                     }
                 });
