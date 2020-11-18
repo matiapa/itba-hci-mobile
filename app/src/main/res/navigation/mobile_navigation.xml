@@ -3,13 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
         android:name="com.pi.gymapp.ui.routine.RoutineListFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/verifyEmail"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_profile"
@@ -35,5 +41,64 @@
             app:destination="@id/nav_profile"
             app:popUpTo="@id/nav_profile"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.pi.gymapp.ui.account.SignInFragment"
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment1"
+            app:destination="@id/signUpFragment1" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment1"
+        android:name="com.pi.gymapp.ui.account.SignUpFragment1"
+        android:label="SignUpFragment1" >
+        <action
+            android:id="@+id/action_signUpFragment1_to_signUpFragment2"
+            app:destination="@id/signUpFragment2" >
+            <argument
+                android:name="Username"
+                android:defaultValue='""' />
+            <argument
+                android:name="Password"
+                android:defaultValue='""' />
+            <argument
+                android:name="Email"
+                android:defaultValue='""' />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment2"
+        android:name="com.pi.gymapp.ui.account.SignUpFragment2"
+        android:label="SignUpFragment2" >
+        <argument
+            android:name="Username"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="Password"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="Email"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_signUpFragment2_to_verifyEmail"
+            app:destination="@id/verifyEmail" >
+            <argument
+                android:name="Email"
+                android:defaultValue='""' />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/verifyEmail"
+        android:name="com.pi.gymapp.ui.account.VerifyEmail"
+        android:label="VerifyEmail" >
+        <argument
+            android:name="Email"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

@@ -40,6 +40,8 @@ public class RoutineListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         MyApplication application = (MyApplication) getActivity().getApplication();
+        if (!getActivity().getClass().equals(MainActivity.class))
+            return;
         MainActivity activity = (MainActivity) getActivity();
 
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(

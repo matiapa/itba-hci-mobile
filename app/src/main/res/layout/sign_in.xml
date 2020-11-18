@@ -38,19 +38,18 @@
         android:textSize="16sp" />
 
     <Button
+        android:id="@+id/signInButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:background="@color/colorAccent"
-        android:onClick="signIn"
         android:text="@string/signInButton" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/signUpButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:onClick="signUp"
         android:text="@string/signUpButton" />
 
 </LinearLayout>
