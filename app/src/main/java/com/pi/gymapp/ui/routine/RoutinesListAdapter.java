@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pi.gymapp.R;
@@ -46,7 +48,7 @@ public class RoutinesListAdapter extends RecyclerView.Adapter<RoutinesListAdapte
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private int id;
 
@@ -58,6 +60,8 @@ public class RoutinesListAdapter extends RecyclerView.Adapter<RoutinesListAdapte
             title = itemView.findViewById(R.id.routineName);
             rate = itemView.findViewById(R.id.routineRating);
             duration = itemView.findViewById(R.id.routineDuration);
+
+            view.setOnClickListener(this);
         }
 
         public void bindTo(Routine routine) {
@@ -69,6 +73,12 @@ public class RoutinesListAdapter extends RecyclerView.Adapter<RoutinesListAdapte
             rate.setText(String.format(context.getString(R.string.rateFormat), routine.getRate()));
         }
 
+        @Override
+        public void onClick(View v) {
+            Navigation.findNavController(v).navigate(
+                AllRoutinesFragmentDirections.actionNavHomeToRoutineDetailFragment(id)
+            );
+        }
     }
 
 }

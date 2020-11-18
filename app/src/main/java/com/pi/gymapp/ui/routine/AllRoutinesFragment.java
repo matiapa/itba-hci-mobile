@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -93,12 +94,13 @@ public class AllRoutinesFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                     //binding.routinesList.scrollToPosition(routines.size() - 1);
                     break;
+
+                case ERROR:
+                    activity.hideProgressBar();
+                    Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
+                    break;
             }
         });
-
-//        NavHostFragment.findNavController(this).navigate(
-//                AllRoutinesFragmentDirections.actionNavHomeToRoutineDetailFragment()
-//        );
 
 
         // --------------------------------- Buttons setup ---------------------------------

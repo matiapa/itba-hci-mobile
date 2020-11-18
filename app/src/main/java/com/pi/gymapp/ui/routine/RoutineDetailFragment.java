@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,8 +44,6 @@ public class RoutineDetailFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         MyApplication application = (MyApplication) getActivity().getApplication();
-        if (!getActivity().getClass().equals(MainActivity.class))
-            return;
         MainActivity activity = (MainActivity) getActivity();
 
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
@@ -52,13 +51,30 @@ public class RoutineDetailFragment extends Fragment {
         );
         routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
 
+        routineViewModel.setRoutineId(RoutineDetailFragmentArgs.fromBundle(getArguments()).getRoutineId());
 
+        routineViewModel.getRoutine().observe(getViewLifecycleOwner(), resource -> {
+            switch (resource.status) {
+                case LOADING:
+                    activity.showProgressBar();
+                    break;
 
-        routineViewModel.getRoutine().observe(getViewLifecycleOwner(), r -> {
-            binding.routineDetailcard.routineName.setText(r.data.getTitle());
-            binding.routineDetailcard.routineRating.setText(
-                    String.format(String.valueOf(R.string.rateFormat), r.data.getRate())
-            );
+                case SUCCESS:
+                    activity.hideProgressBar();
+                    binding.routineDetailcard.routineName.setText(resource.data.getTitle());
+                    binding.routineDetailcard.routineRating.setText(
+                            String.format(getString(R.string.rateFormat), resource.data.getRate())
+                    );
+                    break;
+
+                case ERROR:
+                    activity.hideProgressBar();
+                    Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
+                    break;
+
+                default:
+                    break;
+            }
         });
 
     }
