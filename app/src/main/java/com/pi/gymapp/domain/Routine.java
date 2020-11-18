@@ -5,9 +5,9 @@ public class Routine {
     private int id;
     private String title;
     private double rate;
-    private boolean isFav;
+    private Boolean isFav;
 
-    public Routine(int id, String title, double rate, boolean isFav) {
+    public Routine(int id, String title, double rate, Boolean isFav) {
         this.id = id;
         this.title = title;
         this.rate = rate;
@@ -26,12 +26,8 @@ public class Routine {
         return rate;
     }
 
-    public boolean isFav() {
+    public Boolean isFav() {
         return isFav;
-    }
-
-    public void setFav(boolean fav) {
-        isFav = fav;
     }
 
 }

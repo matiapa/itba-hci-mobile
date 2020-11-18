@@ -16,17 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
-    
+
     private final static int PAGE_SIZE = 10;
-
-    private int routinesPage = 0;
-    private boolean isLastRoutinesPage = false;
-    
-    private final List<Routine> loadedRoutines = new ArrayList<>();
-    private final MediatorLiveData<Resource<List<Routine>>> routines = new MediatorLiveData<>();
-
-    private final MutableLiveData<Integer> routineId = new MutableLiveData<>();
-    private final LiveData<Resource<Routine>> routine;
 
     public RoutineViewModel(RoutineRepository repository) {
         super(repository);
@@ -35,10 +26,20 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
             if (routineId == null) {
                 return AbsentLiveData.create();
             } else {
-                return repository.getById(routineId);
+                return repository.getRoutineById(routineId);
             }
         });
+
+        favourites = repository.getFavourites();
     }
+
+    // ----------------------------- List of paged routines -----------------------------
+
+    private int routinesPage = 0;
+    private boolean isLastRoutinesPage = false;
+    
+    private final List<Routine> loadedRoutines = new ArrayList<>();
+    private final MediatorLiveData<Resource<List<Routine>>> routines = new MediatorLiveData<>();
 
     public LiveData<Resource<List<Routine>>> getRoutines() {
         getMoreRoutines();
@@ -49,7 +50,7 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
         if (isLastRoutinesPage)
             return;
 
-       routines.addSource(repository.getSlice(routinesPage, PAGE_SIZE), resource -> {
+        routines.addSource(repository.getRoutineSlice(routinesPage, PAGE_SIZE), resource -> {
             if (resource.status == Status.SUCCESS) {
                 if ((resource.data.size() == 0) || (resource.data.size() < PAGE_SIZE))
                     isLastRoutinesPage = true;
@@ -63,6 +64,26 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
             }
         });
     }
+
+    public void resetRoutinesList(){
+        loadedRoutines.clear();
+        routinesPage = 0;
+    }
+
+
+    // ----------------------------- List of favourite routines -----------------------------
+
+    private final LiveData<Resource<List<Routine>>> favourites;
+
+    public LiveData<Resource<List<Routine>>> getFavourites() {
+        return favourites;
+    }
+
+
+    // ----------------------------- Selected routine -----------------------------
+
+    private final MutableLiveData<Integer> routineId = new MutableLiveData<>();
+    private final LiveData<Resource<Routine>> routine;
 
     public LiveData<Resource<Routine>> getRoutine() {
         return routine;

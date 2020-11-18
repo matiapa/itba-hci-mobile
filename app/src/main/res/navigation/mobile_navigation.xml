@@ -7,9 +7,13 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.pi.gymapp.ui.routine.RoutineListFragment"
+        android:name="com.pi.gymapp.ui.routine.AllRoutinesFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_all_routines" >
+        <action
+            android:id="@+id/action_nav_home_to_favRoutinesFragment"
+            app:destination="@id/favRoutinesFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_profile"
@@ -36,4 +40,8 @@
             app:popUpTo="@id/nav_profile"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/favRoutinesFragment"
+        android:name="com.pi.gymapp.ui.routine.FavRoutinesFragment"
+        android:label="@string/fav_routines_title" />
 </navigation>

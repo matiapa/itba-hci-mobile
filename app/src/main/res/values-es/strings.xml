@@ -38,9 +38,9 @@
     <string name="gender">Sexo</string>
 
     <string name="see_more_routines">Ver Mas</string>
-    <string name="home_title_favourites">Favoritos</string>
-    <string name="home_title_routine">Rutinas</string>
-    <string name="home_see_more_routines">Ver Mas</string>
+    <string name="fav_routines_title">Favoritos</string>
+    <string name="home_title_routine">Todas las Rutinas</string>
+    <string name="see_fav_routines_button">Ver Favoritos</string>
     <string name="favourites_sort_by">Ordenar por</string>
 
     <string name="exerciseDetailsCrossedAbs">Abdominales oblicuos</string>

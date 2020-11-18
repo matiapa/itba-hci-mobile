@@ -20,13 +20,10 @@ public interface ApiRoutineService {
     LiveData<ApiResponse<RoutineModel>> getById(@Path("routineId") int routineId);
 
     @GET("routines/")
-    LiveData<ApiResponse<PagedList<RoutineModel>>> getAll();
-
-    @GET("routines/")
     LiveData<ApiResponse<PagedList<RoutineModel>>> getSlice(@Query("page") int page, @Query("size") int size);
 
     @GET("user/current/routines/favourites/")
-    LiveData<ApiResponse<PagedList<RoutineModel>>> getFav();
+    LiveData<ApiResponse<PagedList<RoutineModel>>> getFavourites();
 
     // Updaters
 

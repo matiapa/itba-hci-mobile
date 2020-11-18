@@ -10,21 +10,13 @@ public class RoutineEntity {
     @PrimaryKey public int id;
     @ColumnInfo(name = "title") public String title;
     @ColumnInfo(name = "rate") public double rate;
-    @ColumnInfo(name = "isFav") public boolean isFav;
+    @ColumnInfo(name = "isFav") public Boolean isFav;
 
-    public RoutineEntity(int id, String title, double rate, boolean isFav) {
+    public RoutineEntity(int id, String title, double rate, Boolean isFav) {
         this.id = id;
         this.title = title;
         this.rate = rate;
         this.isFav = isFav;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RoutineEntity that = (RoutineEntity) o;
-        return id == that.id;
     }
 
 }

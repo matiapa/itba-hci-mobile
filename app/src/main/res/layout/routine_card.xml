@@ -58,20 +58,6 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:id="@+id/favButton"
-            android:layout_width="50dp"
-            android:layout_height="70dp"
-            android:background="@null"
-            android:contentDescription="@string/activityAddFavouriteButton"
-            android:src="@drawable/activity_fav_button"
-            android:textColor="@color/colorSecondary" />
-
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
