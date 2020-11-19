@@ -26,48 +26,51 @@ import android.widget.EditText;
 public class SignInFragment extends Fragment {
     SignInBinding binding;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = SignInBinding.inflate(getLayoutInflater());
 
+        binding.signInButton.setOnClickListener(view -> {
 
-        binding.signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ApiUserService userService= ApiClient.create(getActivity(), ApiUserService.class);
-                EditText user_input = binding.usernameSignin;
-                EditText password_input = binding.passwordSignin;
+            binding.loading.setVisibility(View.VISIBLE);
+            binding.signInButton.setEnabled(false);
+            binding.signUpButton.setEnabled(false);
 
-                Credentials credentials = new Credentials(user_input.getText().toString(), password_input.getText().toString());
-                userService.login(credentials).observe(getViewLifecycleOwner(), r -> {
-                    if (r.getError() != null) {
-                        Snackbar.make(view, "Ups! Something went wrong", Snackbar.LENGTH_LONG).show();
-                    } else {
-                        Log.d("UI", "Token: " + r.getData().getToken());
-                        AppPreferences preferences = new AppPreferences(getContext());
-                        preferences.setAuthToken(r.getData().getToken());
-//                        Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_nav_home);
+            ApiUserService userService= ApiClient.create(getActivity(), ApiUserService.class);
+            EditText user_input = binding.usernameSignin;
+            EditText password_input = binding.passwordSignin;
 
-                        Intent intent=new Intent(getContext(), MainActivity.class);
-                        intent.putExtra("login",true);
-                        startActivity(intent);
-                        getActivity().finish();
+            Credentials credentials = new Credentials(user_input.getText().toString(), password_input.getText().toString());
+            userService.login(credentials).observe(getViewLifecycleOwner(), r -> {
+                binding.loading.setVisibility(View.GONE);
+                binding.signInButton.setEnabled(true);
+                binding.signUpButton.setEnabled(true);
 
-                    }
-                });
+                if (r.getError() != null) {
 
+                    Snackbar.make(view, "Ups! Something went wrong", Snackbar.LENGTH_LONG).show();
 
-            }
+                } else {
+
+                    AppPreferences preferences = new AppPreferences(getContext());
+                    preferences.setAuthToken(r.getData().getToken());
+
+                    Intent intent=new Intent(getContext(), MainActivity.class);
+                    intent.putExtra("login",true);
+
+                    startActivity(intent);
+                    getActivity().finish();
+
+                }
+            });
 
         });
-        binding.signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_signUpFragment1);
-            }
-        });
+
+        binding.signUpButton.setOnClickListener(view ->
+            Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_signUpFragment1)
+        );
+
         return binding.getRoot();
 
     }

@@ -2,80 +2,90 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="25dp"
-    android:layout_marginRight="25dp"
-    android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/stepAboutLabel"
+    <ProgressBar
+        android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:visibility="gone"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:gravity="center"
-        android:text="@string/signUpStepAboutLabel"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/signUpName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="@string/signUpEditNameHint"
-        android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/stepAboutLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="@string/signUpStepAboutLabel"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-    <EditText
-        android:id="@+id/signUpPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="@string/signUpPhoneHint"
-        android:inputType="phone" />
-    <TextView
-        android:id="@+id/ageText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:text="@string/signUpAgeHint" />
+        <EditText
+            android:id="@+id/signUpName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:ems="10"
+            android:hint="@string/signUpEditNameHint"
+            android:inputType="textPersonName" />
 
-    <DatePicker android:id="@+id/datePicker1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"/>
+        <EditText
+            android:id="@+id/signUpPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:ems="10"
+            android:hint="@string/signUpPhoneHint"
+            android:inputType="phone" />
+        <TextView
+            android:id="@+id/ageText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="@string/signUpAgeHint" />
 
-    <TextView
-        android:id="@+id/sexText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:text="@string/signUpSexHint" />
+        <DatePicker android:id="@+id/datePicker1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"/>
 
-    <Spinner
-        android:id="@+id/sexSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/sex"
-        android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/sexText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="@string/signUpSexHint" />
 
-    <Button
-        android:id="@+id/signInButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@color/colorAccent"
-        android:text="@string/nextStepButton" />
+        <Spinner
+            android:id="@+id/sexSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/sex"
+            android:layout_marginTop="10dp"/>
 
+        <Button
+            android:id="@+id/signInButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@color/colorAccent"
+            android:text="@string/nextStepButton" />
 
-
-
-
+    </LinearLayout>
 
 </LinearLayout>

@@ -28,59 +28,52 @@ public class SignUpFragment1 extends Fragment {
         String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
+
     static boolean isUsernameValid(String username) {
         return username != null && !username.equals("");
     }
+
     static boolean isPasswordValid(String pass) {
-
-        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
-        return pass.matches(regex);
-
-
+        return pass.length() >= 8;
     }
 
     public void nextStep(View view){
 
-        ApiUserService userService= ApiClient.create(getContext(),ApiUserService.class);
-        EditText user_input =binding.UsernameSignup;
-        EditText email_input =binding.EmailSignup;
-        EditText password_input =binding.passwordSignup;
+        EditText user_input = binding.UsernameSignup;
+        EditText email_input = binding.EmailSignup;
+        EditText password_input = binding.passwordSignup;
 
-        if (!(isEmailValid(email_input.getText().toString())&&isUsernameValid(user_input.getText().toString()) &&isPasswordValid(password_input.getText().toString()))){
-            Snackbar.make(view, "Invalid Input", Snackbar.LENGTH_LONG).show();
+        if (!isEmailValid(email_input.getText().toString())){
+            Snackbar.make(view, "Invalid email", Snackbar.LENGTH_LONG).show();
+            return;
+        }else if (!isUsernameValid(user_input.getText().toString())){
+            Snackbar.make(view, "Invalid username", Snackbar.LENGTH_LONG).show();
+            return;
+        }else if (!isPasswordValid(password_input.getText().toString())){
+            Snackbar.make(view, "Password must be at least 8 characters long",
+                    Snackbar.LENGTH_LONG).show();
             return;
         }
 
-        SignUpFragment1Directions.ActionSignUpFragment1ToSignUpFragment2 action = SignUpFragment1Directions.actionSignUpFragment1ToSignUpFragment2();
+        SignUpFragment1Directions.ActionSignUpFragment1ToSignUpFragment2 action =
+                SignUpFragment1Directions.actionSignUpFragment1ToSignUpFragment2();
+
         action.setEmail(email_input.getText().toString());
         action.setPassword(password_input.getText().toString());
         action.setUsername(user_input.getText().toString());
-        NavHostFragment.findNavController(this).navigate(action);
-    //        SignUpFragment1Directions
-//                SpecifyAmountFragmentDirections.confirmationAction()
 
-//        startActivity(new Intent(this, SignUpFragment2.class)
-//                .putExtra("username",user_input.getText().toString())
-//                .putExtra("email",email_input.getText().toString())
-//                .putExtra("password",password_input.getText().toString())
-//
-//        );
+        NavHostFragment.findNavController(this).navigate(action);
+
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         binding = SignUpS1Binding.inflate(getLayoutInflater());
-        binding.signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextStep(v);
-            }
-        });
+
+        binding.signInButton.setOnClickListener(v -> nextStep(v));
+
         return binding.getRoot();
     }
-
-
 
 }
