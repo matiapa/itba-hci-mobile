@@ -26,6 +26,8 @@ import com.pi.gymapp.utils.RepositoryViewModel;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class AllExercisesFragment extends Fragment {
@@ -33,6 +35,7 @@ public class AllExercisesFragment extends Fragment {
     private ExerciseViewModel exerciseViewModel;
     private int cycleId;
     private int routineId;
+    private boolean observed=false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -78,38 +81,41 @@ public class AllExercisesFragment extends Fragment {
         routineId=AllExercisesFragmentArgs.fromBundle(getArguments()).getRoutineId();
 
 
-        //temporal par cableado
+        //TODO temporal para cableado
 
         cycleId=1;
         routineId=1;
         exerciseViewModel.setRoutineId(routineId);
         exerciseViewModel.setCycleId(cycleId);
+//        exerciseViewModel.setExerciseId(null);
 
-        exerciseViewModel.getExercises().observe(getViewLifecycleOwner(), resource -> {
-            switch (resource.status) {
-                case LOADING:
-                    activity.showProgressBar();
-                    break;
+        if (!observed){
+            exerciseViewModel.getExercises().observe(getViewLifecycleOwner(), resource -> {
+                switch (resource.status) {
+                    case LOADING:
+                        activity.showProgressBar();
+                        break;
 
-                case SUCCESS:
-                    activity.hideProgressBar();
+                    case SUCCESS:
+                        activity.hideProgressBar();
 
-                    exercises.clear();
-                    exercises.addAll(resource.data);
+                        exercises.clear();
+                        exercises.addAll(resource.data);
+                        Collections.sort(exercises);
 
-                    adapter.notifyDataSetChanged();
-                    break;
-            }
-        });
+                        adapter.notifyDataSetChanged();
+                        break;
+                }
+            });
+            observed=true;
+        }
 
 
 
-        // --------------------------------- Buttons setup ---------------------------------
-        //TODO No se que carajo es lo que esto aca
-//        binding.favRoutinesChip.setOnClickListener(l ->
-//                Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_favRoutinesFragment)
-//        );
+
     }
+
+
 }
 
 

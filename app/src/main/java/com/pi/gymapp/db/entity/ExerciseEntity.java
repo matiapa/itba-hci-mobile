@@ -5,11 +5,12 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 
-@Entity
+@Entity (primaryKeys = {"id","order"})
 public class ExerciseEntity {
 
 
-    @PrimaryKey public int id;
+//    @PrimaryKey public int id;
+    @ColumnInfo(name = "id") public int id;
     @ColumnInfo(name = "routineId") public int routineId;
     @ColumnInfo(name = "cycleId") public int cycleId;
     @ColumnInfo(name = "name") public String name;

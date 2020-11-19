@@ -1,7 +1,7 @@
 package com.pi.gymapp.domain;
 
 
-public class Exercise {
+public class Exercise implements Comparable<Exercise>{
 
     public int id;
     private int routineId;
@@ -85,5 +85,10 @@ public class Exercise {
 
     public void setOrder(int order) {
         this.order = order;
+    }
+
+    @Override
+    public int compareTo(Exercise o) {
+        return Integer.compare(getOrder(),o.getOrder());
     }
 }

@@ -1,6 +1,7 @@
 package com.pi.gymapp.ui.exercise;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
@@ -11,7 +12,9 @@ import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.utils.AbsentLiveData;
 import com.pi.gymapp.utils.RepositoryViewModel;
 import com.pi.gymapp.utils.Resource;
+import com.pi.gymapp.utils.Status;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
@@ -20,6 +23,14 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
 
     private Integer routineId =null;
     private Integer cycleId= null;
+    private final List<Exercise> allExercises=new ArrayList<>();
+    private final MediatorLiveData<Resource<List<Exercise>>> exercises = new MediatorLiveData<>();
+    private final MutableLiveData<Integer> exerciseId = new MutableLiveData<>();
+    private final LiveData<Resource<Exercise>> exercise;
+//    private LiveData<Resource<List<Exercise>>> exercises;
+
+
+
 
     public ExerciseViewModel(ExerciseRepository repository) {
         super(repository);
@@ -35,26 +46,33 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
 
     // ----------------------------- List of all exercises -----------------------------
 
-    private LiveData<Resource<List<Exercise>>> exercises;
+
 
     public LiveData<Resource<List<Exercise>>> getExercises() {
-//        if (routineId == null || cycleId == null){
-//            return null;
-//        }
-//        if (exercises==null){
-//            exercises = repository.getAll(routineId,cycleId);
-//        }
+
+        //exercises = repository.getAll(routineId, cycleId);
+        getMoreExercises();
 
         return exercises;
 
+    }
+    public void getMoreExercises(){
+        exercises.addSource(repository.getAll(routineId,cycleId),resource -> {
+            if (resource.status == Status.SUCCESS){
+                allExercises.addAll(resource.data);
+                exercises.setValue(Resource.success(allExercises));
+            }
+            else if (resource.status == Status.LOADING){
+                exercises.setValue(resource);
+            }
+        });
     }
 
     // ----------------------------- Selected routine -----------------------------
 
 
 
-    private final MutableLiveData<Integer> exerciseId = new MutableLiveData<>();
-    private final LiveData<Resource<Exercise>> exercise;
+
 
     public LiveData<Resource<Exercise>> getExercise() {
         return exercise;
@@ -73,7 +91,7 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
 
         this.cycleId = cycleId;
 
-        exercises = repository.getAll(routineId, cycleId);
+
     }
 
     public void setExerciseId(int exerciseId) {
