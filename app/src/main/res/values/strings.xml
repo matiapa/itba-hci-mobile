@@ -83,5 +83,6 @@
 
     <string name="favourite_routines_chip">Favourites</string>
     <string name="play_routine_button">Play Routine</string>
+    <string name="routineListCardName">Routine</string>
 
 </resources>

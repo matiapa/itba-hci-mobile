@@ -23,7 +23,19 @@
                 android:layout_height="0dp"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <ImageButton
+                    android:id="@+id/button_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/activity_fav_button" />
+
+
+            </LinearLayout>
             <com.robertlevonyan.views.expandable.Expandable
                 android:id="@+id/expandable"
                 android:layout_width="match_parent"
@@ -65,6 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="@string/routineInfoCoolDown" />
+
+
         </LinearLayout>
 
     </ScrollView>

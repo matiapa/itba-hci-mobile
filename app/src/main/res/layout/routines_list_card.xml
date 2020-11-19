@@ -24,7 +24,7 @@
                 android:id="@+id/routineName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Routine"
+                android:text="@string/routineListCardName"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
