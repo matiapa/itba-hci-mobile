@@ -19,7 +19,6 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
     private final static int PAGE_SIZE = 10;
 
     public ExerciseViewModel(ExerciseRepository repository) {
-
         super(repository);
 
         exercise = Transformations.switchMap(exerciseId,  (exerciseId) -> {
@@ -29,14 +28,11 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
                 return repository.getExerciseById(routineId,cycleId,exerciseId);
             }
         });
-
-        exercises = repository.getAll(routineId,cycleId);
-
     }
 
     // ----------------------------- List of all exercises -----------------------------
 
-    private final LiveData<Resource<List<Exercise>>> exercises;
+    private LiveData<Resource<List<Exercise>>> exercises;
 
     public LiveData<Resource<List<Exercise>>> getExercises() {
         return exercises;
@@ -46,6 +42,7 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
 
     private Integer routineId =null;
     private Integer cycleId= null;
+
     private final MutableLiveData<Integer> exerciseId = new MutableLiveData<>();
     private final LiveData<Resource<Exercise>> exercise;
 
@@ -54,21 +51,21 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
     }
 
     public void setRoutineId(int routineId) {
-        if ((this.routineId != null) &&
-                (routineId == this.routineId)) {
+        if (this.routineId != null && routineId == this.routineId)
             return;
-        }
 
         this.routineId = routineId;
     }
+
     public void setCycleId(int cycleId) {
-        if ((this.cycleId != null) &&
-                (cycleId == this.cycleId)) {
+        if ((this.cycleId != null && cycleId == this.cycleId) || routineId == null)
             return;
-        }
 
         this.cycleId = cycleId;
+
+        exercises = repository.getAll(routineId, cycleId);
     }
+
     public void setExerciseId(int exerciseId) {
         if ((this.exerciseId.getValue() != null) &&
                 (exerciseId == this.exerciseId.getValue())) {

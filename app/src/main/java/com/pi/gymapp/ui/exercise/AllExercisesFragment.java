@@ -79,10 +79,6 @@ public class AllExercisesFragment extends Fragment {
 
 
 
-        //TODO setear shit here en el model
-
-
-
         exerciseViewModel.getExercises().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
                 case LOADING:
