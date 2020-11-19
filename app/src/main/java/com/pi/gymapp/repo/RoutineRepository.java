@@ -47,14 +47,14 @@ public class RoutineRepository {
                 e.getCategoryId(), e.getCategoryName(), isFav);
     }
 
-    RoutineEntity modelToEntity(RoutineModel e, Boolean isFav){
-        return new RoutineEntity(e.getId(), e.getName(), e.getDetail(), e.getAverageRating(), e.getDifficulty(),
-                e.getCategory().getId(), e.getCategory().getName(), isFav);
+    RoutineEntity modelToEntity(RoutineModel m, Boolean isFav){
+        return new RoutineEntity(m.getId(), m.getName(), m.getDetail(), m.getAverageRating(), m.getDifficulty(),
+                m.getCategory().getId(), m.getCategory().getName(), isFav);
     }
 
-    Routine modelToDomain(RoutineModel e, Boolean isFav){
-        return new Routine(e.getId(), e.getName(), e.getDetail(), e.getAverageRating(), e.getDifficulty(),
-                e.getCategory().getId(), e.getCategory().getName(), isFav);
+    Routine modelToDomain(RoutineModel m, Boolean isFav){
+        return new Routine(m.getId(), m.getName(), m.getDetail(), m.getAverageRating(), m.getDifficulty(),
+                m.getCategory().getId(), m.getCategory().getName(), isFav);
     }
 
 

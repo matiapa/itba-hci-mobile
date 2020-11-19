@@ -79,6 +79,7 @@
                     android:id="@+id/routineDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:lines="3"
                     android:text="..."
                     tools:ignore="HardcodedText" />
 
@@ -95,22 +96,15 @@
                     android:text="@string/routine_detail_cycles_header"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                <LinearLayout
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/cycleListFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <Button
-                        android:id="@+id/warmUpButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Button" />
-                </LinearLayout>
+                    android:layout_height="wrap_content"/>
 
             </com.robertlevonyan.views.expandable.Expandable>
 
         </LinearLayout>
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

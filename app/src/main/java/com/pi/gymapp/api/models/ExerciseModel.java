@@ -3,8 +3,7 @@ package com.pi.gymapp.api.models;
 import com.google.gson.annotations.Expose;
 
 public class ExerciseModel {
-    @Expose
-    private int id;
+    @Expose private int id;
 
     @Expose private String name;
 

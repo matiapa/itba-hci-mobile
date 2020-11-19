@@ -26,6 +26,8 @@ import com.pi.gymapp.utils.RepositoryViewModel;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class AllExercisesFragment extends Fragment {
@@ -33,17 +35,23 @@ public class AllExercisesFragment extends Fragment {
     private ExerciseViewModel exerciseViewModel;
     private int cycleId;
     private int routineId;
+    private boolean observed=false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = ExerciseListAllBinding.inflate(getLayoutInflater());
 
-
-
-
-
         return binding.getRoot();
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+
     }
 
 
@@ -74,14 +82,9 @@ public class AllExercisesFragment extends Fragment {
         );
         exerciseViewModel = new ViewModelProvider(this, viewModelFactory).get(ExerciseViewModel.class);
 
-        cycleId=AllExercisesFragmentArgs.fromBundle(getArguments()).getCycleId();
-        routineId=AllExercisesFragmentArgs.fromBundle(getArguments()).getRoutineId();
+        cycleId = AllExercisesFragmentArgs.fromBundle(getArguments()).getCycleId();
+        routineId = AllExercisesFragmentArgs.fromBundle(getArguments()).getRoutineId();
 
-
-        //temporal par cableado
-
-        cycleId=1;
-        routineId=1;
         exerciseViewModel.setRoutineId(routineId);
         exerciseViewModel.setCycleId(cycleId);
 
@@ -96,20 +99,13 @@ public class AllExercisesFragment extends Fragment {
 
                     exercises.clear();
                     exercises.addAll(resource.data);
+                    Collections.sort(exercises);
 
                     adapter.notifyDataSetChanged();
                     break;
             }
         });
 
-
-
-        // --------------------------------- Buttons setup ---------------------------------
-        //TODO No se que carajo es lo que esto aca
-//        binding.favRoutinesChip.setOnClickListener(l ->
-//                Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_favRoutinesFragment)
-//        );
     }
+
 }
-
-

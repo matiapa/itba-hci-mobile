@@ -1,6 +1,7 @@
 package com.pi.gymapp.ui.exercise;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
@@ -11,7 +12,9 @@ import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.utils.AbsentLiveData;
 import com.pi.gymapp.utils.RepositoryViewModel;
 import com.pi.gymapp.utils.Resource;
+import com.pi.gymapp.utils.Status;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
@@ -20,6 +23,12 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
 
     private Integer routineId =null;
     private Integer cycleId= null;
+
+    private LiveData<Resource<List<Exercise>>> exercises;
+
+    private final MutableLiveData<Integer> exerciseId = new MutableLiveData<>();
+    private final LiveData<Resource<Exercise>> exercise;
+
 
     public ExerciseViewModel(ExerciseRepository repository) {
         super(repository);
@@ -35,29 +44,8 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
 
     // ----------------------------- List of all exercises -----------------------------
 
-    private LiveData<Resource<List<Exercise>>> exercises;
-
     public LiveData<Resource<List<Exercise>>> getExercises() {
-//        if (routineId == null || cycleId == null){
-//            return null;
-//        }
-//        if (exercises==null){
-//            exercises = repository.getAll(routineId,cycleId);
-//        }
-
         return exercises;
-
-    }
-
-    // ----------------------------- Selected routine -----------------------------
-
-
-
-    private final MutableLiveData<Integer> exerciseId = new MutableLiveData<>();
-    private final LiveData<Resource<Exercise>> exercise;
-
-    public LiveData<Resource<Exercise>> getExercise() {
-        return exercise;
     }
 
     public void setRoutineId(int routineId) {
@@ -74,6 +62,13 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
         this.cycleId = cycleId;
 
         exercises = repository.getAll(routineId, cycleId);
+    }
+
+
+    // ----------------------------- Selected routine -----------------------------
+
+    public LiveData<Resource<Exercise>> getExercise() {
+        return exercise;
     }
 
     public void setExerciseId(int exerciseId) {
