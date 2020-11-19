@@ -82,7 +82,11 @@
     <string name="routineInfoCoolDown">Cool Down</string>
 
     <string name="favourite_routines_chip">Favourites</string>
+    <string name="save">Save</string>
     <string name="play_routine_button">Play Routine</string>
     <string name="routineListCardName">Routine</string>
+
+    <string name="exerciseimage">Exercise Image</string>
+    <string name="routine_detail_cycles_header">Cycles</string>
 
 </resources>

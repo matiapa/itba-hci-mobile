@@ -36,10 +36,12 @@ dependencies {
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
+    implementation 'androidx.wear:wear:1.0.0'
 
     // Appcompat
     def appCompatVersion = "1.2.0"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    compileOnly 'com.google.android.wearable:wearable:2.6.0'
 
     // Legacy support
     def legacySupportVersion = "1.0.0"

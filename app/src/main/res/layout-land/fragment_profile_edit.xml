@@ -14,7 +14,7 @@
         <RelativeLayout
             android:id="@+id/profile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="155dp"
             android:background="@color/colorAccent"
             android:paddingBottom="20dp">
 
@@ -25,16 +25,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp">
 
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_margin="9dp"
-                    android:adjustViewBounds="true"
-                    android:background="@color/colorAccent"
-                    android:padding="3dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/profile" />
-
             </RelativeLayout>
 
             <TextView
@@ -43,11 +33,24 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgUser"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15sp"
+                android:layout_marginTop="33dp"
                 android:fontFamily="sans-serif-light"
                 android:text="Joey Tribbiani"
                 android:textColor="@color/colorPrimary"
                 android:textSize="32sp" />
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:background="@color/colorAccent"
+                android:padding="3dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/profile" />
 
         </RelativeLayout>
 
@@ -83,7 +86,7 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="13sp" />
 
-                    <EditText
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -141,7 +144,7 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="13sp" />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"

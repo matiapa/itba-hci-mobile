@@ -40,6 +40,6 @@ public class UserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RoutineEntity that = (RoutineEntity) o;
-        return id == that.id;
+        return id == that.getId();
     }
 }

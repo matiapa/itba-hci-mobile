@@ -7,16 +7,60 @@ import androidx.room.PrimaryKey;
 @Entity
 public class RoutineEntity {
 
-    @PrimaryKey public int id;
-    @ColumnInfo(name = "title") public String title;
-    @ColumnInfo(name = "rate") public double rate;
-    @ColumnInfo(name = "isFav") public Boolean isFav;
+    @PrimaryKey private int id;
+    @ColumnInfo(name = "name") private String name;
+    @ColumnInfo(name = "detail") private String detail;
 
-    public RoutineEntity(int id, String title, double rate, Boolean isFav) {
+    @ColumnInfo(name = "rate") private double rate;
+    @ColumnInfo(name = "difficulty")  private String difficulty;
+
+    @ColumnInfo(name = "categoryId") private int categoryId;
+    @ColumnInfo(name = "categoryName") private String categoryName;
+
+    @ColumnInfo(name = "isFav") private Boolean isFav;
+
+    public RoutineEntity(int id, String name, String detail, double rate, String difficulty,
+                         int categoryId, String categoryName, Boolean isFav) {
         this.id = id;
-        this.title = title;
+        this.name = name;
+        this.detail = detail;
         this.rate = rate;
+        this.difficulty = difficulty;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
         this.isFav = isFav;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public Boolean isFav() {
+        return isFav;
     }
 
 }
