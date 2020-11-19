@@ -5,53 +5,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/profile_left_side"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="500dp"
-        android:layout_marginRight="500dp"
-        android:layout_marginBottom="0dp"
-        android:background="@color/colorAccent"
-        android:paddingBottom="20dp">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/imgUser"
+            android:id="@+id/profile_left_side"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp">
+            android:layout_height="414dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="500dp"
+            android:layout_marginRight="500dp"
+            android:layout_marginBottom="0dp"
+            android:background="@color/colorAccent"
+            android:paddingBottom="20dp">
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="9dp"
-                android:adjustViewBounds="true"
-                android:background="@color/colorAccent"
-                android:padding="3dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/profile" />
+            <RelativeLayout
+                android:id="@+id/imgUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="9dp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/colorAccent"
+                    android:padding="3dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/profile" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="207dp"
+                android:layout_height="68dp"
+                android:layout_below="@+id/imgUser"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="-10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Joey Tribbiani"
+                android:textColor="@color/colorPrimary"
+                android:textSize="32sp" />
 
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imgUser"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
-            android:fontFamily="sans-serif-light"
-            android:text="Joey Tribbiani"
-            android:textColor="@color/colorPrimary"
-            android:textSize="32sp" />
-
-    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/profile_right_side"
@@ -236,27 +246,31 @@
                     android:orientation="horizontal"
                     android:layout_height="wrap_content">
 
-                    <CheckBox
+                    <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
+                        android:id="@+id/radioButton"
                         android:text="Male"
                         android:textColor="#000000"
                         android:textSize="18sp" />
-                    <CheckBox
+                    <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
+                        android:id="@+id/radioButton2"
                         android:text="Female"
                         android:textColor="#000000"
                         android:textSize="18sp" />
-                    <CheckBox
+                    <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
+                        android:id="@+id/radioButton3"
                         android:text="Other"
                         android:textColor="#000000"
                         android:textSize="18sp" />
+
 
                 </LinearLayout>
 
@@ -277,5 +291,7 @@
         </LinearLayout>
 
     </RelativeLayout>
+    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

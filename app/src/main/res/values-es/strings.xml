@@ -85,5 +85,6 @@
     <string name="routineInfoCoolDown">Enfriamiento</string>
 
     <string name="favourite_routines_chip">Favoritas</string>
+    <string name="save">Guardar</string>
 
 </resources>

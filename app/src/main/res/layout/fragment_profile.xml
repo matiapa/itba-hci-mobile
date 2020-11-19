@@ -231,13 +231,38 @@
                             android:textColor="@color/colorPrimary"
                             android:textSize="13sp" />
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/gender"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:id="@+id/radioButton"
+                                android:text="Male"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="18sp" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:id="@+id/radioButton2"
+                                android:text="Female"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="18sp" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:id="@+id/radioButton3"
+                                android:text="Other"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="18sp" />
+
+
+                        </LinearLayout>
 
 
 
