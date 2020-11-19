@@ -20,8 +20,11 @@ import com.pi.gymapp.domain.Exercise;
 
 import com.pi.gymapp.repo.ExerciseRepository;
 
+import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.ui.MainActivity;
 import com.pi.gymapp.ui.account.SignUpFragment2Args;
+import com.pi.gymapp.ui.routine.RoutineViewModel;
+import com.pi.gymapp.utils.RepositoryViewModel;
 
 
 import java.util.ArrayList;
@@ -30,6 +33,8 @@ import java.util.List;
 public class AllExercisesFragment extends Fragment {
     private ExerciseListAllBinding binding;
     private ExerciseViewModel exerciseViewModel;
+    private int cycleId;
+//    private int
 
 
     @Override
@@ -67,10 +72,14 @@ public class AllExercisesFragment extends Fragment {
 
         // --------------------------------- ViewModel setup ---------------------------------
 
-        ViewModelProvider.Factory viewModelFactory = new ExerciseViewModel.Factory<>(
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
                 ExerciseRepository.class, application.getExerciseRepository()
         );
         exerciseViewModel = new ViewModelProvider(this, viewModelFactory).get(ExerciseViewModel.class);
+
+
+
+        //TODO setear shit here en el model
 
 
 
