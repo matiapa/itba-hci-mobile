@@ -64,10 +64,10 @@
         android:name="com.pi.gymapp.ui.exercise.AllExercisesFragment"
         android:label="AllExercisesFragment" >
         <argument
-            android:name="routineId"
+            android:name="cycleId"
             app:argType="integer" />
         <argument
-            android:name="cycleId"
+            android:name="routineId"
             app:argType="integer" />
         <action
             android:id="@+id/action_allExercisesFragment_to_favRoutinesFragment"

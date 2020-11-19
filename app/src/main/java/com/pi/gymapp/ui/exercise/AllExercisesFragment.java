@@ -22,6 +22,7 @@ import com.pi.gymapp.repo.ExerciseRepository;
 
 import com.pi.gymapp.ui.MainActivity;
 import com.pi.gymapp.ui.account.SignUpFragment2Args;
+import com.pi.gymapp.utils.RepositoryViewModel;
 
 
 import java.util.ArrayList;
@@ -30,7 +31,8 @@ import java.util.List;
 public class AllExercisesFragment extends Fragment {
     private ExerciseListAllBinding binding;
     private ExerciseViewModel exerciseViewModel;
-
+    private int cycleId;
+    private int routineId;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -38,7 +40,7 @@ public class AllExercisesFragment extends Fragment {
         binding = ExerciseListAllBinding.inflate(getLayoutInflater());
 
 
-        //AllExercisesFragmentArgs.fromBundle(getArguments())
+
 
 
         return binding.getRoot();
@@ -67,13 +69,15 @@ public class AllExercisesFragment extends Fragment {
 
         // --------------------------------- ViewModel setup ---------------------------------
 
-        ViewModelProvider.Factory viewModelFactory = new ExerciseViewModel.Factory<>(
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
                 ExerciseRepository.class, application.getExerciseRepository()
         );
         exerciseViewModel = new ViewModelProvider(this, viewModelFactory).get(ExerciseViewModel.class);
 
-
-
+        cycleId=AllExercisesFragmentArgs.fromBundle(getArguments()).getCycleId();
+        routineId=AllExercisesFragmentArgs.fromBundle(getArguments()).getRoutineId();
+        exerciseViewModel.setCycleId(cycleId);
+        exerciseViewModel.setRoutineId(routineId);
         exerciseViewModel.getExercises().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
                 case LOADING:
