@@ -18,6 +18,9 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
 
     private final static int PAGE_SIZE = 10;
 
+    private Integer routineId =null;
+    private Integer cycleId= null;
+
     public ExerciseViewModel(ExerciseRepository repository) {
         super(repository);
 
@@ -35,13 +38,20 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
     private LiveData<Resource<List<Exercise>>> exercises;
 
     public LiveData<Resource<List<Exercise>>> getExercises() {
+//        if (routineId == null || cycleId == null){
+//            return null;
+//        }
+//        if (exercises==null){
+//            exercises = repository.getAll(routineId,cycleId);
+//        }
+
         return exercises;
+
     }
 
     // ----------------------------- Selected routine -----------------------------
 
-    private Integer routineId =null;
-    private Integer cycleId= null;
+
 
     private final MutableLiveData<Integer> exerciseId = new MutableLiveData<>();
     private final LiveData<Resource<Exercise>> exercise;

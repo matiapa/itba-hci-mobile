@@ -76,8 +76,15 @@ public class AllExercisesFragment extends Fragment {
 
         cycleId=AllExercisesFragmentArgs.fromBundle(getArguments()).getCycleId();
         routineId=AllExercisesFragmentArgs.fromBundle(getArguments()).getRoutineId();
-        exerciseViewModel.setCycleId(cycleId);
+
+
+        //temporal par cableado
+
+        cycleId=1;
+        routineId=1;
         exerciseViewModel.setRoutineId(routineId);
+        exerciseViewModel.setCycleId(cycleId);
+
         exerciseViewModel.getExercises().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
                 case LOADING:

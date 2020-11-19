@@ -66,9 +66,9 @@ public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdap
             id = exercise.getId();
 
             title.setText(exercise.getName());
-            duration.setText(exercise.getDuration());
+            duration.setText(Integer.toString(exercise.getDuration()));
 //            Context context = title.getContext();
-            repetitions.setText(exercise.getRepetitions());
+            repetitions.setText(Integer.toString(exercise.getRepetitions()));
         }
 
     }
