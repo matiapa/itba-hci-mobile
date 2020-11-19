@@ -1,36 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/exercise"
+            android:gravity="bottom|center">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/routineCategoryChip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    app:chipBackgroundColor="@color/colorAccent"
+                    tools:ignore="HardcodedText" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/routineDifficultyChip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expert"
+                    app:chipBackgroundColor="@color/colorAccent"
+                    tools:ignore="HardcodedText" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/routineRateChip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="★ 4.5"
+                    app:chipBackgroundColor="@color/colorAccent"
+                    tools:ignore="HardcodedText" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <include
-                layout="@layout/routines_list_card"
-                android:id="@+id/routineDetailcard"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="1" />
+            android:orientation="vertical"
+            android:padding="15dp">
 
             <com.robertlevonyan.views.expandable.Expandable
-                android:id="@+id/expandable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -38,45 +70,65 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <TextView
-                    android:id="@+id/content"
+                    android:id="@+id/routineDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="..." />
+                    android:text="..."
+                    tools:ignore="HardcodedText" />
 
             </com.robertlevonyan.views.expandable.Expandable>
 
-            <Button
-                android:id="@+id/warmUpButton"
+            <com.robertlevonyan.views.expandable.Expandable
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/routineInfoWarmUp" />
+                android:layout_marginTop="20dp">
 
-            <Button
-                android:id="@+id/trainingButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/routineInfoMainTraining" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/routine_detail_cycles_header"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-            <Button
-                android:id="@+id/coolDownButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/routineInfoCoolDown" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/warmUpButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/routineInfoWarmUp" />
+
+                    <Button
+                        android:id="@+id/trainingButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/routineInfoMainTraining" />
+
+                    <Button
+                        android:id="@+id/coolDownButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/routineInfoCoolDown" />
+                </LinearLayout>
+
+            </com.robertlevonyan.views.expandable.Expandable>
+
         </LinearLayout>
+    </LinearLayout>
 
-    </ScrollView>
-
-    <ImageButton
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/playButton"
-        android:background="@null"
-        android:src="@drawable/play_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="@color/colorAccent"
+        app:srcCompat="@android:drawable/ic_media_play"
         android:contentDescription="@string/play_routine_button" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

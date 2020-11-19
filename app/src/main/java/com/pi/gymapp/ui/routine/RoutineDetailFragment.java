@@ -10,20 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.R;
 import com.pi.gymapp.databinding.RoutineDetailBinding;
-import com.pi.gymapp.databinding.RoutinesListFavsBinding;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.ui.MainActivity;
 import com.pi.gymapp.utils.RepositoryViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.pi.gymapp.utils.StringUtils;
 
 
 public class RoutineDetailFragment extends Fragment {
@@ -61,10 +58,27 @@ public class RoutineDetailFragment extends Fragment {
 
                 case SUCCESS:
                     activity.hideProgressBar();
-                    binding.routineDetailcard.routineName.setText(resource.data.getTitle());
-                    binding.routineDetailcard.routineRating.setText(
-                            String.format(getString(R.string.rateFormat), resource.data.getRate())
+
+                    ((MainActivity) getActivity()).getSupportActionBar().setTitle(
+                            resource.data.getName()
                     );
+
+                    Routine r = resource.data;
+
+                    binding.routineCategoryChip.setText(
+                            StringUtils.capitalize(r.getCategoryName())
+                    );
+                    binding.routineDifficultyChip.setText(
+                            StringUtils.capitalize(r.getDifficulty())
+                    );
+                    binding.routineRateChip.setText(
+                            String.format(getString(R.string.rateFormat), r.getRate())
+                    );
+
+                    binding.routineDescription.setText(
+                            r.getDetail()
+                    );
+
                     break;
 
                 case ERROR:
@@ -76,6 +90,11 @@ public class RoutineDetailFragment extends Fragment {
                     break;
             }
         });
+
+        binding.playButton.setOnClickListener(view ->
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        );
 
     }
 }
