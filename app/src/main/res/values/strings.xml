@@ -87,5 +87,6 @@
 
     <string name="exerciseimage">Exercise Image</string>
     <string name="routine_detail_cycles_header">Cycles</string>
+    <string name="all_routines_chip">All</string>
 
 </resources>

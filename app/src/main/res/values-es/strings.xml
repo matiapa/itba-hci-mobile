@@ -90,5 +90,6 @@
     <string name="exerciseimage">imagen del Ejercicio</string>
 
     <string name="routine_detail_cycles_header">Ciclos</string>
+    <string name="all_routines_chip">Todas</string>
 
 </resources>

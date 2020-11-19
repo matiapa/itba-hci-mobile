@@ -11,10 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pi.gymapp.MyApplication;
-import com.pi.gymapp.databinding.CycleListRoutineBinding;
-import com.pi.gymapp.databinding.RoutineDetailBinding;
+import com.pi.gymapp.databinding.RecyclerViewBinding;
 import com.pi.gymapp.domain.Cycle;
 import com.pi.gymapp.repo.CycleRepository;
 import com.pi.gymapp.ui.MainActivity;
@@ -26,7 +26,7 @@ import java.util.List;
 
 public class CycleListFragment extends Fragment {
 
-    CycleListRoutineBinding binding;
+    RecyclerViewBinding binding;
     private CycleViewModel cycleViewModel;
 
     private int routineId;
@@ -35,7 +35,7 @@ public class CycleListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = CycleListRoutineBinding.inflate(getLayoutInflater());
+        binding = RecyclerViewBinding.inflate(getLayoutInflater());
 
         return binding.getRoot();
     }
@@ -52,9 +52,9 @@ public class CycleListFragment extends Fragment {
         List<Cycle> cycles = new ArrayList<>();
         CycleListAdapter adapter = new CycleListAdapter(cycles);
 
-        binding.cyclesList.setHasFixedSize(true);
-        binding.cyclesList.setLayoutManager(new LinearLayoutManager(activity));
-        binding.cyclesList.setAdapter(adapter);
+        binding.recyclerView.setHasFixedSize(true);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        binding.recyclerView.setAdapter(adapter);
 
 
         // --------------------------------- ViewModel setup ---------------------------------

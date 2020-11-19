@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.pi.gymapp.ui.routine.AllRoutinesFragment"
+        android:name="com.pi.gymapp.ui.routine.RoutinesExploreFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/routines_list_all" >
+        tools:layout="@layout/routines_explore" >
         <action
             android:id="@+id/action_nav_home_to_favRoutinesFragment"
             app:destination="@id/favRoutinesFragment" />
