@@ -4,26 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
-import com.pi.gymapp.api.ApiRoutineService;
+
 import com.pi.gymapp.api.ApiUserService;
-import com.pi.gymapp.api.models.PagedList;
-import com.pi.gymapp.api.models.RoutineModel;
 import com.pi.gymapp.api.models.UserModel;
 import com.pi.gymapp.api.utils.ApiResponse;
 import com.pi.gymapp.db.AppDatabase;
-import com.pi.gymapp.db.entity.RoutineEntity;
 import com.pi.gymapp.db.entity.UserEntity;
-import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.domain.User;
 import com.pi.gymapp.utils.AppExecutors;
 import com.pi.gymapp.utils.NetworkBoundResource;
 import com.pi.gymapp.utils.RateLimiter;
 import com.pi.gymapp.utils.Resource;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static java.util.stream.Collectors.toList;
+
 
 public class UserRepository {
 
