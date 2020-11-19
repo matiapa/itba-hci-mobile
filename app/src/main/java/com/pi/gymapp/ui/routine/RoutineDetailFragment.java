@@ -9,34 +9,56 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.R;
 import com.pi.gymapp.databinding.RoutineDetailBinding;
+import com.pi.gymapp.domain.Cycle;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.ui.MainActivity;
 import com.pi.gymapp.ui.account.SignUpFragment1Directions;
+import com.pi.gymapp.ui.cycle.CycleListAdapter;
+import com.pi.gymapp.ui.cycle.CycleListFragment;
 import com.pi.gymapp.ui.exercise.AllExercisesFragment;
 import com.pi.gymapp.ui.exercise.AllExercisesFragmentArgs;
 import com.pi.gymapp.ui.exercise.AllExercisesFragmentDirections;
 import com.pi.gymapp.utils.RepositoryViewModel;
 import com.pi.gymapp.utils.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class RoutineDetailFragment extends Fragment {
 
     RoutineDetailBinding binding;
     private RoutineViewModel routineViewModel;
+    private int routineId;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = RoutineDetailBinding.inflate(getLayoutInflater());
+
+        routineId = RoutineDetailFragmentArgs.fromBundle(getArguments()).getRoutineId();
+
+        // --------------------------------- Cycle list fragment setup ---------------------------------
+
+        Bundle args = new Bundle();
+        args.putInt("routineId", routineId);
+
+        CycleListFragment cycleListFragment = new CycleListFragment();
+        cycleListFragment.setArguments(args);
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .add(R.id.cycleListFragment, cycleListFragment).commit();
 
         return binding.getRoot();
     }
@@ -48,15 +70,14 @@ public class RoutineDetailFragment extends Fragment {
         MyApplication application = (MyApplication) getActivity().getApplication();
         MainActivity activity = (MainActivity) getActivity();
 
+        // --------------------------------- ViewModel setup ---------------------------------
+
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
             RoutineRepository.class, application.getRoutineRepository()
         );
         routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
 
-        routineViewModel.setRoutineId(RoutineDetailFragmentArgs.fromBundle(getArguments()).getRoutineId());
-
-        //TODO conectar esta variable
-        int cyleId =1;
+        routineViewModel.setRoutineId(routineId);
 
         routineViewModel.getRoutine().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
@@ -67,25 +88,15 @@ public class RoutineDetailFragment extends Fragment {
                 case SUCCESS:
                     activity.hideProgressBar();
 
-                    ((MainActivity) getActivity()).getSupportActionBar().setTitle(
-                            resource.data.getName()
-                    );
-
                     Routine r = resource.data;
 
-                    binding.routineCategoryChip.setText(
-                            StringUtils.capitalize(r.getCategoryName())
-                    );
-                    binding.routineDifficultyChip.setText(
-                            StringUtils.capitalize(r.getDifficulty())
-                    );
-                    binding.routineRateChip.setText(
-                            String.format(getString(R.string.rateFormat), r.getRate())
-                    );
+                    ((MainActivity) getActivity()).getSupportActionBar().setTitle(r.getName());
 
-                    binding.routineDescription.setText(
-                            r.getDetail()
-                    );
+                    binding.routineCategoryChip.setText(StringUtils.capitalize(r.getCategoryName()));
+                    binding.routineDifficultyChip.setText(StringUtils.capitalize(r.getDifficulty()));
+                    binding.routineRateChip.setText(String.format(getString(R.string.rateFormat), r.getRate()));
+
+                    binding.routineDescription.setText(r.getDetail());
 
                     break;
 
@@ -99,17 +110,13 @@ public class RoutineDetailFragment extends Fragment {
             }
         });
 
+
+        // --------------------------------- Button handlers setup ---------------------------------
+
         binding.playButton.setOnClickListener(view ->
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         );
-
-        binding.warmUpButton.setOnClickListener(view ->{
-
-            RoutineDetailFragmentDirections.ActionRoutineDetailFragmentToAllExercisesFragment action = RoutineDetailFragmentDirections.actionRoutineDetailFragmentToAllExercisesFragment(routineViewModel.getRoutine().getValue().data.getId(),cyleId);
-
-            NavHostFragment.findNavController(this).navigate(action);
-        });
 
     }
 }

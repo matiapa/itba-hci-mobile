@@ -1,6 +1,5 @@
 package com.pi.gymapp.ui.exercise;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pi.gymapp.R;
 import com.pi.gymapp.domain.Exercise;
-import com.pi.gymapp.domain.Routine;
-import com.pi.gymapp.ui.routine.RoutinesListAdapter;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdap
     @Override
     public  ExercisesListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.exercise_card, parent, false);
+        View view = inflater.inflate(R.layout.exercise_list_card, parent, false);
 
         return new  ExercisesListAdapter.ViewHolder(view);
     }
