@@ -94,26 +94,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/warmUpButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="@string/routineInfoWarmUp" />
 
-                    <Button
-                        android:id="@+id/trainingButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="@string/routineInfoMainTraining" />
-
-                    <Button
-                        android:id="@+id/coolDownButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="@string/routineInfoCoolDown" />
                 </LinearLayout>
 
             </com.robertlevonyan.views.expandable.Expandable>
@@ -128,6 +109,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:backgroundTint="@color/colorAccent"
+        app:borderWidth="0dp"
         app:srcCompat="@android:drawable/ic_media_play"
         android:contentDescription="@string/play_routine_button" />
 
