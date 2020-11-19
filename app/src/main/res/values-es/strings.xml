@@ -87,9 +87,13 @@
     <string name="favourite_routines_chip">Favoritas</string>
     <string name="save">Guardar</string>
     <string name="play_routine_button">Iniciar rutina</string>
+
+    <string name="routineListCardName">Rutina</string>
+
     <string name="exerciseimage">imagen del Ejercicio</string>
 
     <string name="routine_detail_cycles_header">Ciclos</string>
     <string name="all_routines_chip">Todas</string>
+
 
 </resources>
