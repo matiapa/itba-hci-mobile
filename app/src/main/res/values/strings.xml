@@ -89,5 +89,8 @@
     <string name="exerciseimage">Exercise Image</string>
     <string name="routine_detail_cycles_header">Cycles</string>
     <string name="all_routines_chip">All</string>
+    <string name="wrong_username_password">Ups! Wrong username or password</string>
+    <string name="unexpected_error">Ups! Something went wrong</string>
+    <string name="VerificationEmailHelper">Please provide your email</string>
 
 </resources>

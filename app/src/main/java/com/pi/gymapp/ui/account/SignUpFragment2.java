@@ -101,7 +101,6 @@ public class SignUpFragment2 extends Fragment {
             }
         });
 
-
     }
 
     @Override
