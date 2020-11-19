@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 
 import com.pi.gymapp.api.ApiUserService;
+import com.pi.gymapp.api.models.UserData;
 import com.pi.gymapp.api.models.UserModel;
 import com.pi.gymapp.api.utils.ApiResponse;
 import com.pi.gymapp.db.AppDatabase;
@@ -19,7 +20,6 @@ import com.pi.gymapp.utils.Resource;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class UserRepository {
 
     private static final String RATE_LIMITER_ALL_KEY = "@@all@@";
@@ -28,7 +28,7 @@ public class UserRepository {
     private AppDatabase db;
 
     private AppExecutors executors;
-    private RateLimiter<String> rateLimit = new RateLimiter<>(10, TimeUnit.MINUTES);
+    private final RateLimiter<String> rateLimit = new RateLimiter<>(10, TimeUnit.MINUTES);
 
 
     public UserRepository(AppExecutors executors, ApiUserService api, AppDatabase db) {
@@ -37,34 +37,36 @@ public class UserRepository {
         this.db = db;
     }
 
+
     // ----------------------------------- Mappers -----------------------------------
 
-    private User entityToDomain(UserEntity entity) {
-        return new User(entity.id, entity.username, entity.fullName, entity.gender,entity.birthdate,entity.email,entity.phone,entity.avatarUrl,entity.dateCreated,entity.dateLastActive,entity.deleted,entity.verified);
+    private User entityToDomain(UserEntity e) {
+        return new User(e.id, e.username, e.fullName, e.gender, e.birthdate, e.email, e.phone,
+                e.avatarUrl, e.dateCreated, e.dateLastActive, e.deleted, e.verified);
     }
 
-    private UserEntity modelToEntity(UserModel model) {
-        // Will assume the routine is not favourite, so the property has to be changed if it is
-        return new UserEntity(model.getId(), model.getUsername(), model.getFullName(), model.getGender(),model.getBirthdate(),model.getEmail(),model.getPhone(),model.getAvatarUrl(),model.getDateCreated(),model.getDateLastActive(),model.isDeleted(),model.isVerified());
+    private UserEntity modelToEntity(UserModel m) {
+        return new UserEntity(m.getId(), m.getUsername(), m.getFullName(), m.getGender(),
+                m.getBirthdate(), m.getEmail(), m.getPhone(), m.getAvatarUrl(), m.getDateCreated(),
+                m.getDateLastActive(), m.isDeleted(), m.isVerified());
     }
 
-    private User modelToDomain(UserModel model) {
-        // Will assume the routine is not favourite, so the property has to be changed if it is
-        return new User(model.getId(), model.getUsername(), model.getFullName(), model.getGender(),model.getBirthdate(),model.getEmail(),model.getPhone(),model.getAvatarUrl(),model.getDateCreated(),model.getDateLastActive(),model.isDeleted(),model.isVerified());
+    private User modelToDomain(UserModel m) {
+        return new User(m.getId(), m.getUsername(), m.getFullName(), m.getGender(),
+                m.getBirthdate(), m.getEmail(), m.getPhone(), m.getAvatarUrl(), m.getDateCreated(),
+                m.getDateLastActive(), m.isDeleted(), m.isVerified());
     }
+
 
     // ----------------------------------- Methods -----------------------------------
 
-
-
-
-
-    public LiveData<Resource<User>> getById(int userId) {
+    public LiveData<Resource<User>> getCurrent() {
         return new NetworkBoundResource<User, UserEntity, UserModel>(
                 executors, this::entityToDomain, this::modelToEntity, this::modelToDomain
         ) {
             @Override
             protected void saveCallResult(@NonNull UserEntity entity) {
+                db.userDao().delete();
                 db.userDao().insert(entity);
             }
 
@@ -81,17 +83,51 @@ public class UserRepository {
             @NonNull
             @Override
             protected LiveData<UserEntity> loadFromDb() {
-                return db.userDao().getById(userId);
+                return db.userDao().getCurrent();
             }
 
             @NonNull
             @Override
             protected LiveData<ApiResponse<UserModel>> createCall() {
-                return api.getById(userId);
+                return api.getCurrentUser();
             }
         }.asLiveData();
     }
-//
+
+
+    public LiveData<Resource<User>> updateCurrent(UserData userData) {
+        return new NetworkBoundResource<User, UserEntity, UserModel>(
+                executors, this::entityToDomain, this::modelToEntity, this::modelToDomain
+        ) {
+            @Override
+            protected void saveCallResult(@NonNull UserEntity entity) {
+                db.userDao().delete();
+                db.userDao().insert(entity);
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable UserEntity entity) {
+                return (entity != null);
+            }
+
+            @Override
+            protected boolean shouldPersist(@Nullable UserModel model) {
+                return true;
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<UserEntity> loadFromDb() {
+                return db.userDao().getCurrent();
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<UserModel>> createCall() {
+                return api.updateCurrentUser(userData);
+            }
+        }.asLiveData();
+    }
 
 }
 

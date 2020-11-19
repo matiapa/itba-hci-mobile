@@ -15,35 +15,19 @@ import java.util.List;
 public interface UserDao {
     // Getters
 
-    @Query("SELECT * FROM userentity WHERE id = :id")
-    LiveData<UserEntity> getById(int id);
-
     @Query("SELECT * FROM userentity")
-    LiveData<List<UserEntity>> getAll();
-
-    @Query("SELECT * FROM userentity LIMIT :limit OFFSET :offset")
-    LiveData<List<UserEntity>> getSlice(int limit, int offset);
-
+    LiveData<UserEntity> getCurrent();
 
 
     // Inserts
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(UserEntity... sport);
+    void insert(UserEntity... user);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(List<UserEntity> sports);
-
-    // Updaters
-
-    @Update
-    void update(UserEntity... user);
 
     // Deletes
 
     @Query("DELETE FROM userentity")
-    void deleteAll();
+    void delete();
 
-    @Query("DELETE FROM userentity WHERE id IN (SELECT id FROM userentity LIMIT :limit OFFSET :offset)")
-    void deleteSlice(int limit, int offset);
 }

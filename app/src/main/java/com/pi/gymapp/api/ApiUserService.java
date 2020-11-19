@@ -15,6 +15,7 @@ import com.pi.gymapp.api.models.VerifyEmailData;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiUserService {
@@ -27,6 +28,9 @@ public interface ApiUserService {
     @GET("user/current")
     LiveData<ApiResponse<UserModel>> getCurrentUser();
 
+    @PUT("user/current")
+    LiveData<ApiResponse<UserModel>> updateCurrentUser(@Body UserData userData);
+
     @POST("user")
     LiveData<ApiResponse<UserModel>> createUser(@Body UserData userData);
 
@@ -35,7 +39,4 @@ public interface ApiUserService {
 
     @POST("user/resend_verification")
     LiveData<ApiResponse<Void>> resendVerificationEmail(@Body Email email);
-
-    @GET("user/{userId}")
-    LiveData<ApiResponse<UserModel>> getById(@Path("userId") int userId);
 }

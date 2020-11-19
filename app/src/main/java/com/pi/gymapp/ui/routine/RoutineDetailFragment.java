@@ -1,5 +1,6 @@
 package com.pi.gymapp.ui.routine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,18 @@ public class RoutineDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = RoutineDetailBinding.inflate(getLayoutInflater());
+
+        binding.getRoot().findViewById(R.id.button_share).setOnClickListener(view -> {
+
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send."); //TODO
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
+
+        });
 
         routineId = RoutineDetailFragmentArgs.fromBundle(getArguments()).getRoutineId();
 

@@ -48,6 +48,12 @@
                     app:chipBackgroundColor="@color/colorAccent"
                     tools:ignore="HardcodedText" />
 
+                <ImageButton
+                    android:id="@+id/button_share"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    app:srcCompat="@drawable/activity_fav_button" />
+
             </com.google.android.material.chip.ChipGroup>
 
         </LinearLayout>

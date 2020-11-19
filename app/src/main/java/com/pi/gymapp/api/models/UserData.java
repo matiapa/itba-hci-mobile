@@ -6,7 +6,6 @@ import com.google.gson.annotations.Expose;
 
 public class UserData {
 
-
     @Expose private String username;
 
     @Expose private String fullName;

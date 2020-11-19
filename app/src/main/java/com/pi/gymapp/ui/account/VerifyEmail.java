@@ -29,69 +29,90 @@ public class VerifyEmail extends Fragment {
 
     public void verify(View view){
 
-
-        if (VerifyEmailArgs.fromBundle(getArguments()).getEmail()==null)
-            throw new IllegalStateException("no estoy recibiendo mis argumentos del otro lado");
+        binding.loading.setVisibility(View.VISIBLE);
+        binding.signInButton.setEnabled(false);
+        binding.resendVerificationButton.setEnabled(false);
 
         ApiUserService userService = ApiClient.create(getContext(),ApiUserService.class);
         EditText verification_code = binding.VerificationCodeEdit;
+        EditText verification_email = binding.VerificationEmailEdit;
 
-        if (verification_code.getText().toString().equals("") )
-        {
-            Snackbar.make(view, "Invalid Input", Snackbar.LENGTH_LONG).show();
+        if (verification_code.getText().toString().equals("") ) {
+            Snackbar.make(view, "Invalid email", Snackbar.LENGTH_LONG).show();
+            return;
+        } else if (verification_code.getText().toString().equals("") ) {
+            Snackbar.make(view, "Invalid code", Snackbar.LENGTH_LONG).show();
             return;
         }
-        userService.verifyEmail(new VerifyEmailData(VerifyEmailArgs.fromBundle(getArguments()).getEmail(),verification_code.getText().toString())).observe(this, r-> {
+
+        VerifyEmailData verifyEmailData = new VerifyEmailData(
+            verification_email.getText().toString(),
+            verification_code.getText().toString()
+        );
+
+        userService.verifyEmail(verifyEmailData).observe(getViewLifecycleOwner(), r-> {
+            binding.loading.setVisibility(View.VISIBLE);
+            binding.signInButton.setEnabled(true);
+            binding.resendVerificationButton.setEnabled(true);
+
             if (r.getError() != null) {
+
                 Snackbar.make(view, "Invalid Code", Snackbar.LENGTH_LONG).show();
+
             } else {
+
                 Intent intent=new Intent(getContext(), MainActivity.class);
                 intent.putExtra("login",true);
+
                 startActivity(intent);
+
                 getActivity().finish();
 
             }
 
         });
+
     }
 
     public void resendVerification(View view){
 
+        binding.loading.setVisibility(View.VISIBLE);
+        binding.signInButton.setEnabled(false);
+        binding.resendVerificationButton.setEnabled(false);
 
         if (VerifyEmailArgs.fromBundle(getArguments()).getEmail()==null)
             throw new IllegalStateException("no estoy recibiendo mis argumentos del otro lado");
 
         ApiUserService userService= ApiClient.create(getContext(),ApiUserService.class);
 
-        userService.resendVerificationEmail(new Email(VerifyEmailArgs.fromBundle(getArguments()).getEmail())).observe(this, r-> {
+        Email email = new Email(VerifyEmailArgs.fromBundle(getArguments()).getEmail());
+
+        userService.resendVerificationEmail(email).observe(getViewLifecycleOwner(), r-> {
+            binding.loading.setVisibility(View.GONE);
+            binding.signInButton.setEnabled(true);
+            binding.resendVerificationButton.setEnabled(true);
+
             if (r.getError() != null) {
                 Snackbar.make(view, "Ups! Something went wrong", Snackbar.LENGTH_LONG).show();
             } else {
-
                 Snackbar.make(view, "Email has been sent!", Snackbar.LENGTH_LONG).show();
-
             }
-
         });
+
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         binding = SignUpVerifyEmailBinding.inflate(getLayoutInflater());
-        binding.signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                verify(v);
-            }
-        });
-        binding.resendVerificationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resendVerification(v);
-            }
-        });
+
+        binding.signInButton.setOnClickListener(v -> verify(v));
+
+        binding.resendVerificationButton.setOnClickListener(v -> resendVerification(v));
+
+        if(getArguments() != null && VerifyEmailArgs.fromBundle(getArguments()).getEmail() != null)
+            binding.VerificationEmailEdit.setText(VerifyEmailArgs.fromBundle(getArguments()).getEmail());
+
         return binding.getRoot();
     }
 }
