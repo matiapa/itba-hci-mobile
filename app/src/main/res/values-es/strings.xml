@@ -85,6 +85,7 @@
     <string name="routineInfoCoolDown">Enfriamiento</string>
 
     <string name="favourite_routines_chip">Favoritas</string>
+    <string name="save">Guardar</string>
     <string name="play_routine_button">Iniciar rutina</string>
     <string name="exerciseimage">imagen del Ejercicio</string>
 
