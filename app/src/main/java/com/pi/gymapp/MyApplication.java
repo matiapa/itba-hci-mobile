@@ -27,6 +27,7 @@ public class MyApplication extends Application {
     public RoutineRepository getRoutineRepository() {
         return routineRepository;
     }
+
     public ExerciseRepository getExerciseRepository() {
         return exerciseRepository;
     }

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -19,6 +20,10 @@ import com.pi.gymapp.databinding.RoutineDetailBinding;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.ui.MainActivity;
+import com.pi.gymapp.ui.account.SignUpFragment1Directions;
+import com.pi.gymapp.ui.exercise.AllExercisesFragment;
+import com.pi.gymapp.ui.exercise.AllExercisesFragmentArgs;
+import com.pi.gymapp.ui.exercise.AllExercisesFragmentDirections;
 import com.pi.gymapp.utils.RepositoryViewModel;
 import com.pi.gymapp.utils.StringUtils;
 
@@ -49,6 +54,9 @@ public class RoutineDetailFragment extends Fragment {
         routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
 
         routineViewModel.setRoutineId(RoutineDetailFragmentArgs.fromBundle(getArguments()).getRoutineId());
+
+        //TODO conectar esta variable
+        int cyleId =1;
 
         routineViewModel.getRoutine().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
@@ -95,6 +103,13 @@ public class RoutineDetailFragment extends Fragment {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         );
+
+        binding.warmUpButton.setOnClickListener(view ->{
+
+            RoutineDetailFragmentDirections.ActionRoutineDetailFragmentToAllExercisesFragment action = RoutineDetailFragmentDirections.actionRoutineDetailFragmentToAllExercisesFragment(routineViewModel.getRoutine().getValue().data.getId(),cyleId);
+
+            NavHostFragment.findNavController(this).navigate(action);
+        });
 
     }
 }
