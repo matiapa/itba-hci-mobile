@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,7 +57,7 @@ public class AllRoutinesFragment extends Fragment {
 
         binding.routinesList.setHasFixedSize(true);
         binding.routinesList.setLayoutManager(new LinearLayoutManager(activity));
-        binding.routinesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        /*binding.routinesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -63,7 +65,7 @@ public class AllRoutinesFragment extends Fragment {
                     routineViewModel.getMoreRoutines();
                 }
             }
-        });
+        });*/
 
         binding.routinesList.setAdapter(adapter);
 
@@ -75,7 +77,7 @@ public class AllRoutinesFragment extends Fragment {
         );
         routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
 
-        routineViewModel.resetRoutinesList();
+        //routineViewModel.resetRoutinesList();
 
         routineViewModel.getRoutines().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
@@ -90,7 +92,12 @@ public class AllRoutinesFragment extends Fragment {
                     routines.addAll(resource.data);
 
                     adapter.notifyDataSetChanged();
-                    binding.routinesList.scrollToPosition(routines.size() - 1);
+                    //binding.routinesList.scrollToPosition(routines.size() - 1);
+                    break;
+
+                case ERROR:
+                    activity.hideProgressBar();
+                    Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
                     break;
             }
         });

@@ -20,6 +20,9 @@ public interface RoutineDao {
     @Query("SELECT * FROM RoutineEntity LIMIT :limit OFFSET :offset")
     LiveData<List<RoutineEntity>> getPage(int limit, int offset);
 
+    @Query("SELECT * FROM RoutineEntity")
+    LiveData<List<RoutineEntity>> getAll();
+
     @Query("SELECT * FROM RoutineEntity WHERE isFav")
     LiveData<List<RoutineEntity>> getFavs();
 
@@ -38,6 +41,9 @@ public interface RoutineDao {
 
     @Query("DELETE FROM RoutineEntity WHERE id IN (SELECT id FROM RoutineEntity LIMIT :limit OFFSET :offset)")
     void deleteSlice(int limit, int offset);
+
+    @Query("DELETE FROM RoutineEntity")
+    void deletAll();
 
     @Query("DELETE FROM RoutineEntity WHERE isFav")
     void deleteFavs();

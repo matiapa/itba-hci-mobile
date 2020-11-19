@@ -40,21 +40,33 @@ public class RoutineRepository {
     }
 
 
+    // ----------------------------------- Mappers -----------------------------------
+
+    Routine entityToDomain(RoutineEntity e, Boolean isFav){
+        return new Routine(e.getId(), e.getName(), e.getDetail(), e.getRate(), e.getDifficulty(),
+                e.getCategoryId(), e.getCategoryName(), isFav);
+    }
+
+    RoutineEntity modelToEntity(RoutineModel e, Boolean isFav){
+        return new RoutineEntity(e.getId(), e.getName(), e.getDetail(), e.getAverageRating(), e.getDifficulty(),
+                e.getCategory().getId(), e.getCategory().getName(), isFav);
+    }
+
+    Routine modelToDomain(RoutineModel e, Boolean isFav){
+        return new Routine(e.getId(), e.getName(), e.getDetail(), e.getAverageRating(), e.getDifficulty(),
+                e.getCategory().getId(), e.getCategory().getName(), isFav);
+    }
+
+
     // ----------------------------------- Methods -----------------------------------
 
     public LiveData<Resource<List<Routine>>> getRoutineSlice(int page, int size) {
 
         return new NetworkBoundResource<List<Routine>, List<RoutineEntity>, PagedList<RoutineModel>>(
                 executors,
-                entities -> entities.stream().map(
-                        e -> new Routine(e.id, e.title, e.rate, null)
-                ).collect(toList()),
-                model -> model.getResults().stream().map(
-                        m -> new RoutineEntity(m.getId(), m.getName(), m.getAverageRating(), null)
-                ).collect(toList()),
-                model -> model.getResults().stream().map(
-                        m -> new Routine(m.getId(), m.getName(), m.getAverageRating(), null)
-                ).collect(toList())
+                entities -> entities.stream().map(e -> entityToDomain(e, null)).collect(toList()),
+                model -> model.getResults().stream().map(m -> modelToEntity(m, null)).collect(toList()),
+                model -> model.getResults().stream().map(m -> modelToDomain(m, null)).collect(toList())
         ){
             @Override
             protected void saveCallResult(@NonNull List<RoutineEntity> entities) {
@@ -89,12 +101,53 @@ public class RoutineRepository {
     }
 
 
+    public LiveData<Resource<List<Routine>>> getAllRoutines() {
+
+        return new NetworkBoundResource<List<Routine>, List<RoutineEntity>, PagedList<RoutineModel>>(
+            executors,
+            entities -> entities.stream().map(e -> entityToDomain(e, null)).collect(toList()),
+            model -> model.getResults().stream().map(m -> modelToEntity(m, null)).collect(toList()),
+            model -> model.getResults().stream().map(m -> modelToDomain(m, null)).collect(toList())
+        ){
+            @Override
+            protected void saveCallResult(@NonNull List<RoutineEntity> entities) {
+                db.routineDao().deletAll();
+                db.routineDao().insert(entities);
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable List<RoutineEntity> entities) {
+                return ((entities == null) || (entities.size() == 0))
+                        || rateLimit.shouldFetch(RATE_LIMITER_ALL_KEY);
+            }
+
+            @Override
+            protected boolean shouldPersist(@Nullable PagedList<RoutineModel> model) {
+                return true;
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<List<RoutineEntity>> loadFromDb() {
+                return db.routineDao().getAll();
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<PagedList<RoutineModel>>> createCall() {
+                return api.getAll();
+            }
+        }.asLiveData();
+
+    }
+
+
     public LiveData<Resource<Routine>> getRoutineById(int routineId) {
         return new NetworkBoundResource<Routine, RoutineEntity, RoutineModel>(
             executors,
-            e -> new Routine(e.id, e.title, e.rate, null),
-            m -> new RoutineEntity(m.getId(), m.getName(), m.getAverageRating(), null),
-            m -> new Routine(m.getId(), m.getName(), m.getAverageRating(), null)
+            e -> entityToDomain(e, null),
+            m -> modelToEntity(m, null),
+            m -> modelToDomain(m, null)
         ) {
             @Override
             protected void saveCallResult(@NonNull RoutineEntity entity) {
@@ -130,18 +183,9 @@ public class RoutineRepository {
 
         return new NetworkBoundResource<List<Routine>, List<RoutineEntity>, PagedList<RoutineModel>>(
                 executors,
-
-                entities -> entities.stream().map(
-                        e -> new Routine(e.id, e.title, e.rate, true)
-                ).collect(toList()),
-
-                model -> model.getResults().stream().map(
-                        m -> new RoutineEntity(m.getId(), m.getName(), m.getAverageRating(), true)
-                ).collect(toList()),
-
-                model -> model.getResults().stream().map(
-                        m -> new Routine(m.getId(), m.getName(), m.getAverageRating(), true)
-                ).collect(toList())
+                entities -> entities.stream().map(e -> entityToDomain(e, true)).collect(toList()),
+                model -> model.getResults().stream().map(m -> modelToEntity(m, true)).collect(toList()),
+                model -> model.getResults().stream().map(m -> modelToDomain(m, true)).collect(toList())
         ){
             @Override
             protected void saveCallResult(@NonNull List<RoutineEntity> entities) {

@@ -35,23 +35,22 @@
                 android:layout_marginTop="3dp">
 
                 <TextView
-                    android:id="@+id/routineDuration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="60'"
-                    android:textStyle="bold"
-                    app:drawableLeftCompat="@drawable/ic_baseline_timer_24"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
                     android:id="@+id/routineRating"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="4.5"
                     android:textStyle="bold"
                     app:drawableLeftCompat="@drawable/ic_baseline_star_border_24"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/routineDifficulty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Expert"
+                    android:textStyle="bold"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>

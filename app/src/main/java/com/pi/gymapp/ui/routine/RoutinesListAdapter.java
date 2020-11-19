@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pi.gymapp.R;
 import com.pi.gymapp.domain.Routine;
+import com.pi.gymapp.utils.StringUtils;
 
 import java.util.List;
 
@@ -46,29 +48,38 @@ public class RoutinesListAdapter extends RecyclerView.Adapter<RoutinesListAdapte
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private int id;
 
-        public TextView title, rate, duration;
+        public TextView name, rate, difficulty;
 
         public ViewHolder(@NonNull View view) {
             super(view);
 
-            title = itemView.findViewById(R.id.routineName);
+            name = itemView.findViewById(R.id.routineName);
             rate = itemView.findViewById(R.id.routineRating);
-            duration = itemView.findViewById(R.id.routineDuration);
+            difficulty = itemView.findViewById(R.id.routineDifficulty);
+
+            view.setOnClickListener(this);
         }
 
         public void bindTo(Routine routine) {
             id = routine.getId();
 
-            title.setText(routine.getTitle());
+            name.setText(routine.getName());
+            difficulty.setText(StringUtils.capitalize(routine.getDifficulty()));
 
-            Context context = title.getContext();
+            Context context = name.getContext();
             rate.setText(String.format(context.getString(R.string.rateFormat), routine.getRate()));
         }
 
+        @Override
+        public void onClick(View v) {
+            Navigation.findNavController(v).navigate(
+                AllRoutinesFragmentDirections.actionNavHomeToRoutineDetailFragment(id)
+            );
+        }
     }
 
 }

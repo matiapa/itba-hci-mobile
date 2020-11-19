@@ -50,6 +50,7 @@ public class SignUpFragment1 extends Fragment {
             Snackbar.make(view, "Invalid Input", Snackbar.LENGTH_LONG).show();
             return;
         }
+
         SignUpFragment1Directions.ActionSignUpFragment1ToSignUpFragment2 action = SignUpFragment1Directions.actionSignUpFragment1ToSignUpFragment2();
         action.setEmail(email_input.getText().toString());
         action.setPassword(password_input.getText().toString());
