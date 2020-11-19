@@ -23,13 +23,11 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
 
     private Integer routineId =null;
     private Integer cycleId= null;
-    private final List<Exercise> allExercises=new ArrayList<>();
-    private final MediatorLiveData<Resource<List<Exercise>>> exercises = new MediatorLiveData<>();
+
+    private LiveData<Resource<List<Exercise>>> exercises;
+
     private final MutableLiveData<Integer> exerciseId = new MutableLiveData<>();
     private final LiveData<Resource<Exercise>> exercise;
-//    private LiveData<Resource<List<Exercise>>> exercises;
-
-
 
 
     public ExerciseViewModel(ExerciseRepository repository) {
@@ -46,36 +44,8 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
 
     // ----------------------------- List of all exercises -----------------------------
 
-
-
     public LiveData<Resource<List<Exercise>>> getExercises() {
-
-        //exercises = repository.getAll(routineId, cycleId);
-        getMoreExercises();
-
         return exercises;
-
-    }
-    public void getMoreExercises(){
-        exercises.addSource(repository.getAll(routineId,cycleId),resource -> {
-            if (resource.status == Status.SUCCESS){
-                allExercises.addAll(resource.data);
-                exercises.setValue(Resource.success(allExercises));
-            }
-            else if (resource.status == Status.LOADING){
-                exercises.setValue(resource);
-            }
-        });
-    }
-
-    // ----------------------------- Selected routine -----------------------------
-
-
-
-
-
-    public LiveData<Resource<Exercise>> getExercise() {
-        return exercise;
     }
 
     public void setRoutineId(int routineId) {
@@ -91,7 +61,14 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
 
         this.cycleId = cycleId;
 
+        exercises = repository.getAll(routineId, cycleId);
+    }
 
+
+    // ----------------------------- Selected routine -----------------------------
+
+    public LiveData<Resource<Exercise>> getExercise() {
+        return exercise;
     }
 
     public void setExerciseId(int exerciseId) {

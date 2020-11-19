@@ -42,11 +42,16 @@ public class AllExercisesFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = ExerciseListAllBinding.inflate(getLayoutInflater());
 
-
-
-
-
         return binding.getRoot();
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+
     }
 
 
@@ -77,45 +82,30 @@ public class AllExercisesFragment extends Fragment {
         );
         exerciseViewModel = new ViewModelProvider(this, viewModelFactory).get(ExerciseViewModel.class);
 
-        cycleId=AllExercisesFragmentArgs.fromBundle(getArguments()).getCycleId();
-        routineId=AllExercisesFragmentArgs.fromBundle(getArguments()).getRoutineId();
+        cycleId = AllExercisesFragmentArgs.fromBundle(getArguments()).getCycleId();
+        routineId = AllExercisesFragmentArgs.fromBundle(getArguments()).getRoutineId();
 
-
-        //TODO temporal para cableado
-
-        cycleId=1;
-        routineId=1;
         exerciseViewModel.setRoutineId(routineId);
         exerciseViewModel.setCycleId(cycleId);
-//        exerciseViewModel.setExerciseId(null);
 
-        if (!observed){
-            exerciseViewModel.getExercises().observe(getViewLifecycleOwner(), resource -> {
-                switch (resource.status) {
-                    case LOADING:
-                        activity.showProgressBar();
-                        break;
+        exerciseViewModel.getExercises().observe(getViewLifecycleOwner(), resource -> {
+            switch (resource.status) {
+                case LOADING:
+                    activity.showProgressBar();
+                    break;
 
-                    case SUCCESS:
-                        activity.hideProgressBar();
+                case SUCCESS:
+                    activity.hideProgressBar();
 
-                        exercises.clear();
-                        exercises.addAll(resource.data);
-                        Collections.sort(exercises);
+                    exercises.clear();
+                    exercises.addAll(resource.data);
+                    Collections.sort(exercises);
 
-                        adapter.notifyDataSetChanged();
-                        break;
-                }
-            });
-            observed=true;
-        }
-
-
-
+                    adapter.notifyDataSetChanged();
+                    break;
+            }
+        });
 
     }
 
-
 }
-
-

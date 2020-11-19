@@ -77,9 +77,7 @@ public class CycleListAdapter extends RecyclerView.Adapter<CycleListAdapter.View
         @Override
         public void onClick(View v) {
             Navigation.findNavController(v).navigate(
-                RoutineDetailFragmentDirections.actionRoutineDetailFragmentToAllExercisesFragment(
-                        routineId, cycleId
-                )
+                RoutineDetailFragmentDirections.actionRoutineDetailFragmentToAllExercisesFragment(cycleId, routineId)
             );
         }
     }
