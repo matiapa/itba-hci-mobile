@@ -93,5 +93,6 @@
     <string name="unexpected_error">Ups! Something went wrong</string>
     <string name="VerificationEmailHelper">Please provide your email</string>
     <string name="ejs_reamining">Only %d Exercises Remaining</string>
+    <string name="repetitions_remaining">%d Repetitions Remaining</string>
 
 </resources>
