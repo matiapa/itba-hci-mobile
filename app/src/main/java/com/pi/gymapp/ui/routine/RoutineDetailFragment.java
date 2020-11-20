@@ -10,32 +10,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.R;
 import com.pi.gymapp.databinding.RoutineDetailBinding;
-import com.pi.gymapp.domain.Cycle;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.ui.MainActivity;
-import com.pi.gymapp.ui.account.SignUpFragment1Directions;
-import com.pi.gymapp.ui.cycle.CycleListAdapter;
 import com.pi.gymapp.ui.cycle.CycleListFragment;
-import com.pi.gymapp.ui.exercise.AllExercisesFragment;
-import com.pi.gymapp.ui.exercise.AllExercisesFragmentArgs;
-import com.pi.gymapp.ui.exercise.AllExercisesFragmentDirections;
 import com.pi.gymapp.utils.RepositoryViewModel;
 import com.pi.gymapp.utils.StringUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class RoutineDetailFragment extends Fragment {
@@ -43,6 +29,10 @@ public class RoutineDetailFragment extends Fragment {
     RoutineDetailBinding binding;
     private RoutineViewModel routineViewModel;
     private int routineId;
+    private Boolean isFav;
+
+    MainActivity activity;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -50,7 +40,10 @@ public class RoutineDetailFragment extends Fragment {
         binding = RoutineDetailBinding.inflate(getLayoutInflater());
         routineId = RoutineDetailFragmentArgs.fromBundle(getArguments()).getRoutineId();
 
-        binding.getRoot().findViewById(R.id.button_share).setOnClickListener(view -> {
+        binding.buttonFav.setEnabled(false);
+        binding.buttonFav.setClickable(false);
+
+        binding.buttonShare.setOnClickListener(view -> {
 
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
@@ -81,7 +74,7 @@ public class RoutineDetailFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         MyApplication application = (MyApplication) getActivity().getApplication();
-        MainActivity activity = (MainActivity) getActivity();
+        activity = (MainActivity) getActivity();
 
         // --------------------------------- ViewModel setup ---------------------------------
 
@@ -90,17 +83,29 @@ public class RoutineDetailFragment extends Fragment {
         );
         routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
 
-        routineViewModel.setRoutineId(routineId);
 
-        routineViewModel.getRoutine().observe(getViewLifecycleOwner(), resource -> {
+        // --------------------------------- Fetch if is fav ---------------------------------
+
+        routineViewModel.fetchIsFav(routineId).observe(getViewLifecycleOwner(), isFav -> {
+            this.isFav = isFav;
+
+            binding.buttonFav.setClickable(true);
+            binding.buttonFav.setEnabled(true);
+
+            if(isFav)
+                binding.buttonFav.setImageResource(R.drawable.fav_button_active);
+            else
+                binding.buttonFav.setImageResource(R.drawable.fav_button);
+        });
+
+
+        routineViewModel.getRoutine(routineId).observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
                 case LOADING:
                     activity.showProgressBar();
                     break;
 
                 case SUCCESS:
-                    activity.hideProgressBar();
-
                     Routine r = resource.data;
 
                     ((MainActivity) getActivity()).getSupportActionBar().setTitle(r.getName());
@@ -127,9 +132,26 @@ public class RoutineDetailFragment extends Fragment {
         // --------------------------------- Button handlers setup ---------------------------------
 
         binding.playButton.setOnClickListener(view ->{
-            Navigation.findNavController(view).navigate(RoutineDetailFragmentDirections.actionRoutineDetailFragmentToPlayRoutineFragment(routineId));
+            Navigation.findNavController(view).navigate(
+                    RoutineDetailFragmentDirections.actionRoutineDetailFragmentToPlayRoutineFragment(routineId)
+            );
         });
 
+        binding.buttonFav.setOnClickListener(v -> {
+            isFav = !isFav;
+
+            routineViewModel.setFav(routineId, isFav).observe(getViewLifecycleOwner(), res -> {
+                if(res.getError() != null)
+                    Toast.makeText(activity, getResources().getString(R.string.unexpected_error),
+                            Toast.LENGTH_SHORT).show();
+            });
+
+            if(isFav)
+                binding.buttonFav.setImageResource(R.drawable.fav_button_active);
+            else
+                binding.buttonFav.setImageResource(R.drawable.fav_button);
+        });
 
     }
+
 }

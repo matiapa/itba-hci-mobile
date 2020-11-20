@@ -24,10 +24,24 @@
             <ImageView
                 android:id="@+id/simpleImageView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/exercise"
+                android:layout_height="239dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/playExerciseImageHint" />
+                android:contentDescription="@string/playExerciseImageHint"
+                android:src="@drawable/exercise" />
+
+            <TextView
+                android:id="@+id/ExecuteRoutineExerciseTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:text="@string/instructionsPanelHeaderText"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                />
+
 
             <com.robertlevonyan.views.expandable.Expandable
                 android:id="@+id/expandable"
@@ -60,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginTop="25dp"
-                android:text="1:00"
+                android:text="--:--"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
             <TextView
@@ -69,13 +83,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Faltan 9 ejercicios"
+                android:text="@string/ejs_reamining"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center">
 
                 <ImageView
@@ -87,10 +103,11 @@
                     android:contentDescription="@string/playExerciseButtonHint" />
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/prevButton"
@@ -105,10 +122,10 @@
                         android:id="@+id/playButton"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@null"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/play_button"
-                        android:contentDescription="@string/playExerciseButtonHint" />
+                        android:background="@null"
+                        android:contentDescription="@string/playExerciseButtonHint"
+                        android:src="@drawable/play_button" />
 
                     <ImageButton
                         android:id="@+id/nextButton"
@@ -122,6 +139,14 @@
                 </LinearLayout>
 
             </RelativeLayout>
+            <Button
+                android:id="@+id/changeviewmode"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:text="change view" />
 
         </LinearLayout>
 

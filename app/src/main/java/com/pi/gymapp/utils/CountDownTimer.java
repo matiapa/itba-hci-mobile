@@ -7,7 +7,7 @@ public class CountDownTimer {
     private long remainingTime = 0;
     private long interval = 0;
     private boolean started, paused;
-    private android.os.CountDownTimer countDownTimer;
+    public android.os.CountDownTimer countDownTimer;
     private final MutableLiveData<Status> countDownTimerStatus = new MutableLiveData<>();
 
     public void start(long time, long interval) {

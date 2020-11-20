@@ -94,6 +94,10 @@
 
     <string name="routine_detail_cycles_header">Ciclos</string>
     <string name="all_routines_chip">Todas</string>
+    <string name="ejs_reamining">Faltan %d Ejercicios para terminar</string>
+    <string name="wrong_username_password">Ups! Usuario o Contraseña incorrectos</string>
+    <string name="unexpected_error">Ups! Algo salio mal</string>
+    <string name="VerificationEmailHelper">Por favor ingrese su email</string>
 
 
 </resources>
