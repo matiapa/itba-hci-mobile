@@ -5,65 +5,67 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.R;
 import com.pi.gymapp.databinding.RoutinesExploreBinding;
-import com.pi.gymapp.repo.RoutineRepository;
-import com.pi.gymapp.utils.RepositoryViewModel;
-
-import java.util.Collections;
-import java.util.Map;
 
 
 public class RoutinesExploreFragment extends Fragment {
 
     private RoutinesExploreBinding binding;
 
+    private String filter;
+    private int orderIndex;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = RoutinesExploreBinding.inflate(getLayoutInflater());
 
-        MyApplication application = (MyApplication) getActivity().getApplication();
-
-
-        // --------------------------------- FragmentContainer setup ---------------------------------
-
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-
-
-        RoutineListFragment routineListFragment = newFragment(RoutineListFragment.class,
-                new String[]{"filter"}, new String[]{"all"});
-        fragmentManager.beginTransaction().add(R.id.routineListFragment, routineListFragment).commit();
+        filter = "all"; orderIndex = 0;
+        changedListParams();
 
 
         // --------------------------------- Buttons setup ---------------------------------
 
-        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
-                RoutineRepository.class, application.getRoutineRepository()
-        );
-        RoutineViewModel routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
-
         binding.allRoutinesChip.setOnClickListener(l -> {
-            RoutineListFragment fragment = newFragment(RoutineListFragment.class,
-                    new String[]{"filter"}, new String[]{"all"});
-            fragmentManager.beginTransaction().add(R.id.routineListFragment, fragment).commit();
+            filter = "all";
+            changedListParams();
         });
 
         binding.favRoutinesChip.setOnClickListener(l -> {
-            RoutineListFragment fragment = newFragment(RoutineListFragment.class,
-                    new String[]{"filter"}, new String[]{"favourites"});
-            fragmentManager.beginTransaction().add(R.id.routineListFragment, fragment).commit();
+            filter = "favourites";
+            changedListParams();
+        });
+
+        binding.orderBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                orderIndex = position;
+                changedListParams();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                orderIndex = 0;
+                changedListParams();
+            }
         });
 
         return binding.getRoot();
+    }
+
+
+    private void changedListParams(){
+        RoutineListFragment fragment = newFragment(RoutineListFragment.class,
+                new String[]{"filter", "orderBy"}, new String[]{filter, String.valueOf(orderIndex)});
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.routineListFragment, fragment).commit();
     }
 
 

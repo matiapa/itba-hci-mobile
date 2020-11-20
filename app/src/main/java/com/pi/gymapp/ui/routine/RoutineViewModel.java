@@ -30,7 +30,7 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
             }
         });
 
-        routines = repository.getAllRoutines();
+//        routines = repository.getAllRoutines();
 
         favourites = repository.getFavourites();
     }
@@ -38,10 +38,10 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
 
     // ----------------------------- List of all routines -----------------------------
 
-    private final LiveData<Resource<List<Routine>>> routines;
+//    private final LiveData<Resource<List<Routine>>> routines;
 
-    public LiveData<Resource<List<Routine>>> getRoutines() {
-        return routines;
+    public LiveData<Resource<List<Routine>>> getRoutines(String orderBy, String direction) {
+        return repository.getAllRoutines(orderBy, direction);
     }
 
 

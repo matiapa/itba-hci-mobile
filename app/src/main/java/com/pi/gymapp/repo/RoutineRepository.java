@@ -44,17 +44,17 @@ public class RoutineRepository {
 
     Routine entityToDomain(RoutineEntity e, Boolean isFav){
         return new Routine(e.getId(), e.getName(), e.getDetail(), e.getRate(), e.getDifficulty(),
-                e.getCategoryId(), e.getCategoryName(), isFav);
+                e.getCategoryId(), e.getCategoryName(), e.getDateCreated(), isFav);
     }
 
     RoutineEntity modelToEntity(RoutineModel m, Boolean isFav){
         return new RoutineEntity(m.getId(), m.getName(), m.getDetail(), m.getAverageRating(), m.getDifficulty(),
-                m.getCategory().getId(), m.getCategory().getName(), isFav);
+                m.getCategory().getId(), m.getCategory().getName(), m.getDateCreated(), isFav);
     }
 
     Routine modelToDomain(RoutineModel m, Boolean isFav){
         return new Routine(m.getId(), m.getName(), m.getDetail(), m.getAverageRating(), m.getDifficulty(),
-                m.getCategory().getId(), m.getCategory().getName(), isFav);
+                m.getCategory().getId(), m.getCategory().getName(), m.getDateCreated(), isFav);
     }
 
 
@@ -101,7 +101,7 @@ public class RoutineRepository {
     }
 
 
-    public LiveData<Resource<List<Routine>>> getAllRoutines() {
+    public LiveData<Resource<List<Routine>>> getAllRoutines(String orderBy, String direction) {
 
         return new NetworkBoundResource<List<Routine>, List<RoutineEntity>, PagedList<RoutineModel>>(
             executors,
@@ -135,7 +135,7 @@ public class RoutineRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<PagedList<RoutineModel>>> createCall() {
-                return api.getAll();
+                return api.getAll(orderBy, direction);
             }
         }.asLiveData();
 

@@ -14,28 +14,48 @@
             android:orientation="vertical"
             android:padding="15dp">
 
-            <com.google.android.material.chip.ChipGroup
-                android:layout_height="wrap_content"
+            <LinearLayout
                 android:layout_width="match_parent"
-                app:singleSelection="true">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/allRoutinesChip"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/allRoutinesChip"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/all_routines_chip"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/favRoutinesChip"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="@string/favourite_routines_chip"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <Spinner
+                    android:id="@+id/orderBy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/all_routines_chip"/>
+                    android:entries="@array/routineOrders"
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/favRoutinesChip"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="@string/favourite_routines_chip"/>
+                    android:layout_marginTop="10dp"/>
 
-            </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
 
             <androidx.fragment.app.FragmentContainerView
                 android:layout_width="match_parent"

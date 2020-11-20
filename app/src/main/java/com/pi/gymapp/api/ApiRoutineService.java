@@ -20,10 +20,14 @@ public interface ApiRoutineService {
     LiveData<ApiResponse<RoutineModel>> getById(@Path("routineId") int routineId);
 
     @GET("routines/")
-    LiveData<ApiResponse<PagedList<RoutineModel>>> getSlice(@Query("page") int page, @Query("size") int size);
+    LiveData<ApiResponse<PagedList<RoutineModel>>> getSlice(
+            @Query("page") int page, @Query("size") int size
+    );
 
     @GET("routines/")
-    LiveData<ApiResponse<PagedList<RoutineModel>>> getAll();
+    LiveData<ApiResponse<PagedList<RoutineModel>>> getAll(
+            @Query("orderBy") String orderBy, @Query("direction") String direction
+    );
 
     @GET("user/current/routines/favourites/")
     LiveData<ApiResponse<PagedList<RoutineModel>>> getFavourites();
@@ -35,5 +39,4 @@ public interface ApiRoutineService {
 
     @DELETE("user/current/routines/{routineId}/favourites")
     LiveData<ApiResponse<Void>> unfavourite(@Path("routineId") int routineId);
-
 }

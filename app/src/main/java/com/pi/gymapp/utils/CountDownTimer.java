@@ -45,6 +45,8 @@ public class CountDownTimer {
     }
 
     private void start(long time) {
+        remainingTime=time;
+        countDownTimerStatus.postValue(new Status(time, false));
         countDownTimer = new android.os.CountDownTimer(time, interval) {
 
             @Override
