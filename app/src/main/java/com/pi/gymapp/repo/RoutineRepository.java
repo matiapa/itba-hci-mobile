@@ -3,6 +3,7 @@ package com.pi.gymapp.repo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 
 import com.pi.gymapp.api.utils.ApiResponse;
 import com.pi.gymapp.api.ApiRoutineService;
@@ -111,7 +112,7 @@ public class RoutineRepository {
         ){
             @Override
             protected void saveCallResult(@NonNull List<RoutineEntity> entities) {
-                db.routineDao().deletAll();
+                db.routineDao().deleteAll();
                 db.routineDao().insert(entities);
             }
 
@@ -151,6 +152,7 @@ public class RoutineRepository {
         ) {
             @Override
             protected void saveCallResult(@NonNull RoutineEntity entity) {
+                db.routineDao().deleteById(entity.getId());
                 db.routineDao().insert(entity);
             }
 
@@ -180,7 +182,6 @@ public class RoutineRepository {
 
 
     public LiveData<Resource<List<Routine>>> getFavourites() {
-
         return new NetworkBoundResource<List<Routine>, List<RoutineEntity>, PagedList<RoutineModel>>(
                 executors,
                 entities -> entities.stream().map(e -> entityToDomain(e, true)).collect(toList()),
@@ -190,6 +191,8 @@ public class RoutineRepository {
             @Override
             protected void saveCallResult(@NonNull List<RoutineEntity> entities) {
                 db.routineDao().deleteFavs();
+
+                entities.forEach(e -> db.routineDao().deleteById(e.getId()));
                 db.routineDao().insert(entities);
             }
 
@@ -216,7 +219,30 @@ public class RoutineRepository {
                 return api.getFavourites();
             }
         }.asLiveData();
+    }
 
+
+    public LiveData<Boolean> fetchIsFav(int routineId){
+        return Transformations.map(api.getFavourites(), res ->{
+            boolean isFav = res.getData().getResults().stream().anyMatch(r -> r.getId() == routineId);
+
+            executors.diskIO().execute(() -> {
+                db.routineDao().setFav(routineId, isFav);
+            });
+
+            return isFav;
+        });
+    }
+
+    public LiveData<ApiResponse<Void>> setFav(int routineId, boolean value) {
+        executors.diskIO().execute(() ->
+                db.routineDao().setFav(routineId, value)
+        );
+
+        if(value)
+            return api.favourite(routineId);
+        else
+            return api.unfavourite(routineId);
     }
 
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 
 
 import com.pi.gymapp.api.models.RoutineModel;
+import com.pi.gymapp.api.models.UserChangeData;
 import com.pi.gymapp.api.models.UserModel;
 import com.pi.gymapp.api.utils.ApiResponse;
 import com.pi.gymapp.api.models.Credentials;
@@ -11,6 +12,7 @@ import com.pi.gymapp.api.models.Email;
 import com.pi.gymapp.api.models.Token;
 import com.pi.gymapp.api.models.UserData;
 import com.pi.gymapp.api.models.VerifyEmailData;
+import com.pi.gymapp.domain.User;
 
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -29,7 +31,7 @@ public interface ApiUserService {
     LiveData<ApiResponse<UserModel>> getCurrentUser();
 
     @PUT("user/current")
-    LiveData<ApiResponse<UserModel>> updateCurrentUser(@Body UserData userData);
+    LiveData<ApiResponse<UserModel>> updateCurrentUser(@Body UserChangeData userData);
 
     @POST("user")
     LiveData<ApiResponse<UserModel>> createUser(@Body UserData userData);

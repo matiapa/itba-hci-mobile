@@ -106,6 +106,10 @@ public class AllExercisesFragment extends Fragment {
             }
         });
 
+        // --------------------------------- Buttons setup ---------------------------------
+//        binding.favRoutinesChip.setOnClickListener(l ->
+//                Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_favRoutinesFragment)
+//        );
     }
 
 }

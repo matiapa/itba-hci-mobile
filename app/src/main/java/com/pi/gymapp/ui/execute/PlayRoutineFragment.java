@@ -107,9 +107,7 @@ public class PlayRoutineFragment extends Fragment {
         );
         routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
 
-        routineViewModel.setRoutineId(routineId);
-
-        routineViewModel.getRoutine().observe(getViewLifecycleOwner(), resource -> {
+        routineViewModel.getRoutine(routineId).observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
                 case LOADING:
                     activity.showProgressBar();

@@ -43,8 +43,15 @@ public interface RoutineDao {
     void deleteSlice(int limit, int offset);
 
     @Query("DELETE FROM RoutineEntity")
-    void deletAll();
+    void deleteAll();
 
     @Query("DELETE FROM RoutineEntity WHERE isFav")
     void deleteFavs();
+
+
+    // Updates
+
+    @Query("UPDATE RoutineEntity SET isFav = :isFav WHERE id = :routineId")
+    void setFav(int routineId, boolean isFav);
+
 }
