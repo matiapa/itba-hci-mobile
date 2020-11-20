@@ -18,8 +18,8 @@ public class ApiClient {
     public static final int READ_TIMEOUT = 10;
     public static final int WRITE_TIMEOUT = 10;
 
-    //public static final String BASE_URL = "http://192.168.0.176:8080/api/";
-    public static final String BASE_URL = "http://10.0.2.2:8080/api/";
+    public static final String BASE_URL = "http://192.168.0.176:8080/api/";
+    //public static final String BASE_URL = "http://10.0.2.2:8080/api/";
 
     private ApiClient() { }
 

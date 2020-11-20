@@ -11,12 +11,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.databinding.RecyclerViewBinding;
 import com.pi.gymapp.domain.Routine;
+import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.ui.MainActivity;
+import com.pi.gymapp.utils.RepositoryViewModel;
 import com.pi.gymapp.utils.Resource;
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ import java.util.List;
 public class RoutineListFragment extends Fragment {
 
     private RecyclerViewBinding binding;
+    private RoutineViewModel routineViewModel;
 
     MyApplication application;
     MainActivity activity;
@@ -35,10 +39,11 @@ public class RoutineListFragment extends Fragment {
 
     LiveData<Resource<List<Routine>>> routinesLiveData;
 
-
     RoutineListFragment(LiveData<Resource<List<Routine>>> routinesLiveData){
         this.routinesLiveData = routinesLiveData;
     }
+
+    RoutineListFragment(){}
 
 
     @Override
@@ -48,6 +53,23 @@ public class RoutineListFragment extends Fragment {
 
         application = (MyApplication) getActivity().getApplication();
         activity = (MainActivity) getActivity();
+
+
+        // --------------------------------- ViewModel setup ---------------------------------
+
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
+                RoutineRepository.class, application.getRoutineRepository()
+        );
+        routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
+
+
+        String filter = getArguments().getString("filter");
+
+        if(filter.equals("all")){
+            routinesLiveData = routineViewModel.getRoutines();
+        }else{
+            routinesLiveData = routineViewModel.getFavourites();
+        }
 
 
         // --------------------------------- RecyclerView setup ---------------------------------

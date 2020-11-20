@@ -35,7 +35,7 @@ public class ExerciseRepository {
     private AppDatabase db;
 
     private AppExecutors executors;
-    private RateLimiter<String> rateLimit = new RateLimiter<>(10, TimeUnit.MINUTES);
+    private RateLimiter<String> rateLimit = new RateLimiter<>(1, TimeUnit.SECONDS);
 
 
     public ExerciseRepository(AppExecutors executors, ApiExerciseService api, AppDatabase db) {

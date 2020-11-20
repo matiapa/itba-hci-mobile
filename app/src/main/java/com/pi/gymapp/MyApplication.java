@@ -24,8 +24,6 @@ public class MyApplication extends Application {
     CycleRepository cycleRepository;
     ExerciseRepository exerciseRepository;
 
-
-
     public AppPreferences getPreferences() {
         return preferences;
     }
@@ -40,6 +38,10 @@ public class MyApplication extends Application {
 
     public ExerciseRepository getExerciseRepository() {
         return exerciseRepository;
+    }
+
+    public AppExecutors getAppExecutors(){
+        return appExecutors;
     }
 
     @Override
@@ -63,9 +65,6 @@ public class MyApplication extends Application {
         cycleRepository = new CycleRepository(appExecutors, cycleService, database);
 
         exerciseRepository = new ExerciseRepository(appExecutors,exerciseService,database);
-    }
-    public AppExecutors getAppExecutors() {
-        return appExecutors;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.pi.gymapp.ui.execute;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -17,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.R;
 import com.pi.gymapp.databinding.PlayRoutineBinding;
-import com.pi.gymapp.databinding.RoutinesListAllBinding;
 import com.pi.gymapp.domain.Cycle;
 import com.pi.gymapp.domain.Exercise;
 import com.pi.gymapp.domain.Routine;
@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Stack;
 import java.util.concurrent.Semaphore;
 
 public class PlayRoutineFragment extends Fragment {
@@ -47,23 +48,24 @@ public class PlayRoutineFragment extends Fragment {
     private CycleViewModel cycleViewModel;
     private ExerciseViewModel exerciseViewModel;
 
-
-
     private int routineId;
     private Routine routine;
-    private List<Cycle> cycles;
-    private List<List<Exercise>> exercises;
+
+    private List<Cycle> cycles = new ArrayList<>();
+    private List<List<Exercise>> exercises = new ArrayList<>();
+
     private Cycle cycle;
     private Exercise exercise;
     public long timeremaining=0;
-//    private final Semaphore semaphore = new Semaphore(0);
     public boolean flag= true;
-
 
     private int cycleIndex=0;
     private int exerciseIndex=0;
 
+    private MainActivity activity;
+    private MyApplication application;
 
+    private int cyclesLoaded = 0;
 
 
     @Override
@@ -79,75 +81,44 @@ public class PlayRoutineFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        MyApplication application = (MyApplication) getActivity().getApplication();
-        MainActivity activity = (MainActivity) getActivity();
+        // Get routine
 
-
-        // --------------------------------- Fill Lists ---------------------------------
-        //routines
-
-        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
+        /*ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
                 RoutineRepository.class, application.getRoutineRepository()
         );
         routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
 
-        routineId=PlayRoutineFragmentArgs.fromBundle(getArguments()).getRoutineId();
+        routineId = PlayRoutineFragmentArgs.fromBundle(getArguments()).getRoutineId();
 
+        routineViewModel.setRoutineId(routineId);*/
 
+        application = (MyApplication) getActivity().getApplication();
+        activity = (MainActivity) getActivity();
 
-        routineViewModel.setRoutineId(routineId);
+        routineId = PlayRoutineFragmentArgs.fromBundle(getArguments()).getRoutineId();
 
-        MyApplication app = (MyApplication) getActivity().getApplication();
+        // CycleViewModel
 
-//        app.getAppExecutors().diskIO().execute(() -> {
-//                app.getAppExecutors().mainThread().execute(() -> {
-                    routineViewModel.getRoutine().observe(getViewLifecycleOwner(), resource -> {
-                        switch (resource.status) {
-                            case LOADING:
-                                activity.showProgressBar();
-                                break;
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
+                CycleRepository.class, application.getCycleRepository());
 
-                            case SUCCESS:
-                                activity.hideProgressBar();
-                                routine=resource.data;
-                                flag=false;
-
-
-                                break;
-                        }
-                    });
-
-
-
-
-
-        //cycles
-        viewModelFactory = new RepositoryViewModel.Factory<>(CycleRepository.class, application.getCycleRepository());
         cycleViewModel = new ViewModelProvider(this, viewModelFactory).get(CycleViewModel.class);
         cycleViewModel.setRoutineId(routineId);
-        cycles.addAll(cycleViewModel.getCycles().getValue().data);
 
-        //Exercises
+        // ExerciseViewModel
 
-        viewModelFactory = new RepositoryViewModel.Factory<>(ExerciseRepository.class, application.getExerciseRepository());
-        exerciseViewModel = new ViewModelProvider(this,viewModelFactory).get(ExerciseViewModel.class);
+        viewModelFactory = new RepositoryViewModel.Factory<>(
+                ExerciseRepository.class, application.getExerciseRepository());
+
+        exerciseViewModel = new ViewModelProvider(this, viewModelFactory).get(ExerciseViewModel.class);
         exerciseViewModel.setRoutineId(routineId);
-        for (Cycle cycle:cycles) {
 
-            exerciseViewModel.setCycleId(cycle.getId());
-            List<Exercise> auxlist = new ArrayList<>(exerciseViewModel.getExercises().getValue().data);
+        binding.playButton.setEnabled(false);
 
-            exercises.add(auxlist);
-        }
-
-
-
-        // --------------------------------- inflar el fragment ---------------------------------
-
-        setup();
+        getCycles();
 
         //------------------------------------conectar los botones-------------------------------
-        MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+/*        MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         viewModel.getCountDownTimer().getStatus().observe(getViewLifecycleOwner(), countDownTimerStatus -> {
             if (countDownTimerStatus.isFinished()) {
@@ -187,16 +158,72 @@ public class PlayRoutineFragment extends Fragment {
             }else {
                 viewModel.getCountDownTimer().pause();
             }
-        });
-
-
+        });*/
 
     }
+
+
+    private void getCycles(){
+        cycleViewModel.getCycles().observe(getViewLifecycleOwner(), r -> {
+            switch (r.status) {
+                case LOADING:
+                    activity.showProgressBar();
+                    break;
+
+                case SUCCESS:
+                    cycles.addAll(r.data);
+
+                    for(Cycle cycle : cycles)
+                        getExercises(cycle.getId(), cycles.size());
+
+                    break;
+
+                case ERROR:
+                    activity.hideProgressBar();
+                    Toast.makeText(activity, r.message, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        });
+    }
+
+
+    private void getExercises(int cycleId, int cyclesLength){
+        exerciseViewModel.getExercises(cycleId).observe(getViewLifecycleOwner(), r -> {
+            switch (r.status) {
+                case LOADING:
+                    activity.showProgressBar();
+                    break;
+
+                case SUCCESS:
+                    exercises.add(r.data);
+                    cyclesLoaded += 1;
+
+                    if(cyclesLoaded == cyclesLength) {
+                        activity.hideProgressBar();
+                        binding.playButton.setEnabled(true);
+
+                        setup();
+                        return;
+                    }
+
+                    break;
+
+                case ERROR:
+                    activity.hideProgressBar();
+                    Toast.makeText(activity, r.message, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        });
+    }
+
+
     public void setup(){
         StringBuilder stringBuilder = new StringBuilder();
+
         if (cycles.size()<cycleIndex && exercises.get(cycleIndex).size()<exerciseIndex){
-            cycle=cycles.get(cycleIndex);
-            exercise=exercises.get(cycleIndex).get(exerciseIndex);
+            cycle = cycles.get(cycleIndex);
+            exercise = exercises.get(cycleIndex).get(exerciseIndex);
+
             stringBuilder.append(cycle.getName());
             stringBuilder.append("\n");
             stringBuilder.append(cycle.getDetail());
@@ -205,11 +232,8 @@ public class PlayRoutineFragment extends Fragment {
             stringBuilder.append("\n");
             stringBuilder.append(exercise.getDetail());
         }
+
         binding.content.setText(stringBuilder.toString());
-
-
-
-
-
     }
+
 }
