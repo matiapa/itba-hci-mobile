@@ -1,37 +1,29 @@
 package com.pi.gymapp.ui;
 
-import android.app.Application;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.widget.Button;
-import android.widget.EditText;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
 import com.pi.gymapp.AppPreferences;
 import com.pi.gymapp.R;
 import com.pi.gymapp.api.models.Error;
 import com.pi.gymapp.api.utils.ApiClient;
 import com.pi.gymapp.databinding.MainActivityBinding;
 import com.pi.gymapp.api.ApiUserService;
-import com.pi.gymapp.api.models.Credentials;
-import com.pi.gymapp.ui.account.SignInFragmentDirections;
-import com.pi.gymapp.ui.routine.RoutineDetailFragmentArgs;
-import com.pi.gymapp.ui.routine.RoutineDetailFragmentDirections;
+
+import com.pi.gymapp.ui.routine.RoutinesExploreFragmentDirections;
 
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -97,9 +89,12 @@ public class MainActivity extends AppCompatActivity {
             String action = Mainintent.getAction();
             String type = Mainintent.getType();
 
-            if (Intent.ACTION_SEND.equals(action) && "text/plain".equals(type)) {
-                RoutineDetailFragmentDirections.ActionRoutineDetailFragmentToPlayRoutineFragment navAction = RoutineDetailFragmentDirections.actionRoutineDetailFragmentToPlayRoutineFragment(Integer.parseInt(data.getLastPathSegment()));
+            if (data!=null && data.getLastPathSegment()!=null) {
+                //el error handling esta en el detail
+                RoutinesExploreFragmentDirections.ActionNavHomeToRoutineDetailFragment navAction = RoutinesExploreFragmentDirections.actionNavHomeToRoutineDetailFragment(Integer.parseInt(data.getLastPathSegment()));
+
                 navController.navigate(navAction.setRoutineId(Integer.parseInt(data.getLastPathSegment())));
+
             }
 
             binding.navView.getMenu().findItem(R.id.nav_rate_us).setOnMenuItemClickListener(menuItem -> {

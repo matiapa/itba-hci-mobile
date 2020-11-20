@@ -11,9 +11,6 @@
         android:label="@string/menu_home"
         tools:layout="@layout/routines_explore" >
         <action
-            android:id="@+id/action_nav_home_to_favRoutinesFragment"
-            app:destination="@id/favRoutinesFragment" />
-        <action
             android:id="@+id/action_nav_home_to_routineDetailFragment"
             app:destination="@id/routineDetailFragment" />
     </fragment>
@@ -45,17 +42,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/favRoutinesFragment"
-        android:name="com.pi.gymapp.ui.routine.FavRoutinesFragment"
-        android:label="@string/fav_routines_title" >
-        <action
-            android:id="@+id/action_favRoutinesFragment_to_routineDetailFragment"
-            app:destination="@id/routineDetailFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/routineDetailFragment"
         android:name="com.pi.gymapp.ui.routine.RoutineDetailFragment"
-        android:label="RoutineDetailFragment" >
+        android:label="RoutineDetailFragment">
         <argument
             android:name="routineId"
             app:argType="integer" />
@@ -65,6 +54,9 @@
         <action
             android:id="@+id/action_routineDetailFragment_to_playRoutineFragment"
             app:destination="@id/playRoutineFragment" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="http://www.gymapp.com/id" />
     </fragment>
     <fragment
         android:id="@+id/allExercisesFragment"
