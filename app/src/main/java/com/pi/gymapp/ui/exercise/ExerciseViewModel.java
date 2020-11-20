@@ -48,6 +48,10 @@ public class ExerciseViewModel extends RepositoryViewModel<ExerciseRepository> {
         return exercises;
     }
 
+    public LiveData<Resource<List<Exercise>>> getExercises(int cycleId) {
+        return repository.getAll(routineId, cycleId);
+    }
+
     public void setRoutineId(int routineId) {
         if (this.routineId != null && routineId == this.routineId)
             return;

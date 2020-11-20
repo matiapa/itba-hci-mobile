@@ -1,6 +1,7 @@
 package com.pi.gymapp.ui.routine;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +17,13 @@ import com.pi.gymapp.databinding.RoutinesExploreBinding;
 import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.utils.RepositoryViewModel;
 
+import java.util.Collections;
+import java.util.Map;
+
 
 public class RoutinesExploreFragment extends Fragment {
 
     private RoutinesExploreBinding binding;
-    private RoutineViewModel routineViewModel;
 
 
     @Override
@@ -31,37 +34,52 @@ public class RoutinesExploreFragment extends Fragment {
         MyApplication application = (MyApplication) getActivity().getApplication();
 
 
-        // --------------------------------- ViewModel setup ---------------------------------
-
-        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
-                RoutineRepository.class, application.getRoutineRepository()
-        );
-        routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
-
-
         // --------------------------------- FragmentContainer setup ---------------------------------
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
-        fragmentManager.beginTransaction().add(R.id.routineListFragment, new RoutineListFragment(
-                routineViewModel.getRoutines()
-        )).commit();
+
+        RoutineListFragment routineListFragment = newFragment(RoutineListFragment.class,
+                new String[]{"filter"}, new String[]{"all"});
+        fragmentManager.beginTransaction().add(R.id.routineListFragment, routineListFragment).commit();
+
 
         // --------------------------------- Buttons setup ---------------------------------
 
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
+                RoutineRepository.class, application.getRoutineRepository()
+        );
+        RoutineViewModel routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
+
         binding.allRoutinesChip.setOnClickListener(l -> {
-            fragmentManager.beginTransaction().replace(R.id.routineListFragment, new RoutineListFragment(
-                    routineViewModel.getRoutines()
-            )).commit();
+            RoutineListFragment fragment = newFragment(RoutineListFragment.class,
+                    new String[]{"filter"}, new String[]{"all"});
+            fragmentManager.beginTransaction().add(R.id.routineListFragment, fragment).commit();
         });
 
         binding.favRoutinesChip.setOnClickListener(l -> {
-            fragmentManager.beginTransaction().replace(R.id.routineListFragment, new RoutineListFragment(
-                    routineViewModel.getFavourites()
-            )).commit();
+            RoutineListFragment fragment = newFragment(RoutineListFragment.class,
+                    new String[]{"filter"}, new String[]{"favourites"});
+            fragmentManager.beginTransaction().add(R.id.routineListFragment, fragment).commit();
         });
 
         return binding.getRoot();
+    }
+
+
+    private <T extends Fragment> T newFragment(Class<T> fragmentClass, String[] keys, String[] args){
+        Bundle bundle = new Bundle();
+        for(int i=0; i<keys.length; i++)
+            bundle.putString(keys[i], args[i]);
+
+        try{
+            T fragment = fragmentClass.newInstance();
+            fragment.setArguments(bundle);
+            return fragment;
+        }catch(Exception e){
+            Log.e("Fragment", e.getMessage());
+            return null;
+        }
     }
 
 }
