@@ -1,40 +1,166 @@
 package com.pi.gymapp.ui.profile;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.R;
+import com.pi.gymapp.api.models.UserChangeData;
+import com.pi.gymapp.api.models.UserData;
+import com.pi.gymapp.databinding.FragmentProfileEditBinding;
+import com.pi.gymapp.domain.Routine;
+import com.pi.gymapp.domain.User;
+import com.pi.gymapp.repo.UserRepository;
+import com.pi.gymapp.ui.MainActivity;
+import com.pi.gymapp.utils.RepositoryViewModel;
+import com.pi.gymapp.utils.StringUtils;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ProfileFragment2 extends Fragment{
 
 
     private ProfileViewModel galleryViewModel;
+    FragmentProfileEditBinding binding;
+    private ProfileViewModel profileViewModel;
+    private long birthday;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        galleryViewModel =new ViewModelProvider(this).get(ProfileViewModel.class);
-
-        View root = inflater.inflate(R.layout.fragment_profile_edit, container, false);
-
-//        final TextView textView = root.findViewById(R.id.text_gallery);
-//        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
-        root.findViewById(R.id.profileButtonSave).setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_profileFragment2_to_nav_profile));
-
-       // getActivity().getSupportFragmentManager().popBackStack();
-
-        return root;
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentProfileEditBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        MyApplication application = (MyApplication) getActivity().getApplication();
+
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
+                UserRepository.class, application.getUserRepository()
+        );
+
+        profileViewModel = new ViewModelProvider(this, viewModelFactory).get(ProfileViewModel.class);
+        MainActivity activity = (MainActivity) getActivity();
+
+//        profileViewModel.setUserId()
+
+        profileViewModel.getUser().observe(getViewLifecycleOwner(), resource -> {
+            switch (resource.status) {
+                case LOADING:
+                    activity.showProgressBar();
+                    break;
+
+                case SUCCESS:
+                    activity.hideProgressBar();
+
+                    User r = resource.data;
+                    birthday = r.getBirthdate();
+
+                    binding.userUsername.setText(
+                            StringUtils.capitalize(r.getUsername())
+                    );
+
+                    binding.userEmail.setText(
+                            StringUtils.capitalize(r.getEmail())
+                    );
+
+                    binding.userPhone.setText(
+                            StringUtils.capitalize(Long.toString(r.getPhone()))
+                    );
+                    binding.userBirthday.setText(
+                            String.format(getString(R.string.dateFormat), r.getBirthdate())
+                    );
+                    binding.userFullnameAgain.setText(
+                            StringUtils.capitalize(r.getFullName())
+                    );
+                    binding.userFullname.setText(
+                            StringUtils.capitalize(r.getFullName())
+                    );
+                    if(r.getGender().equals("male")) {
+                        binding.radioButtonMale.setChecked(true);
+                        binding.radioButtonFemale.setChecked(false);
+                        binding.radioButtonOther.setChecked(false);
+                    } else if (r.getGender().equals("female")) {
+                        binding.radioButtonMale.setChecked(false);
+                        binding.radioButtonFemale.setChecked(true);
+                        binding.radioButtonOther.setChecked(false);
+                    } else {
+                        binding.radioButtonMale.setChecked(false);
+                        binding.radioButtonFemale.setChecked(false);
+                        binding.radioButtonOther.setChecked(true);
+                    }
+                    break;
+
+                case ERROR:
+                    activity.hideProgressBar();
+                    Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
+                    break;
+
+                default:
+                    break;
+            }
+        });
+
+        binding.profileButtonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String gender = new String();
+                if(binding.radioButtonMale.isChecked()) {
+                    gender = "male";
+                } else if (binding.radioButtonFemale.isChecked()) {
+                    gender = "female";
+                } else {
+                    gender = "other";
+                }
+                UserChangeData data = new UserChangeData(
+                binding.userUsername.getText().toString(),
+                binding.userFullnameAgain.getText().toString(),
+                gender, birthday,
+                binding.userEmail.getText().toString(),
+                binding.userPhone.getText().toString(),
+                        null
+                );
+                profileViewModel.sendUserChange(data).observe(getViewLifecycleOwner(), resource->{
+                    switch (resource.status) {
+                        case LOADING:
+                            activity.showProgressBar();
+                            break;
+
+                        case SUCCESS:
+                            activity.hideProgressBar();
+                            break;
+                        case ERROR:
+                            activity.hideProgressBar();
+                            Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
+                            break;
+
+                        default:
+                            break;
+                    }
+                });
+                Navigation.findNavController(v).navigate(ProfileFragment2Directions.actionProfileFragment2ToNavProfile());
+            }
+        });
+        binding.profileButtonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(ProfileFragment2Directions.actionProfileFragment2ToNavProfile());
+            }
+        });
+
+    }
 }

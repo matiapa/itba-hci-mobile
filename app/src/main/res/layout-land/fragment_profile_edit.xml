@@ -28,7 +28,7 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/user_fullname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgUser"
@@ -87,6 +87,7 @@
                         android:textSize="13sp" />
 
                     <TextView
+                        android:id="@+id/user_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -116,6 +117,7 @@
                         android:textSize="13sp" />
 
                     <EditText
+                        android:id="@+id/user_fullname_again"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -145,6 +147,7 @@
                         android:textSize="13sp" />
 
                     <TextView
+                        android:id="@+id/user_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -174,6 +177,7 @@
                         android:textSize="13sp" />
 
                     <EditText
+                        android:id="@+id/user_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -202,12 +206,14 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="13sp" />
 
-                    <DatePicker android:id="@+id/datePicker1"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/user_birthday"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:datePickerMode="spinner"
-                        android:calendarViewShown="false"/>
+                        android:fontFamily="sans-serif-light"
+                        android:text="Date"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -235,11 +241,16 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
+                        <RadioGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:weightSum="1">
+
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:id="@+id/radioButton"
+                            android:id="@+id/radioButtonMale"
                             android:text="Male"
                             android:textColor="#000000"
                             android:textSize="18sp" />
@@ -247,7 +258,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:id="@+id/radioButton2"
+                            android:id="@+id/radioButtonFemale"
                             android:text="Female"
                             android:textColor="#000000"
                             android:textSize="18sp" />
@@ -255,18 +266,30 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:id="@+id/radioButton3"
+                            android:id="@+id/radioButtonOther"
                             android:text="Other"
                             android:textColor="#000000"
                             android:textSize="18sp" />
+                        </RadioGroup>
 
                     </LinearLayout>
 
-                    <Button
-                        android:id="@+id/profileButtonSave"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/save" />
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/profileButtonCancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cancel"/>
+
+                        <Button
+                            android:id="@+id/profileButtonSave"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/save"/>
+                    </LinearLayout>
 
                 </LinearLayout>
 

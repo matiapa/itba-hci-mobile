@@ -38,7 +38,7 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/user_fullname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgUser"
@@ -84,6 +84,7 @@
                         android:textSize="30sp" />
 
                     <TextView
+                        android:id="@+id/user_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -113,6 +114,7 @@
                         android:textSize="30sp" />
 
                     <EditText
+                        android:id="@+id/user_fullname_again"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -142,6 +144,7 @@
                         android:textSize="30sp" />
 
                     <TextView
+                        android:id="@+id/user_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -171,6 +174,7 @@
                         android:textSize="30sp" />
 
                     <EditText
+                        android:id="@+id/user_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -199,13 +203,14 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="30sp" />
 
-                    <DatePicker
-                        android:id="@+id/datePicker1"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/user_birthday"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:calendarViewShown="false"
-                        android:datePickerMode="spinner" />
+                        android:fontFamily="sans-serif-light"
+                        android:text="Date"
+                        android:textColor="#000000"
+                        android:textSize="40dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -228,20 +233,16 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="30sp"/>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
                         <RadioGroup
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:weightSum="1">
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Male"
-                            android:id="@+id/radioButton"
+                            android:id="@+id/radioButtonMale"
                             android:checked="false"
                             android:textSize="40dp" />
 
@@ -249,7 +250,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Female"
-                            android:id="@+id/radioButton2"
+                            android:id="@+id/radioButtonFemale"
                             android:checked="false"
                             android:textSize="40dp"/>
 
@@ -257,13 +258,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Other"
-                            android:id="@+id/radioButton3"
+                            android:id="@+id/radioButtonOther"
                             android:checked="false"
                             android:textSize="40dp" />
 
                         </RadioGroup>
-
-                    </LinearLayout>
 
                     <Button
                         android:id="@+id/profileButtonSave"
@@ -271,6 +270,13 @@
                         android:layout_height="88dp"
                         android:textSize="40dp"
                         android:text="@string/save" />
+
+                    <Button
+                        android:id="@+id/profileButtonCancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="88dp"
+                        android:textSize="40dp"
+                        android:text="@string/cancel" />
 
                 </LinearLayout>
 

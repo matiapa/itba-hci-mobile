@@ -1,19 +1,31 @@
 package com.pi.gymapp.ui.profile;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.Transformations;
 
-public class ProfileViewModel extends ViewModel {
+import com.pi.gymapp.api.models.UserChangeData;
+import com.pi.gymapp.api.models.UserData;
+import com.pi.gymapp.domain.User;
+import com.pi.gymapp.repo.UserRepository;
+import com.pi.gymapp.utils.AbsentLiveData;
+import com.pi.gymapp.utils.Resource;
+import com.pi.gymapp.utils.RepositoryViewModel;
 
-    private MutableLiveData<String> mText;
+public class ProfileViewModel extends RepositoryViewModel<UserRepository> {
 
-    public ProfileViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+    private LiveData<Resource<User>> user;
+    private Integer userId;
+
+    public ProfileViewModel(UserRepository repository) {
+        super(repository);
+
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<Resource<User>> getUser() {
+        return repository.getCurrent();
+    }
+
+    public LiveData<Resource<User>> sendUserChange(UserChangeData data) {
+        return repository.updateCurrent(data);
     }
 }
