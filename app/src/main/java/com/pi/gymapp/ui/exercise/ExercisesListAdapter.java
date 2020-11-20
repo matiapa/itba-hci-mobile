@@ -1,6 +1,5 @@
 package com.pi.gymapp.ui.exercise;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pi.gymapp.R;
 import com.pi.gymapp.domain.Exercise;
-import com.pi.gymapp.domain.Routine;
-import com.pi.gymapp.ui.routine.AllRoutinesFragmentDirections;
-import com.pi.gymapp.ui.routine.RoutinesListAdapter;
 
 import java.util.List;
 

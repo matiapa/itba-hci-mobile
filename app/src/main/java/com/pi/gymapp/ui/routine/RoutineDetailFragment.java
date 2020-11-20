@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -126,10 +127,10 @@ public class RoutineDetailFragment extends Fragment {
 
         // --------------------------------- Button handlers setup ---------------------------------
 
-        binding.playButton.setOnClickListener(view ->
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        );
+        binding.playButton.setOnClickListener(view ->{
+            Navigation.findNavController(view).navigate(RoutineDetailFragmentDirections.actionRoutineDetailFragmentToPlayRoutineFragment(routineId));
+        });
+
 
     }
 }

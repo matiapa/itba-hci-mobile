@@ -77,7 +77,7 @@ public class RoutinesListAdapter extends RecyclerView.Adapter<RoutinesListAdapte
         @Override
         public void onClick(View v) {
             Navigation.findNavController(v).navigate(
-                AllRoutinesFragmentDirections.actionNavHomeToRoutineDetailFragment(id)
+                RoutinesExploreFragmentDirections.actionNavHomeToRoutineDetailFragment(id)
             );
         }
     }

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.pi.gymapp.ui.routine.AllRoutinesFragment"
+        android:name="com.pi.gymapp.ui.routine.RoutinesExploreFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/routines_list_all" >
+        tools:layout="@layout/routines_explore" >
         <action
             android:id="@+id/action_nav_home_to_favRoutinesFragment"
             app:destination="@id/favRoutinesFragment" />
@@ -47,7 +47,11 @@
     <fragment
         android:id="@+id/favRoutinesFragment"
         android:name="com.pi.gymapp.ui.routine.FavRoutinesFragment"
-        android:label="@string/fav_routines_title" />
+        android:label="@string/fav_routines_title" >
+        <action
+            android:id="@+id/action_favRoutinesFragment_to_routineDetailFragment"
+            app:destination="@id/routineDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/routineDetailFragment"
         android:name="com.pi.gymapp.ui.routine.RoutineDetailFragment"
@@ -58,6 +62,9 @@
         <action
             android:id="@+id/action_routineDetailFragment_to_allExercisesFragment"
             app:destination="@id/allExercisesFragment" />
+        <action
+            android:id="@+id/action_routineDetailFragment_to_playRoutineFragment"
+            app:destination="@id/playRoutineFragment" />
     </fragment>
     <fragment
         android:id="@+id/allExercisesFragment"
@@ -83,6 +90,14 @@
         <argument
             android:name="cycleId"
             app:argType="integer" />
+        <argument
+            android:name="routineId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/playRoutineFragment"
+        android:name="com.pi.gymapp.ui.execute.PlayRoutineFragment"
+        android:label="PlayRoutineFragment" >
         <argument
             android:name="routineId"
             app:argType="integer" />

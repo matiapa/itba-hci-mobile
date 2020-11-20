@@ -2,54 +2,69 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="25dp"
-    android:layout_marginRight="25dp"
-    android:gravity="center"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/username_signin"
+    <ProgressBar
+        android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/signInUsernameHint"
-        android:text="username"
-        android:inputType="textPersonName" />
+        android:visibility="gone"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyleHorizontal"/>
 
-    <EditText
-        android:id="@+id/password_signin"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="@string/signInPasswordHint"
-        android:text="Password1"
-        android:inputType="textPassword" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:gravity="center"
-        android:text="@string/signInForgotPassLabel"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/colorSecondary"
-        android:textSize="16sp" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/signInButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@color/colorAccent"
-        android:text="@string/signInButton" />
+        <EditText
+            android:id="@+id/username_signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/signInUsernameHint"
+            android:text="username"
+            android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/signUpButton" />
+        <EditText
+            android:id="@+id/password_signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:ems="10"
+            android:hint="@string/signInPasswordHint"
+            android:text="Password1"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="@string/signInForgotPassLabel"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorSecondary"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/signInButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@color/colorAccent"
+            android:text="@string/signInButton" />
+
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/signUpButton" />
+
+    </LinearLayout>
 
 </LinearLayout>
