@@ -1,5 +1,6 @@
 package com.pi.gymapp.ui;
 
+import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,10 +15,12 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.pi.gymapp.AppPreferences;
 import com.pi.gymapp.R;
+import com.pi.gymapp.api.models.Error;
 import com.pi.gymapp.api.utils.ApiClient;
 import com.pi.gymapp.databinding.MainActivityBinding;
 import com.pi.gymapp.api.ApiUserService;
 import com.pi.gymapp.api.models.Credentials;
+import com.pi.gymapp.ui.account.SignInFragmentDirections;
 import com.pi.gymapp.ui.routine.RoutineDetailFragmentArgs;
 import com.pi.gymapp.ui.routine.RoutineDetailFragmentDirections;
 
@@ -34,38 +37,46 @@ public class MainActivity extends AppCompatActivity {
 
     private MainActivityBinding binding;
     private AppBarConfiguration mAppBarConfiguration;
-    private boolean loggedin=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent Mainintent = getIntent();
+        ApiUserService userService= ApiClient.create(this, ApiUserService.class);
 
-        if (Mainintent.getExtras()!=null){
-            if (Mainintent.getExtras().containsKey("login")){
-                if (Mainintent.getExtras().get("login").equals(true)){
-                    loggedin=true;
+        AppPreferences appPreferences = new AppPreferences(getApplicationContext());
+        //Pegarle a la api para ver si es que mi token sigue siend validp, sino fuerzo login
+        if (appPreferences.getAuthToken()!=null){
+            userService.getCurrentUser().observe(this, r -> {
+
+                if (r.getError() != null) {
+
+                    Error e = r.getError();
+                    if (e.getCode() == 7) {
+                        login();
+                    }
                 }
-            }
+            });
+        }else {
+            login();
         }
 
 
-
-        if (!loggedin){
-            Intent intent = new Intent(this, LoginActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            finish();
-            startActivity(intent);
-            return;
+//
+//        if (Mainintent.getExtras()!=null){
+//            if (Mainintent.getExtras().containsKey("login")){
+//                if (Mainintent.getExtras().get("login").equals(true)){
+//                    loggedin=true;
+//                }
+//            }
+//        }
 
 
-        }
-        else {
+
+
+
+
 
             binding = MainActivityBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
@@ -81,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
             NavigationUI.setupWithNavController(binding.navView, navController);
 
+            Intent Mainintent = getIntent();
             Uri data = Mainintent.getData();
             String action = Mainintent.getAction();
             String type = Mainintent.getType();
@@ -91,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             binding.navView.getMenu().findItem(R.id.nav_sign_out).setOnMenuItemClickListener(menuItem -> {
-                ApiUserService userService = ApiClient.create(this,ApiUserService.class);
+
 
                 userService.logout().observe(this,r->{
                     if (r.getError()!= null){
@@ -108,13 +120,13 @@ public class MainActivity extends AppCompatActivity {
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                        loggedin=false;
+
 
                     }
                 });
                 return true;
             });
-        }
+
     }
 
     @Override
@@ -130,5 +142,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void hideProgressBar() {
         binding.loading.setVisibility(View.GONE);
+    }
+    public void login(){
+        Intent intent = new Intent(this, LoginActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        finish();
+        startActivity(intent);
+
     }
 }
