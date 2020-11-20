@@ -1,4 +1,4 @@
-package com.pi.gymapp.ui.routine;
+package com.pi.gymapp.domain;
 
 public enum Difficulties {
     BEGINNER("Beginner", "beginner"),
