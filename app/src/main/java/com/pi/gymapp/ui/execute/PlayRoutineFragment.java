@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Stack;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PlayRoutineFragment extends Fragment {
 
@@ -164,7 +165,11 @@ public class PlayRoutineFragment extends Fragment {
 
 
     private void getCycles(){
+        AtomicBoolean done = new AtomicBoolean(false);
         cycleViewModel.getCycles().observe(getViewLifecycleOwner(), r -> {
+            if(done.compareAndSet(false, true))
+                return;
+
             switch (r.status) {
                 case LOADING:
                     activity.showProgressBar();
@@ -188,7 +193,11 @@ public class PlayRoutineFragment extends Fragment {
 
 
     private void getExercises(int cycleId, int cyclesLength){
+        AtomicBoolean done = new AtomicBoolean(false);
         exerciseViewModel.getExercises(cycleId).observe(getViewLifecycleOwner(), r -> {
+            if(done.compareAndSet(false, true))
+                return;
+
             switch (r.status) {
                 case LOADING:
                     activity.showProgressBar();

@@ -33,8 +33,6 @@ public class RoutinesExploreFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = RoutinesExploreBinding.inflate(getLayoutInflater());
 
-        MyApplication application = (MyApplication) getActivity().getApplication();
-
 
         // --------------------------------- FragmentContainer setup ---------------------------------
 
@@ -51,6 +49,7 @@ public class RoutinesExploreFragment extends Fragment {
 
         favRoutines = newFragment(RoutineListFragment.class,
                 new String[]{"filter"}, new String[]{"fav"});
+
 
         // --------------------------------- Buttons setup ---------------------------------
 
