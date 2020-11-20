@@ -5,7 +5,6 @@
     <color name="colorAccent">#FBD46D</color>
     <color name="colorAccentLight">#EEEEEE</color>
 
-
-    <color name="backgroundColor">#FCFCFC</color>
-    <color name="textColor">#000000</color>
+    <color name="backgroundColor">#212121</color>
+    <color name="textColor">#FFFFFF</color>
 </resources>

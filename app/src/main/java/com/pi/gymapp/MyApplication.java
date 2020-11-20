@@ -2,6 +2,7 @@ package com.pi.gymapp;
 
 import android.app.Application;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.room.Room;
 
 import com.pi.gymapp.api.ApiCycleService;
@@ -76,6 +77,7 @@ public class MyApplication extends Application {
         exerciseRepository = new ExerciseRepository(appExecutors, exerciseService, database);
 
         userRepository = new UserRepository(appExecutors, userService, database);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
 }
