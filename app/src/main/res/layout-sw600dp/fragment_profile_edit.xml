@@ -276,7 +276,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="88dp"
                         android:textSize="40dp"
-                        android:text="@string/cancel" />
+                        android:text="@string/cancel_button" />
 
                 </LinearLayout>
 

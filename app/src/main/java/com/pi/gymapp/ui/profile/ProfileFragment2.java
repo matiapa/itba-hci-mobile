@@ -30,33 +30,33 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class ProfileFragment2 extends Fragment{
 
-
-    private ProfileViewModel galleryViewModel;
     FragmentProfileEditBinding binding;
     private ProfileViewModel profileViewModel;
+
+    private MainActivity activity;
+
     private long birthday;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfileEditBinding.inflate(getLayoutInflater());
+
+        activity = (MainActivity) getActivity();
+
+        MyApplication application = (MyApplication) getActivity().getApplication();
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
+                UserRepository.class, application.getUserRepository()
+        );
+
+        profileViewModel = new ViewModelProvider(this, viewModelFactory).get(ProfileViewModel.class);
+
         return binding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        MyApplication application = (MyApplication) getActivity().getApplication();
-
-        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
-                UserRepository.class, application.getUserRepository()
-        );
-
-        profileViewModel = new ViewModelProvider(this, viewModelFactory).get(ProfileViewModel.class);
-        MainActivity activity = (MainActivity) getActivity();
-
-//        profileViewModel.setUserId()
 
         profileViewModel.getUser().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
@@ -70,39 +70,35 @@ public class ProfileFragment2 extends Fragment{
                     User r = resource.data;
                     birthday = r.getBirthdate();
 
-                    binding.userUsername.setText(
-                            StringUtils.capitalize(r.getUsername())
-                    );
+                    binding.userUsername.setText(StringUtils.capitalize(r.getUsername()));
+                    binding.userEmail.setText(StringUtils.capitalize(r.getEmail()));
 
-                    binding.userEmail.setText(
-                            StringUtils.capitalize(r.getEmail())
-                    );
+                    binding.userPhone.setText(StringUtils.capitalize(Long.toString(r.getPhone())));
+                    binding.userBirthday.setText(String.format(getString(R.string.dateFormat), r.getBirthdate()));
 
-                    binding.userPhone.setText(
-                            StringUtils.capitalize(Long.toString(r.getPhone()))
-                    );
-                    binding.userBirthday.setText(
-                            String.format(getString(R.string.dateFormat), r.getBirthdate())
-                    );
-                    binding.userFullnameAgain.setText(
-                            StringUtils.capitalize(r.getFullName())
-                    );
-                    binding.userFullname.setText(
-                            StringUtils.capitalize(r.getFullName())
-                    );
+                    binding.userFullnameAgain.setText(StringUtils.capitalize(r.getFullName()));
+                    binding.userFullname.setText(StringUtils.capitalize(r.getFullName()));
+
                     if(r.getGender().equals("male")) {
+
                         binding.radioButtonMale.setChecked(true);
                         binding.radioButtonFemale.setChecked(false);
                         binding.radioButtonOther.setChecked(false);
+
                     } else if (r.getGender().equals("female")) {
+
                         binding.radioButtonMale.setChecked(false);
                         binding.radioButtonFemale.setChecked(true);
                         binding.radioButtonOther.setChecked(false);
+
                     } else {
+
                         binding.radioButtonMale.setChecked(false);
                         binding.radioButtonFemale.setChecked(false);
                         binding.radioButtonOther.setChecked(true);
+
                     }
+
                     break;
 
                 case ERROR:
@@ -115,52 +111,55 @@ public class ProfileFragment2 extends Fragment{
             }
         });
 
-        binding.profileButtonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gender = new String();
-                if(binding.radioButtonMale.isChecked()) {
-                    gender = "male";
-                } else if (binding.radioButtonFemale.isChecked()) {
-                    gender = "female";
-                } else {
-                    gender = "other";
-                }
-                UserChangeData data = new UserChangeData(
+        binding.profileButtonSave.setOnClickListener(v -> {
+            String gender;
+
+            if(binding.radioButtonMale.isChecked()) {
+                gender = "male";
+            } else if (binding.radioButtonFemale.isChecked()) {
+                gender = "female";
+            } else {
+                gender = "other";
+            }
+
+            UserChangeData data = new UserChangeData(
                 binding.userUsername.getText().toString(),
                 binding.userFullnameAgain.getText().toString(),
                 gender, birthday,
                 binding.userEmail.getText().toString(),
                 binding.userPhone.getText().toString(),
                         null
-                );
-                profileViewModel.sendUserChange(data).observe(getViewLifecycleOwner(), resource->{
-                    switch (resource.status) {
-                        case LOADING:
-                            activity.showProgressBar();
-                            break;
+            );
 
-                        case SUCCESS:
-                            activity.hideProgressBar();
-                            break;
-                        case ERROR:
-                            activity.hideProgressBar();
-                            Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
-                            break;
+            profileViewModel.sendUserChange(data).observe(getViewLifecycleOwner(), resource->{
+                switch (resource.status) {
+                    case LOADING:
+                        activity.showProgressBar();
+                        break;
 
-                        default:
-                            break;
-                    }
-                });
-                Navigation.findNavController(v).navigate(ProfileFragment2Directions.actionProfileFragment2ToNavProfile());
-            }
+                    case SUCCESS:
+                        activity.hideProgressBar();
+                        Navigation.findNavController(v).navigate(
+                                ProfileFragment2Directions.actionProfileFragment2ToNavProfile()
+                        );
+                        break;
+
+                    case ERROR:
+                        activity.hideProgressBar();
+                        Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
+                        break;
+
+                    default:
+                        break;
+                }
+            });
         });
-        binding.profileButtonCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(ProfileFragment2Directions.actionProfileFragment2ToNavProfile());
-            }
-        });
+
+        binding.profileButtonCancel.setOnClickListener(v ->
+            Navigation.findNavController(v).navigate(
+                    ProfileFragment2Directions.actionProfileFragment2ToNavProfile()
+            )
+        );
 
     }
 }

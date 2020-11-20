@@ -33,93 +33,93 @@ import com.pi.gymapp.utils.StringUtils;
 
 public class ProfileFragment extends Fragment {
 
-    private ProfileViewModel galleryViewModel;
-    FragmentProfileBinding binding;
+    private FragmentProfileBinding binding;
     private ProfileViewModel profileViewModel;
+
+    private MainActivity activity;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(getLayoutInflater());
-        return binding.getRoot();
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+
+        activity = (MainActivity) getActivity();
 
         MyApplication application = (MyApplication) getActivity().getApplication();
-        MainActivity activity = (MainActivity) getActivity();
-
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
                 UserRepository.class, application.getUserRepository()
         );
 
         profileViewModel = new ViewModelProvider(this, viewModelFactory).get(ProfileViewModel.class);
 
-            profileViewModel.getUser().observe(getViewLifecycleOwner(), resource -> {
-                switch (resource.status) {
-                    case LOADING:
-                        activity.showProgressBar();
-                        break;
+        return binding.getRoot();
+    }
 
-                    case SUCCESS:
-                        activity.hideProgressBar();
 
-                        User r = resource.data;
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-                        binding.userUsername.setText(
-                                StringUtils.capitalize(r.getUsername())
-                        );
-                        binding.userEmail.setText(
-                                StringUtils.capitalize(r.getEmail())
-                        );
-                        binding.userPhone.setText(
-                                StringUtils.capitalize(Long.toString(r.getPhone()))
-                        );
-                        binding.userBirthday.setText(
-                                String.format(getString(R.string.dateFormat), r.getBirthdate())
-                        );
-                        binding.userFullnameAgain.setText(
-                                StringUtils.capitalize(r.getFullName())
-                        );
-                        binding.userFullname.setText(
-                                StringUtils.capitalize(r.getFullName())
-                        );
-                        if(r.getGender().equals("male")) {
-                            binding.radioButtonMale.setChecked(true);
-                            binding.radioButtonFemale.setChecked(false);
-                            binding.radioButtonOther.setChecked(false);
-                        } else if (r.getGender().equals("female")) {
-                            binding.radioButtonMale.setChecked(false);
-                            binding.radioButtonFemale.setChecked(true);
-                            binding.radioButtonOther.setChecked(false);
-                        } else {
-                            binding.radioButtonMale.setChecked(false);
-                            binding.radioButtonFemale.setChecked(false);
-                            binding.radioButtonOther.setChecked(true);
-                        }
-                        binding.radioButtonOther.setEnabled(false);
-                        binding.radioButtonMale.setEnabled(false);
-                        binding.radioButtonFemale.setEnabled(false);
+        profileViewModel.getUser().observe(getViewLifecycleOwner(), resource -> {
+            switch (resource.status) {
+                case LOADING:
+                    activity.showProgressBar();
+                    break;
 
-                        break;
+                case SUCCESS:
+                    activity.hideProgressBar();
 
-                    case ERROR:
-                        activity.hideProgressBar();
-                        Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
-                        break;
+                    User r = resource.data;
 
-                    default:
-                        break;
-                }
-            });
+                    binding.userUsername.setText(StringUtils.capitalize(r.getUsername()));
+                    binding.userEmail.setText(StringUtils.capitalize(r.getEmail()));
 
-        binding.profileButtonEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_nav_profile_to_profileFragment2);
+                    binding.userPhone.setText(StringUtils.capitalize(Long.toString(r.getPhone())));
+                    binding.userBirthday.setText(String.format(getString(R.string.dateFormat), r.getBirthdate()));
+
+                    binding.userFullnameAgain.setText(StringUtils.capitalize(r.getFullName()));
+                    binding.userFullname.setText(StringUtils.capitalize(r.getFullName()));
+
+                    if(r.getGender().equals("male")) {
+
+                        binding.radioButtonMale.setChecked(true);
+                        binding.radioButtonFemale.setChecked(false);
+                        binding.radioButtonOther.setChecked(false);
+
+                    } else if (r.getGender().equals("female")) {
+
+                        binding.radioButtonMale.setChecked(false);
+                        binding.radioButtonFemale.setChecked(true);
+                        binding.radioButtonOther.setChecked(false);
+
+                    } else {
+
+                        binding.radioButtonMale.setChecked(false);
+                        binding.radioButtonFemale.setChecked(false);
+                        binding.radioButtonOther.setChecked(true);
+
+                    }
+
+                    binding.radioButtonOther.setEnabled(false);
+                    binding.radioButtonMale.setEnabled(false);
+                    binding.radioButtonFemale.setEnabled(false);
+
+                    break;
+
+                case ERROR:
+                    activity.hideProgressBar();
+                    Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
+                    break;
+
+                default:
+                    break;
             }
         });
+
+        binding.profileButtonEdit.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_nav_profile_to_profileFragment2)
+        );
     }
 }

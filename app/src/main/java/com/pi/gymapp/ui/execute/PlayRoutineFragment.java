@@ -29,6 +29,8 @@ import com.pi.gymapp.ui.MainActivity;
 import com.pi.gymapp.ui.account.SignUpFragment2Args;
 import com.pi.gymapp.ui.cycle.CycleViewModel;
 import com.pi.gymapp.ui.exercise.ExerciseViewModel;
+import com.pi.gymapp.ui.exercise.ExercisesListAdapter;
+
 import com.pi.gymapp.ui.routine.RoutineViewModel;
 import com.pi.gymapp.ui.routine.RoutinesListAdapter;
 import com.pi.gymapp.utils.MainViewModel;
@@ -56,7 +58,7 @@ public class PlayRoutineFragment extends Fragment {
 
     private int routineId;
     private Routine routine;
-
+    private List<Exercise> exercisesRecyclerlist = new ArrayList<>();
     private List<Cycle> cycles = new ArrayList<>();
     private final Set<List<Exercise>> exercises = new TreeSet<>((o1, o2) -> o1.get(0).getCycleId()-o2.get(0).getCycleId());
     private List<List<Exercise>> exerciseslist = new ArrayList<>();
@@ -64,7 +66,7 @@ public class PlayRoutineFragment extends Fragment {
     private Cycle cycle;
     private Exercise exercise;
     public long timeremaining=0;
-    public boolean flag= true;
+
     public boolean flag2=true;
 
     enum Viewmodes {SIMPLIFIED,COMPLEX}
@@ -133,6 +135,11 @@ public class PlayRoutineFragment extends Fragment {
 
 
 
+        RoutineExecuteExercisesListAdapter adapter = new RoutineExecuteExercisesListAdapter(exercisesRecyclerlist);
+
+        binding.exerciseviewlist.setHasFixedSize(true);
+        binding.exerciseviewlist.setLayoutManager(new LinearLayoutManager(activity));
+        binding.exerciseviewlist.setAdapter(adapter);
 
 
 
@@ -166,19 +173,49 @@ public class PlayRoutineFragment extends Fragment {
         MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         viewModel.getCountDownTimer().getStatus().observe(getViewLifecycleOwner(), countDownTimerStatus -> {
+
+
             if (countDownTimerStatus.isFinished()) {
-                if (exerciseslist.size()-1==cycleIndex){
-                    //TODO codigo para terminar bien
-                    return;
-                }else {
-                    if (exerciseslist.get(cycleIndex).size()-1>exerciseIndex)
-                        exerciseIndex++;
-                    else{
-                        cycleIndex++;
-                        exerciseIndex=0;
+//                if (exerciseslist.size()==cycleIndex){
+//                    //TODO codigo para terminar bien
+//                    return;
+//                }else {
+//                    if (exerciseslist.get(cycleIndex).size()>=exerciseIndex)
+//                        if (repeticiones>0)
+//                            repeticiones--;
+//                        else {
+//                            exerciseIndex++;
+//                            repeticiones=exerciseslist.get(cycleIndex).get(exerciseIndex).getRepetitions()-1;
+//                            ejercicios_left--;
+//                        }
+//
+//                    else{
+//                        cycleIndex++;
+//                        exerciseIndex=0;
+//                        ejercicios_left--;
+//                    }
+                    if (repeticiones==0) {
+                        if (exerciseIndex==exerciseslist.get(cycleIndex).size()-1){
+                            if (cycleIndex==exerciseslist.size()-1){
+                                //todo terminada operacion
+                                return;
+                            }
+                            else {
+                                cycleIndex++;
+                                exerciseIndex=0;
+                                repeticiones=exerciseslist.get(cycleIndex).get(exerciseIndex).getRepetitions()-1;
+                                ejercicios_left--;
+                            }
+                        }else {
+                            exerciseIndex++;
+                            repeticiones=exerciseslist.get(cycleIndex).get(exerciseIndex).getRepetitions()-1;
+                            ejercicios_left--;
+                        }
+
+                    }else {
+                        repeticiones--;
                     }
 
-                    ejercicios_left--;
                     setup();
                     viewModel.getCountDownTimer().stop();
                     viewModel.getCountDownTimer().start(exercise.getDuration()*1000,1000);
@@ -188,7 +225,7 @@ public class PlayRoutineFragment extends Fragment {
 //                binding.stop.setEnabled(false);
 //                binding.pause.setEnabled(false);
 //                binding.addTime.setEnabled(false);
-                }
+
             }
             else {
                 if (flag2){
@@ -238,16 +275,19 @@ public class PlayRoutineFragment extends Fragment {
         binding.prevButton.setOnClickListener(v -> {
 
             if (exerciseIndex==0){
-                if (cycleIndex!=0){
+                if (cycleIndex==0){
+//                    nada
+                }
+                else {
                     cycleIndex--;
                     exerciseIndex=exerciseslist.get(cycleIndex).size()-1;
+                    repeticiones=exerciseslist.get(cycleIndex).get(exerciseIndex).getRepetitions()-1;
                     ejercicios_left++;
                 }
-                else
-                    ;
             }
             else{
                 exerciseIndex--;
+                repeticiones=exerciseslist.get(cycleIndex).get(exerciseIndex).getRepetitions()-1;
                 ejercicios_left++;
             }
 
@@ -277,16 +317,20 @@ public class PlayRoutineFragment extends Fragment {
         });
         binding.nextButton.setOnClickListener(v -> {
             if (exerciseIndex==exerciseslist.get(cycleIndex).size()-1){
-                if (cycleIndex<cycles.size()-1){
+                if (cycleIndex==exerciseslist.size()-1){
+                    repeticiones=0;
+//              TODO terminar el routine aca tmb
+                }
+                else {
                     cycleIndex++;
                     exerciseIndex=0;
+                    repeticiones=exerciseslist.get(cycleIndex).get(exerciseIndex).getRepetitions()-1;
                     ejercicios_left--;
                 }
-                else
-                    return;
             }
             else{
                 exerciseIndex++;
+                repeticiones=exerciseslist.get(cycleIndex).get(exerciseIndex).getRepetitions()-1;
                 ejercicios_left--;
             }
 
@@ -313,19 +357,22 @@ public class PlayRoutineFragment extends Fragment {
             binding.playExerciseLeftTime.setText(ans);
             flag2=false;
         });
+
         binding.changeviewmode.setOnClickListener(v -> {
             if (viewmode==Viewmodes.COMPLEX){
                 binding.simpleImageView.setVisibility(View.GONE);
                 binding.expandable.setVisibility(View.GONE);
-                binding.playExerciseLeftTime.setPadding(binding.playExerciseLeftTime.getPaddingLeft(),binding.playExerciseLeftTime.getPaddingTop()+20,binding.playExerciseLeftTime.getPaddingRight(),binding.playExerciseLeftTime.getPaddingBottom()+150);
+//                binding.playExerciseLeftTime.setPadding(binding.playExerciseLeftTime.getPaddingLeft(),binding.playExerciseLeftTime.getPaddingTop()+20,binding.playExerciseLeftTime.getPaddingRight(),binding.playExerciseLeftTime.getPaddingBottom()+150);
 //                binding.ExecuteRoutineExerciseTitle.setVisibility(View.VISIBLE);
+                binding.exerciseviewlist.setVisibility(View.VISIBLE);
                 viewmode= Viewmodes.SIMPLIFIED;
             }
             else {
                 binding.simpleImageView.setVisibility(View.VISIBLE);
                 binding.expandable.setVisibility(View.VISIBLE);
-                binding.playExerciseLeftTime.setPadding(binding.playExerciseLeftTime.getPaddingLeft(),binding.playExerciseLeftTime.getPaddingTop()-20,binding.playExerciseLeftTime.getPaddingRight(),binding.playExerciseLeftTime.getPaddingBottom()-150);
+//                binding.playExerciseLeftTime.setPadding(binding.playExerciseLeftTime.getPaddingLeft(),binding.playExerciseLeftTime.getPaddingTop()-20,binding.playExerciseLeftTime.getPaddingRight(),binding.playExerciseLeftTime.getPaddingBottom()-150);
 //                binding.ExecuteRoutineExerciseTitle.setVisibility(View.GONE);
+                binding.exerciseviewlist.setVisibility(View.GONE);
                 viewmode= Viewmodes.COMPLEX;
             }
         });
@@ -389,8 +436,16 @@ public class PlayRoutineFragment extends Fragment {
                         for (List<Exercise> e:exercises) {
                             ejercicios_left+=e.size();
                         }
+                        ejercicios_left--;
                         exerciseslist.clear();
                         exerciseslist.addAll(exercises);
+                        repeticiones=exerciseslist.get(0).get(0).getRepetitions()-1;
+                        exercisesRecyclerlist.clear();
+                        for (List<Exercise>l:exerciseslist) {
+                            exercisesRecyclerlist.addAll(l);
+                        }
+
+
                         setup();
                         return;
                     }
@@ -406,7 +461,10 @@ public class PlayRoutineFragment extends Fragment {
     }
 
     int ejercicios_left=0;
+    int repeticiones=0;
     public void setup(){
+
+
 
         exerciseslist.sort((o1, o2) -> o1.get(0).getCycleId()-o2.get(0).getCycleId());
         for (List<Exercise>l:exerciseslist) {
@@ -422,6 +480,7 @@ public class PlayRoutineFragment extends Fragment {
         }
 
         binding.playExerciseLeftRoutines.setText(String.format(getContext().getString(R.string.ejs_reamining),ejercicios_left));
+        binding.playExerciseRepetitions.setText(String.format(getContext().getString(R.string.repetitions_remaining),repeticiones));
         binding.content.setText(exercise.getDetail());
         String auxi=cycle.getName()+" - "+exercise.getName();
         binding.ExecuteRoutineExerciseTitle.setText(auxi);

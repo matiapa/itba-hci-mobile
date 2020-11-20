@@ -13,12 +13,8 @@ import com.pi.gymapp.utils.RepositoryViewModel;
 
 public class ProfileViewModel extends RepositoryViewModel<UserRepository> {
 
-    private LiveData<Resource<User>> user;
-    private Integer userId;
-
     public ProfileViewModel(UserRepository repository) {
         super(repository);
-
     }
 
     public LiveData<Resource<User>> getUser() {
@@ -28,4 +24,5 @@ public class ProfileViewModel extends RepositoryViewModel<UserRepository> {
     public LiveData<Resource<User>> sendUserChange(UserChangeData data) {
         return repository.updateCurrent(data);
     }
+
 }

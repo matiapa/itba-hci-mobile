@@ -43,6 +43,13 @@
                 />
 
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/exerciseviewlist"
+                android:layout_width="match_parent"
+                android:layout_height="260sp"
+                android:visibility="gone"
+                 />
+
             <com.robertlevonyan.views.expandable.Expandable
                 android:id="@+id/expandable"
                 android:layout_width="match_parent"
@@ -77,6 +84,14 @@
                 android:text="--:--"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
+            <TextView
+                android:id="@+id/playExerciseRepetitions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/repetitions_remaining"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             <TextView
                 android:id="@+id/playExerciseLeftRoutines"
                 android:layout_width="match_parent"
