@@ -19,6 +19,7 @@ import com.pi.gymapp.databinding.MainActivityBinding;
 import com.pi.gymapp.api.ApiUserService;
 import com.pi.gymapp.api.models.Credentials;
 import com.pi.gymapp.ui.routine.RoutineDetailFragmentArgs;
+import com.pi.gymapp.ui.routine.RoutineDetailFragmentDirections;
 
 
 import androidx.navigation.NavController;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
         if (!loggedin){
             Intent intent = new Intent(this, LoginActivity.class);
 //            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -78,6 +80,13 @@ public class MainActivity extends AppCompatActivity {
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
             NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
             NavigationUI.setupWithNavController(binding.navView, navController);
+
+            Uri data = Mainintent.getData();
+            if(data != null){
+                RoutineDetailFragmentDirections.ActionRoutineDetailFragmentToPlayRoutineFragment navAction = RoutineDetailFragmentDirections.actionRoutineDetailFragmentToPlayRoutineFragment(Integer.parseInt(data.getLastPathSegment()));
+                //navController.navigate(data);
+                navController.navigate(navAction.setRoutineId(Integer.parseInt(data.getLastPathSegment())));
+            }
 
             binding.navView.getMenu().findItem(R.id.nav_sign_out).setOnMenuItemClickListener(menuItem -> {
                 ApiUserService userService = ApiClient.create(this,ApiUserService.class);
