@@ -35,9 +35,12 @@ import com.pi.gymapp.utils.RepositoryViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 import java.util.Stack;
+import java.util.TreeSet;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -53,12 +56,14 @@ public class PlayRoutineFragment extends Fragment {
     private Routine routine;
 
     private List<Cycle> cycles = new ArrayList<>();
-    private List<List<Exercise>> exercises = new ArrayList<>();
+    private final Set<List<Exercise>> exercises = new TreeSet<>((o1, o2) -> o1.get(0).getCycleId()-o2.get(0).getCycleId());
+    private List<List<Exercise>> exerciseslist = new ArrayList<>();
 
     private Cycle cycle;
     private Exercise exercise;
     public long timeremaining=0;
     public boolean flag= true;
+    public boolean flag2=true;
 
     private int cycleIndex=0;
     private int exerciseIndex=0;
@@ -73,6 +78,7 @@ public class PlayRoutineFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = PlayRoutineBinding.inflate(getLayoutInflater());
+        binding.playExerciseLeftTime.setText("-- : --");
 
         return binding.getRoot();
     }
@@ -119,47 +125,151 @@ public class PlayRoutineFragment extends Fragment {
         getCycles();
 
         //------------------------------------conectar los botones-------------------------------
-/*        MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         viewModel.getCountDownTimer().getStatus().observe(getViewLifecycleOwner(), countDownTimerStatus -> {
             if (countDownTimerStatus.isFinished()) {
-//
-                if (exercises.get(cycleIndex).size()<exerciseIndex)
-                    exerciseIndex++;
-                else
-                    cycleIndex++;
-                setup();
-                viewModel.getCountDownTimer().start(exercise.getDuration()*1000,1000);
-//
+                if (exerciseslist.size()-1==cycleIndex){
+                    //TODO codigo para terminar bien
+                    return;
+                }else {
+                    if (exerciseslist.get(cycleIndex).size()-1>exerciseIndex)
+                        exerciseIndex++;
+                    else{
+                        cycleIndex++;
+                        exerciseIndex=0;
+                    }
+
+                    ejercicios_left--;
+                    setup();
+                    viewModel.getCountDownTimer().stop();
+                    viewModel.getCountDownTimer().start(exercise.getDuration()*1000,1000);
+
 //                binding.countdown.setText(R.string.done);
 //                binding.start.setEnabled(true);
 //                binding.stop.setEnabled(false);
 //                binding.pause.setEnabled(false);
 //                binding.addTime.setEnabled(false);
-            } else {
-//                String secs= Integer.valueOf((int) ((millisUntilFinished/1000)%60)).toString();
-//                String minutes = Integer.valueOf((int) ((millisUntilFinished/1000)/60)).toString();
-//                String ans = minutes + " : " + secs ;
-//                binding.playExerciseLeftRoutines.setText(ans);
-
-//                binding.countdown.setText(String.valueOf(countDownTimerStatus.getRemainingTime()));
-                binding.playExerciseLeftRoutines.setText(String.valueOf(countDownTimerStatus.getRemainingTime()));
+                }
             }
+            else {
+                if (flag2){
+                    int sec =(int) ((countDownTimerStatus.getRemainingTime())%60);
+                    int min=(int) (countDownTimerStatus.getRemainingTime() / 60);
+                    String secs= Integer.valueOf(sec).toString();
+                    String minutes = Integer.valueOf(min).toString();
+                    if(min < 10) {
+                        minutes = "0" + minutes;
+                    }
+                    if(sec < 10) {
+                        secs = "0" + secs;
+                    }
+                    String ans = minutes + " : " + secs ;
+                    binding.playExerciseLeftTime.setText(ans);
+                }
+                flag2=true;
+//                    binding.playExerciseLeftTime.setText(String.valueOf(countDownTimerStatus.getRemainingTime()));
+            }
+
+
         });
 
         binding.playButton.setOnClickListener(v -> {
-            if (viewModel.getCountDownTimer().isPaused()){
+            if (!viewModel.getCountDownTimer().isPaused()){
                 if (viewModel.getCountDownTimer().isStarted())
                 {
-                    viewModel.getCountDownTimer().resume();
+                    viewModel.getCountDownTimer().pause();
+                    binding.playButton.setImageResource(R.drawable.play_button);
+
                 }
                 else {
                     viewModel.getCountDownTimer().start(exercise.getDuration()*1000,1000);
+                    binding.playButton.setImageResource(R.drawable.pause_button);
                 }
             }else {
-                viewModel.getCountDownTimer().pause();
+                if (viewModel.getCountDownTimer().isStarted()){
+                    viewModel.getCountDownTimer().resume();
+                    binding.playButton.setImageResource(R.drawable.pause_button);
+                }
+                else{
+
+                }
+
             }
-        });*/
+        });
+        binding.prevButton.setOnClickListener(v -> {
+
+            if (exerciseIndex==0){
+                if (cycleIndex!=0){
+                    cycleIndex--;
+                    exerciseIndex=exerciseslist.get(cycleIndex).size()-1;
+                    ejercicios_left++;
+                }
+                else
+                    ;
+            }
+            else{
+                exerciseIndex--;
+                ejercicios_left++;
+            }
+
+
+            setup();
+            viewModel.getCountDownTimer().stop();
+            viewModel.getCountDownTimer().start(exercise.getDuration()*1000,1000);
+            viewModel.getCountDownTimer().pause();
+            binding.playButton.setImageResource(R.drawable.play_button);
+            int sec = exercise.getDuration()%60;
+            int min=exercise.getDuration() / 60;
+            String secs= Integer.valueOf(sec).toString();
+            String minutes = Integer.valueOf(min).toString();
+            if(min < 10) {
+                minutes = "0" + minutes;
+            }
+            if(sec < 10) {
+                secs = "0" + secs;
+            }
+            String ans = minutes + " : " + secs ;
+            binding.playExerciseLeftTime.setText(ans);
+            flag2=false;
+
+
+        });
+        binding.nextButton.setOnClickListener(v -> {
+            if (exerciseIndex==exerciseslist.get(cycleIndex).size()-1){
+                if (cycleIndex<cycles.size()-1){
+                    cycleIndex++;
+                    exerciseIndex=0;
+                    ejercicios_left--;
+                }
+                else
+                    return;
+            }
+            else{
+                exerciseIndex++;
+                ejercicios_left--;
+            }
+
+
+            setup();
+            viewModel.getCountDownTimer().stop();
+            viewModel.getCountDownTimer().start(exercise.getDuration()*1000,1000);
+            viewModel.getCountDownTimer().pause();
+            binding.playButton.setImageResource(R.drawable.play_button);
+            int sec = exercise.getDuration()%60;
+            int min=exercise.getDuration() / 60;
+            String secs= Integer.valueOf(sec).toString();
+            String minutes = Integer.valueOf(min).toString();
+            if(min < 10) {
+                minutes = "0" + minutes;
+            }
+            if(sec < 10) {
+                secs = "0" + secs;
+            }
+            String ans = minutes + " : " + secs ;
+            binding.playExerciseLeftTime.setText(ans);
+            flag2=false;
+        });
 
     }
 
@@ -176,10 +286,14 @@ public class PlayRoutineFragment extends Fragment {
                     break;
 
                 case SUCCESS:
+                    cycles.clear();
                     cycles.addAll(r.data);
-
-                    for(Cycle cycle : cycles)
+//                    exercises.clear();
+                    for(Cycle cycle : cycles){
                         getExercises(cycle.getId(), cycles.size());
+
+                    }
+
 
                     break;
 
@@ -204,13 +318,20 @@ public class PlayRoutineFragment extends Fragment {
                     break;
 
                 case SUCCESS:
-                    exercises.add(r.data);
-                    cyclesLoaded += 1;
 
-                    if(cyclesLoaded == cyclesLength) {
+
+                    exercises.add(r.data);
+                   // cyclesLoaded += 1;
+
+                    if(cycles.size() == exercises.size()) {
                         activity.hideProgressBar();
                         binding.playButton.setEnabled(true);
-
+                        ejercicios_left=0;
+                        for (List<Exercise> e:exercises) {
+                            ejercicios_left+=e.size();
+                        }
+                        exerciseslist.clear();
+                        exerciseslist.addAll(exercises);
                         setup();
                         return;
                     }
@@ -225,13 +346,18 @@ public class PlayRoutineFragment extends Fragment {
         });
     }
 
-
+    int ejercicios_left=0;
     public void setup(){
         StringBuilder stringBuilder = new StringBuilder();
+        exerciseslist.sort((o1, o2) -> o1.get(0).getCycleId()-o2.get(0).getCycleId());
+        for (List<Exercise>l:exerciseslist) {
+            l.sort((o1, o2) -> o1.getOrder()-o2.getOrder());
+        }
 
-        if (cycles.size()<cycleIndex && exercises.get(cycleIndex).size()<exerciseIndex){
+
+        if (cycles.size()>cycleIndex && exerciseslist.get(cycleIndex).size()>exerciseIndex){
             cycle = cycles.get(cycleIndex);
-            exercise = exercises.get(cycleIndex).get(exerciseIndex);
+            exercise = exerciseslist.get(cycleIndex).get(exerciseIndex);
 
             stringBuilder.append(cycle.getName());
             stringBuilder.append("\n");
@@ -241,8 +367,10 @@ public class PlayRoutineFragment extends Fragment {
             stringBuilder.append("\n");
             stringBuilder.append(exercise.getDetail());
         }
-
+        String auxi= "Faltan " + Integer.valueOf(ejercicios_left).toString()+" ejercicios";
+        binding.playExerciseLeftRoutines.setText(auxi);
         binding.content.setText(stringBuilder.toString());
+
     }
 
 }
