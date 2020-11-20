@@ -17,10 +17,11 @@ public class RoutineEntity {
     @ColumnInfo(name = "categoryId") private int categoryId;
     @ColumnInfo(name = "categoryName") private String categoryName;
 
+    @ColumnInfo(name = "dateCreated") private long dateCreated;
     @ColumnInfo(name = "isFav") private Boolean isFav;
 
     public RoutineEntity(int id, String name, String detail, double rate, String difficulty,
-                         int categoryId, String categoryName, Boolean isFav) {
+                         int categoryId, String categoryName, long dateCreated, Boolean isFav) {
         this.id = id;
         this.name = name;
         this.detail = detail;
@@ -28,6 +29,7 @@ public class RoutineEntity {
         this.difficulty = difficulty;
         this.categoryId = categoryId;
         this.categoryName = categoryName;
+        this.dateCreated = dateCreated;
         this.isFav = isFav;
     }
 
@@ -57,6 +59,10 @@ public class RoutineEntity {
 
     public String getCategoryName() {
         return categoryName;
+    }
+
+    public long getDateCreated() {
+        return dateCreated;
     }
 
     public Boolean isFav() {

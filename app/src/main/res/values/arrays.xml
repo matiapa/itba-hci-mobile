@@ -8,15 +8,14 @@
         <item>Expert</item>
     </string-array>
 
-    <string-array name="goals">
-        <item>Fat burn</item>
-        <item>Muscle train</item>
-        <item>Aerobic resistance</item>
-    </string-array>
-
     <string-array name="sex">
         <item>Male</item>
         <item>Female</item>
+    </string-array>
+
+    <string-array name="routineOrders">
+        <item>Rating</item>
+        <item>Creation date</item>
     </string-array>
 
 </resources>

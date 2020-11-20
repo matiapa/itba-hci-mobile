@@ -18,9 +18,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <com.google.android.material.chip.ChipGroup
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
@@ -40,6 +41,20 @@
                         android:text="@string/favourite_routines_chip"/>
 
                 </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <Spinner
+                    android:id="@+id/orderBy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/routineOrders"
+
+                    android:layout_marginTop="10dp"/>
+
             </LinearLayout>
 
             <androidx.fragment.app.FragmentContainerView

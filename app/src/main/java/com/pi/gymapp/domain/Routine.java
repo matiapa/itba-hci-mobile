@@ -13,10 +13,11 @@ public class Routine {
     private int categoryId;
     private String categoryName;
 
+    private long dateCreated;
     private Boolean isFav;
 
     public Routine(int id, String name, String detail, double rate, String difficulty,
-                   int categoryId, String categoryName, Boolean isFav) {
+                   int categoryId, String categoryName, long dateCreated, Boolean isFav) {
         this.id = id;
         this.name = name;
         this.detail = detail;
@@ -24,6 +25,7 @@ public class Routine {
         this.difficulty = difficulty;
         this.categoryId = categoryId;
         this.categoryName = categoryName;
+        this.dateCreated = dateCreated;
         this.isFav = isFav;
     }
 
@@ -53,6 +55,10 @@ public class Routine {
 
     public String getCategoryName() {
         return categoryName;
+    }
+
+    public long getDateCreated() {
+        return dateCreated;
     }
 
     public Boolean isFav() {

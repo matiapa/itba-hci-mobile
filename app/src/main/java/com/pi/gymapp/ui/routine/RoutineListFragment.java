@@ -41,6 +41,9 @@ public class RoutineListFragment extends Fragment {
 
     LiveData<Resource<List<Routine>>> routinesLiveData;
 
+    RoutineOrder routineOrder;
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +72,11 @@ public class RoutineListFragment extends Fragment {
 
         String filter = getArguments().getString("filter");
 
+        Integer orderIndex = Integer.valueOf(getArguments().getString("orderBy"));
+        routineOrder = RoutineOrder.values()[orderIndex];
+
         if(filter.equals("all")){
-            routinesLiveData = routineViewModel.getRoutines();
+            routinesLiveData = routineViewModel.getRoutines(routineOrder.getFieldName(), "desc");
         }else{
             routinesLiveData = routineViewModel.getFavourites();
         }
@@ -106,6 +112,8 @@ public class RoutineListFragment extends Fragment {
 
                     routines.clear();
                     routines.addAll(resource.data);
+
+                    routines.sort(routineOrder.getComparator());
 
                     adapter.notifyDataSetChanged();
                     break;
