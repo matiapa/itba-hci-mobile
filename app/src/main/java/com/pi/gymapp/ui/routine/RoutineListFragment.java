@@ -1,5 +1,6 @@
 package com.pi.gymapp.ui.routine;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.lifecycle.LiveData;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.databinding.RecyclerViewBinding;
@@ -39,20 +41,22 @@ public class RoutineListFragment extends Fragment {
 
     LiveData<Resource<List<Routine>>> routinesLiveData;
 
-    RoutineListFragment(LiveData<Resource<List<Routine>>> routinesLiveData){
-        this.routinesLiveData = routinesLiveData;
-    }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    RoutineListFragment(){}
+        application = (MyApplication) getActivity().getApplication();
+        activity = (MainActivity) getActivity();
+
+        routines = new ArrayList<>();
+        adapter = new RoutinesListAdapter(routines);
+    }
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = RecyclerViewBinding.inflate(getLayoutInflater());
-
-        application = (MyApplication) getActivity().getApplication();
-        activity = (MainActivity) getActivity();
 
 
         // --------------------------------- ViewModel setup ---------------------------------
@@ -74,14 +78,13 @@ public class RoutineListFragment extends Fragment {
 
         // --------------------------------- RecyclerView setup ---------------------------------
 
+        int orientation = getActivity().getResources().getConfiguration().orientation == 1
+                ? RecyclerView.VERTICAL
+                : RecyclerView.HORIZONTAL;
+
         binding.recyclerView.setHasFixedSize(true);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(activity));
-
-
-        // --------------------------------- Adapter setup ---------------------------------
-
-        routines = new ArrayList<>();
-        adapter = new RoutinesListAdapter(routines);
+        binding.recyclerView.setLayoutManager(
+                new LinearLayoutManager(activity, orientation, false));
         binding.recyclerView.setAdapter(adapter);
 
         return binding.getRoot();

@@ -25,6 +25,8 @@ public class RoutinesExploreFragment extends Fragment {
 
     private RoutinesExploreBinding binding;
 
+    private RoutineListFragment allRoutines, favRoutines;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -44,23 +46,20 @@ public class RoutinesExploreFragment extends Fragment {
         fragmentManager.beginTransaction().add(R.id.routineListFragment, routineListFragment).commit();
 
 
+        allRoutines = newFragment(RoutineListFragment.class,
+                new String[]{"filter"}, new String[]{"all"});
+
+        favRoutines = newFragment(RoutineListFragment.class,
+                new String[]{"filter"}, new String[]{"fav"});
+
         // --------------------------------- Buttons setup ---------------------------------
 
-        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
-                RoutineRepository.class, application.getRoutineRepository()
-        );
-        RoutineViewModel routineViewModel = new ViewModelProvider(this, viewModelFactory).get(RoutineViewModel.class);
-
         binding.allRoutinesChip.setOnClickListener(l -> {
-            RoutineListFragment fragment = newFragment(RoutineListFragment.class,
-                    new String[]{"filter"}, new String[]{"all"});
-            fragmentManager.beginTransaction().add(R.id.routineListFragment, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.routineListFragment, allRoutines).commit();
         });
 
         binding.favRoutinesChip.setOnClickListener(l -> {
-            RoutineListFragment fragment = newFragment(RoutineListFragment.class,
-                    new String[]{"filter"}, new String[]{"favourites"});
-            fragmentManager.beginTransaction().add(R.id.routineListFragment, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.routineListFragment, favRoutines).commit();
         });
 
         return binding.getRoot();
