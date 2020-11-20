@@ -102,7 +102,7 @@ public class RoutineRepository {
     }
 
 
-    public LiveData<Resource<List<Routine>>> getAllRoutines(String orderBy, String direction) {
+    public LiveData<Resource<List<Routine>>> getAllRoutines(String orderBy, String direction, String difficulty) {
 
         return new NetworkBoundResource<List<Routine>, List<RoutineEntity>, PagedList<RoutineModel>>(
             executors,
@@ -136,10 +136,17 @@ public class RoutineRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<PagedList<RoutineModel>>> createCall() {
-                return api.getAll(orderBy, direction);
+                if(difficulty != null)
+                    return api.getAll(orderBy, direction, difficulty);
+                else
+                    return api.getAll(orderBy, direction);
             }
         }.asLiveData();
 
+    }
+
+    public LiveData<Resource<List<Routine>>> getAllRoutines(String orderBy, String direction){
+        return getAllRoutines(orderBy, direction, null);
     }
 
 

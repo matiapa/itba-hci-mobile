@@ -34,6 +34,12 @@ public interface ApiRoutineService {
     @POST("routines/{routineId}/executions")
     LiveData<ApiResponse<Void>> createExecution(@Path("routineId") int routineId, @Body ExecuteRoutine executeRoutine);
 
+    @GET("routines/")
+    LiveData<ApiResponse<PagedList<RoutineModel>>> getAll(
+            @Query("orderBy") String orderBy, @Query("direction") String direction,
+            @Query("difficulty") String difficulty
+    );
+
     @GET("user/current/routines/favourites/")
     LiveData<ApiResponse<PagedList<RoutineModel>>> getFavourites();
 
@@ -41,8 +47,6 @@ public interface ApiRoutineService {
 
     @POST("user/current/routines/{routineId}/favourites")
     LiveData<ApiResponse<Void>> favourite(@Path("routineId") int routineId);
-
-
 
     @DELETE("user/current/routines/{routineId}/favourites")
     LiveData<ApiResponse<Void>> unfavourite(@Path("routineId") int routineId);
