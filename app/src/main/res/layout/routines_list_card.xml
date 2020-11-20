@@ -14,48 +14,50 @@
         android:background="@drawable/exercise">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/card_background_routine"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/routineName"
-                android:layout_width="match_parent"
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/routineListCardName"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
-
-                <TextView
-                    android:id="@+id/routineRating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="4.5"
-                    android:textStyle="bold"
-                    app:drawableLeftCompat="@drawable/ic_baseline_star_border_24"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/routineDifficulty"
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/routineName"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Expert"
+                    android:text="@string/routineListCardName"
                     android:textStyle="bold"
+                    app:chipBackgroundColor="@color/colorAccent"
                     tools:ignore="HardcodedText" />
 
-            </LinearLayout>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/routineDifficultyChip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expert"
+                    app:chipBackgroundColor="@color/colorAccent"
+                    tools:ignore="HardcodedText" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/routineRateChip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="★ 4.5"
+                    app:chipBackgroundColor="@color/colorAccent"
+                    tools:ignore="HardcodedText" />
+
+            </com.google.android.material.chip.ChipGroup>
+
 
         </LinearLayout>
+
 
     </LinearLayout>
 
