@@ -82,9 +82,11 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupWithNavController(binding.navView, navController);
 
             Uri data = Mainintent.getData();
-            if(data != null){
+            String action = Mainintent.getAction();
+            String type = Mainintent.getType();
+
+            if (Intent.ACTION_SEND.equals(action) && "text/plain".equals(type)) {
                 RoutineDetailFragmentDirections.ActionRoutineDetailFragmentToPlayRoutineFragment navAction = RoutineDetailFragmentDirections.actionRoutineDetailFragmentToPlayRoutineFragment(Integer.parseInt(data.getLastPathSegment()));
-                //navController.navigate(data);
                 navController.navigate(navAction.setRoutineId(Integer.parseInt(data.getLastPathSegment())));
             }
 
@@ -112,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 });
                 return true;
             });
-
-
         }
     }
 
