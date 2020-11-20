@@ -65,6 +65,8 @@ public class PlayRoutineFragment extends Fragment {
     private MainActivity activity;
     private MyApplication application;
 
+    private int cyclesLoaded = 0;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -95,11 +97,15 @@ public class PlayRoutineFragment extends Fragment {
 
         routineId = PlayRoutineFragmentArgs.fromBundle(getArguments()).getRoutineId();
 
+        // CycleViewModel
+
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
                 CycleRepository.class, application.getCycleRepository());
 
         cycleViewModel = new ViewModelProvider(this, viewModelFactory).get(CycleViewModel.class);
         cycleViewModel.setRoutineId(routineId);
+
+        // ExerciseViewModel
 
         viewModelFactory = new RepositoryViewModel.Factory<>(
                 ExerciseRepository.class, application.getExerciseRepository());
@@ -108,6 +114,7 @@ public class PlayRoutineFragment extends Fragment {
         exerciseViewModel.setRoutineId(routineId);
 
         binding.playButton.setEnabled(false);
+
         getCycles();
 
         //------------------------------------conectar los botones-------------------------------
@@ -156,8 +163,6 @@ public class PlayRoutineFragment extends Fragment {
     }
 
 
-    private int cyclesLoaded = 0;
-
     private void getCycles(){
         cycleViewModel.getCycles().observe(getViewLifecycleOwner(), r -> {
             switch (r.status) {
@@ -166,8 +171,6 @@ public class PlayRoutineFragment extends Fragment {
                     break;
 
                 case SUCCESS:
-                    activity.hideProgressBar();
-
                     cycles.addAll(r.data);
 
                     for(Cycle cycle : cycles)
@@ -192,8 +195,6 @@ public class PlayRoutineFragment extends Fragment {
                     break;
 
                 case SUCCESS:
-                    activity.hideProgressBar();
-
                     exercises.add(r.data);
                     cyclesLoaded += 1;
 
