@@ -12,7 +12,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/profile"
@@ -41,7 +41,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/tv_name"
+                    android:id="@+id/user_fullname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imgUser"
@@ -87,6 +87,7 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/user_username"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -116,6 +117,7 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/user_fullname_again"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -145,6 +147,7 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/user_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -174,6 +177,7 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/user_phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -203,6 +207,7 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/user_birthday"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -233,37 +238,44 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <RadioGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:weightSum="1"
+                            android:id="@+id/radioGroup">
 
                             <RadioButton
+                                android:id="@+id/radioButtonMale"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-light"
-                                android:id="@+id/radioButton"
                                 android:text="Male"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="18sp" />
+
                             <RadioButton
+                                android:id="@+id/radioButtonFemale"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-light"
-                                android:id="@+id/radioButton2"
                                 android:text="Female"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="18sp" />
+
                             <RadioButton
+                                android:id="@+id/radioButtonOther"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-light"
-                                android:id="@+id/radioButton3"
                                 android:text="Other"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="18sp" />
-
+                        </RadioGroup>
 
                         </LinearLayout>
-
 
 
                         <Button

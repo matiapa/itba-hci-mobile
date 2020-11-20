@@ -47,7 +47,7 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/user_fullname"
                 android:layout_width="207dp"
                 android:layout_height="68dp"
                 android:layout_below="@+id/imgUser"
@@ -103,6 +103,7 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/user_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -131,6 +132,7 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/user_fullname_again"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -159,6 +161,7 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -187,6 +190,7 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/user_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -215,6 +219,7 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/user_birthday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -245,12 +250,17 @@
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="wrap_content">
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:id="@+id/radioGroup">
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:id="@+id/radioButton"
+                        android:id="@+id/radioButtonMale"
                         android:text="Male"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -258,7 +268,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:id="@+id/radioButton2"
+                        android:id="@+id/radioButtonFemale"
                         android:text="Female"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -266,12 +276,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:id="@+id/radioButton3"
+                        android:id="@+id/radioButtonOther"
                         android:text="Other"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-
+                </RadioGroup>
                 </LinearLayout>
 
                 <View
@@ -281,7 +291,7 @@
                     android:background="@color/colorPrimary" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/profileButtonEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Edit" />

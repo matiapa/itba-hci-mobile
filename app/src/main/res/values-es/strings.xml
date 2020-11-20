@@ -72,6 +72,7 @@
 
     <string name="secondsFormat">%.0fs</string>
     <string name="rateFormat">%.2f</string>
+    <string name="dateFormat">%1$tb %1$te, %1$tY</string>
     <string name="signUpEmailHint">Email</string>
     <string name="signUpPasswordHint">Contraseña</string>
     <string name="signUpUsernameHint">Nombre de Usuario</string>
@@ -95,9 +96,12 @@
     <string name="routine_detail_cycles_header">Ciclos</string>
     <string name="all_routines_chip">Todas</string>
     <string name="ejs_reamining">Faltan %d Ejercicios para terminar</string>
-    <string name="wrong_username_password">Ups! Usuario o Contraseña incorrectos</string>
+    <string name="wrong_username_password">Usuario o contraseña incorrecta</string>
     <string name="unexpected_error">Ups! Algo salio mal</string>
-    <string name="VerificationEmailHelper">Por favor ingrese su email</string>
+    <string name="VerificationEmailHelper">Por favor ingrese su correo</string>
+
+    <string name="routine_filter_dialog_help">Elije un filtro</string>
+    <string name="cancel_button">Cancelar</string>
 
 
 </resources>

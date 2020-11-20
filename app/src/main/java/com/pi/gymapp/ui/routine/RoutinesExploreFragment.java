@@ -18,7 +18,6 @@ import com.pi.gymapp.domain.Difficulties;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 
 public class RoutinesExploreFragment extends Fragment {
@@ -120,7 +119,7 @@ public class RoutinesExploreFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(getString(R.string.routine_filter_dialog_help));
-        builder.setNegativeButton(getString(R.string.cancel_dialog_button), (dialog, which) -> dialog.dismiss());
+        builder.setNegativeButton(getString(R.string.cancel_button), (dialog, which) -> dialog.dismiss());
 
         builder.setAdapter(adapter, (dialog, which) -> {
             switch(which){
@@ -171,7 +170,7 @@ public class RoutinesExploreFragment extends Fragment {
         difficulties.forEach(d -> adapter.add(d.getName()));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setNegativeButton(getString(R.string.cancel_dialog_button), (dialog1, which1) -> dialog1.dismiss());
+        builder.setNegativeButton(getString(R.string.cancel_button), (dialog1, which1) -> dialog1.dismiss());
 
         builder.setAdapter(adapter, ((dialog, which) -> {
             difficultyIndex = which;

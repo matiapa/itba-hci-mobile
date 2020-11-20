@@ -38,6 +38,7 @@ public class RoutineDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = RoutineDetailBinding.inflate(getLayoutInflater());
+        routineId = RoutineDetailFragmentArgs.fromBundle(getArguments()).getRoutineId();
 
         binding.buttonFav.setEnabled(false);
         binding.buttonFav.setClickable(false);
@@ -53,8 +54,6 @@ public class RoutineDetailFragment extends Fragment {
             startActivity(shareIntent);
 
         });
-
-        routineId = RoutineDetailFragmentArgs.fromBundle(getArguments()).getRoutineId();
 
         // --------------------------------- Cycle list fragment setup ---------------------------------
 

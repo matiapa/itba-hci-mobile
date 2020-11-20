@@ -20,8 +20,6 @@ public class UserData {
 
     @Expose private String avatarUrl;
 
-
-
     @Expose private String password;
 
     public UserData(String username, String fullName, String gender, long birthdate, String email, String phone, String avatarUrl, String password) {
