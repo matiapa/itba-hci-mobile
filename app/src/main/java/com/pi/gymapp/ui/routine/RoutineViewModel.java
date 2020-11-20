@@ -1,18 +1,13 @@
 package com.pi.gymapp.ui.routine;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 
+import com.pi.gymapp.api.utils.ApiResponse;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.repo.RoutineRepository;
-import com.pi.gymapp.utils.AbsentLiveData;
 import com.pi.gymapp.utils.Resource;
-import com.pi.gymapp.utils.Status;
 import com.pi.gymapp.utils.RepositoryViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
@@ -22,30 +17,16 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
     public RoutineViewModel(RoutineRepository repository) {
         super(repository);
 
-        routine = Transformations.switchMap(routineId, routineId -> {
-            if (routineId == null) {
-                return AbsentLiveData.create();
-            } else {
-                return repository.getRoutineById(routineId);
-            }
-        });
-
-//        routines = repository.getAllRoutines();
-
         favourites = repository.getFavourites();
+
     }
 
 
-    // ----------------------------- List of all routines -----------------------------
-
-//    private final LiveData<Resource<List<Routine>>> routines;
+    // ----------------------------- List of routines -----------------------------
 
     public LiveData<Resource<List<Routine>>> getRoutines(String orderBy, String direction) {
         return repository.getAllRoutines(orderBy, direction);
     }
-
-
-    // ----------------------------- List of favourite routines -----------------------------
 
     private final LiveData<Resource<List<Routine>>> favourites;
 
@@ -56,20 +37,18 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
 
     // ----------------------------- Selected routine -----------------------------
 
-    private final MutableLiveData<Integer> routineId = new MutableLiveData<>();
-    private final LiveData<Resource<Routine>> routine;
-
-    public LiveData<Resource<Routine>> getRoutine() {
-        return routine;
+    public LiveData<Resource<Routine>> getRoutine(int routineId) {
+        return repository.getRoutineById(routineId);
     }
 
-    public void setRoutineId(int routineId) {
-        if ((this.routineId.getValue() != null) &&
-                (routineId == this.routineId.getValue())) {
-            return;
-        }
+    public LiveData<Boolean> fetchIsFav(int routineId){
+        return repository.fetchIsFav(routineId);
+    }
 
-        this.routineId.setValue(routineId);
+    // ----------------------------- Routine updaters -----------------------------
+
+    public LiveData<ApiResponse<Void>> setFav(int routineId, boolean value){
+        return repository.setFav(routineId, value);
     }
 
 
