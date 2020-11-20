@@ -18,15 +18,14 @@ public class RoutinesExploreFragment extends Fragment {
 
     private RoutinesExploreBinding binding;
 
-    private String filter;
-    private int orderIndex;
+    private String filter = "all";
+    private int orderIndex = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = RoutinesExploreBinding.inflate(getLayoutInflater());
 
-        filter = "all"; orderIndex = 0;
         changedListParams();
 
 
