@@ -102,6 +102,15 @@ public class MainActivity extends AppCompatActivity {
                 navController.navigate(navAction.setRoutineId(Integer.parseInt(data.getLastPathSegment())));
             }
 
+            binding.navView.getMenu().findItem(R.id.nav_rate_us).setOnMenuItemClickListener(menuItem -> {
+                Intent rateIntent = new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps"));
+                startActivity(rateIntent);
+
+                return true;
+            });
+
+
+
             binding.navView.getMenu().findItem(R.id.nav_sign_out).setOnMenuItemClickListener(menuItem -> {
 
 
