@@ -34,7 +34,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="http"
-                    android:host="www.gymapp.com"/>
+                    android:host="www.gymapp.com"
+                    android:pathPrefix="/id/"/>
             </intent-filter>
         </activity>
 

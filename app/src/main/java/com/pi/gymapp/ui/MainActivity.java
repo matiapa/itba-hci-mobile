@@ -18,7 +18,6 @@ import com.pi.gymapp.api.utils.ApiClient;
 import com.pi.gymapp.databinding.MainActivityBinding;
 import com.pi.gymapp.api.ApiUserService;
 import com.pi.gymapp.api.models.Credentials;
-import com.pi.gymapp.ui.routine.AllRoutinesFragmentDirections;
 import com.pi.gymapp.ui.routine.RoutineDetailFragmentArgs;
 
 
