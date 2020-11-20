@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="sex">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="routineOrders">
+        <item>Rating</item>
+        <item>Creation date</item>
+    </string-array>
+
+    <string-array name="routineFilters">
+        <item>Favourites</item>
+        <item>Difficulty</item>
+        <item>Category</item>
+    </string-array>
+
+</resources>

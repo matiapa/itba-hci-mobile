@@ -103,5 +103,7 @@
     <string name="routine_filter_dialog_help">Elije un filtro</string>
     <string name="cancel_button">Cancelar</string>
 
+    <string name="repetitions_remaining">Quedan %d Repeticiones</string>
+
 
 </resources>
