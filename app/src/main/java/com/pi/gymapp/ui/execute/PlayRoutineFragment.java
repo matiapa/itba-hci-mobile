@@ -1,23 +1,29 @@
 package com.pi.gymapp.ui.execute;
 
-import android.app.Application;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
+
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.R;
+import com.pi.gymapp.api.ApiRoutineService;
+
+import com.pi.gymapp.api.models.ExecuteRoutine;
+import com.pi.gymapp.api.utils.ApiClient;
 import com.pi.gymapp.databinding.PlayRoutineBinding;
 import com.pi.gymapp.domain.Cycle;
 import com.pi.gymapp.domain.Exercise;
@@ -26,26 +32,25 @@ import com.pi.gymapp.repo.CycleRepository;
 import com.pi.gymapp.repo.ExerciseRepository;
 import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.ui.MainActivity;
-import com.pi.gymapp.ui.account.SignUpFragment2Args;
+
 import com.pi.gymapp.ui.cycle.CycleViewModel;
 import com.pi.gymapp.ui.exercise.ExerciseViewModel;
-import com.pi.gymapp.ui.exercise.ExercisesListAdapter;
+
 
 import com.pi.gymapp.ui.routine.RoutineViewModel;
-import com.pi.gymapp.ui.routine.RoutinesListAdapter;
+
 import com.pi.gymapp.utils.MainViewModel;
 import com.pi.gymapp.utils.RepositoryViewModel;
-import com.pi.gymapp.utils.StringUtils;
+
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+
 import java.util.List;
-import java.util.ListIterator;
+
 import java.util.Set;
-import java.util.Stack;
+
 import java.util.TreeSet;
-import java.util.concurrent.Semaphore;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PlayRoutineFragment extends Fragment {
@@ -65,7 +70,7 @@ public class PlayRoutineFragment extends Fragment {
 
     private Cycle cycle;
     private Exercise exercise;
-    public long timeremaining=0;
+
 
     public boolean flag2=true;
 
@@ -78,7 +83,7 @@ public class PlayRoutineFragment extends Fragment {
     private MainActivity activity;
     private MyApplication application;
 
-    private int cyclesLoaded = 0;
+
 
 
     @Override
@@ -176,28 +181,12 @@ public class PlayRoutineFragment extends Fragment {
 
 
             if (countDownTimerStatus.isFinished()) {
-//                if (exerciseslist.size()==cycleIndex){
-//                    //TODO codigo para terminar bien
-//                    return;
-//                }else {
-//                    if (exerciseslist.get(cycleIndex).size()>=exerciseIndex)
-//                        if (repeticiones>0)
-//                            repeticiones--;
-//                        else {
-//                            exerciseIndex++;
-//                            repeticiones=exerciseslist.get(cycleIndex).get(exerciseIndex).getRepetitions()-1;
-//                            ejercicios_left--;
-//                        }
 //
-//                    else{
-//                        cycleIndex++;
-//                        exerciseIndex=0;
-//                        ejercicios_left--;
-//                    }
                     if (repeticiones==0) {
                         if (exerciseIndex==exerciseslist.get(cycleIndex).size()-1){
                             if (cycleIndex==exerciseslist.size()-1){
                                 //todo terminada operacion
+                                callRoutineApiRecordExecution();
                                 return;
                             }
                             else {
@@ -320,6 +309,7 @@ public class PlayRoutineFragment extends Fragment {
                 if (cycleIndex==exerciseslist.size()-1){
                     repeticiones=0;
 //              TODO terminar el routine aca tmb
+                    callRoutineApiRecordExecution();
                 }
                 else {
                     cycleIndex++;
@@ -444,6 +434,10 @@ public class PlayRoutineFragment extends Fragment {
                         for (List<Exercise>l:exerciseslist) {
                             exercisesRecyclerlist.addAll(l);
                         }
+                        total_duration=0;
+                        for (Exercise e:exercisesRecyclerlist) {
+                            total_duration+=e.getDuration();
+                        }
 
 
                         setup();
@@ -462,6 +456,7 @@ public class PlayRoutineFragment extends Fragment {
 
     int ejercicios_left=0;
     int repeticiones=0;
+    int total_duration=0;
     public void setup(){
 
 
@@ -485,6 +480,20 @@ public class PlayRoutineFragment extends Fragment {
         String auxi=cycle.getName()+" - "+exercise.getName();
         binding.ExecuteRoutineExerciseTitle.setText(auxi);
 
+    }
+
+    public void callRoutineApiRecordExecution(){
+        ApiRoutineService routineService = ApiClient.create(getActivity(), ApiRoutineService.class);
+
+
+        routineService.createExecution(routineId,new ExecuteRoutine(total_duration,false)).observe(getViewLifecycleOwner(), r -> {
+
+            if (r.getError() != null) {
+                    Snackbar.make(getView(), getContext().getString(R.string.unexpected_error), Snackbar.LENGTH_LONG).show();
+
+
+            }
+        });
     }
 
 }

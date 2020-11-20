@@ -77,7 +77,7 @@ public class MyApplication extends Application {
         exerciseRepository = new ExerciseRepository(appExecutors, exerciseService, database);
 
         userRepository = new UserRepository(appExecutors, userService, database);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
 }
