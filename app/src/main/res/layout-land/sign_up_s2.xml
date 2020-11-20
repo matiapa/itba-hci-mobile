@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/stepAboutLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="24dp"
+            android:text="@string/signUpStepAboutLabel"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stepAboutLabel">
+
+            <TextView
+                android:id="@+id/ageText"
+                android:layout_width="312dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/signUpAgeHint"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <DatePicker
+                android:id="@+id/datePicker1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ageText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="302dp"
+            android:layout_height="242dp"
+
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stepAboutLabel">
+
+            <EditText
+                android:id="@+id/signUpName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:ems="10"
+                android:hint="@string/signUpEditNameHint"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/signUpPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:ems="10"
+                android:hint="@string/signUpPhoneHint"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/sexText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/signUpSexHint" />
+
+            <Spinner
+                android:id="@+id/sexSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:entries="@array/sex" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/signInButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="@string/nextStepButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>

@@ -23,8 +23,8 @@
 
             <ImageView
                 android:id="@+id/simpleImageView"
-                android:layout_width="238dp"
-                android:layout_height="396dp"
+                android:layout_width="451dp"
+                android:layout_height="964dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/playExerciseImageHint"
                 android:src="@drawable/exercise" />
@@ -43,7 +43,7 @@
                     android:text="@string/instructionsPanelHeaderText"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textSize="24sp"
+                    android:textSize="36sp"
                     android:textStyle="bold" />
 
                 <com.robertlevonyan.views.expandable.Expandable
@@ -59,7 +59,8 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginLeft="15dp"
                         android:text="@string/instructionsPanelHeaderText"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textSize="36sp" />
 
                     <TextView
                         android:id="@+id/content"
@@ -78,21 +79,23 @@
                     android:layout_marginTop="25dp"
                     android:gravity="center"
                     android:text="--:--"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                    android:textSize="100sp" />
 
                 <TextView
                     android:id="@+id/playExerciseLeftRoutines"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="100dp"
                     android:gravity="center"
                     android:text="@string/ejs_reamining"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="40sp" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="100dp"
                     android:gravity="center">
 
                     <ImageView
@@ -105,7 +108,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="326dp"
 
                         android:gravity="center"
                         android:orientation="horizontal">
@@ -141,17 +144,17 @@
 
                 </RelativeLayout>
 
+                <Button
+                    android:id="@+id/changeviewmode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="change view" />
+
             </LinearLayout>
 
-
-            <Button
-                android:id="@+id/changeviewmode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:text="change view" />
 
         </LinearLayout>
 
