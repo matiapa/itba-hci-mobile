@@ -2,7 +2,7 @@ package com.pi.gymapp.api.models;
 
 import com.google.gson.annotations.Expose;
 
-public class Category {
+public class CategoryModel {
     
     @Expose private int id;
     

@@ -20,7 +20,7 @@ public class RoutineModel {
 
     @Expose private Creator creator;
 
-    @Expose private Category category;
+    @Expose private CategoryModel category;
 
     public int getId() {
         return id;
@@ -86,11 +86,11 @@ public class RoutineModel {
         this.creator = creator;
     }
 
-    public Category getCategory() {
+    public CategoryModel getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryModel category) {
         this.category = category;
     }
 

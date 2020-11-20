@@ -5,12 +5,14 @@ import android.app.Application;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.room.Room;
 
+import com.pi.gymapp.api.ApiCategoryService;
 import com.pi.gymapp.api.ApiCycleService;
 import com.pi.gymapp.api.ApiExerciseService;
 import com.pi.gymapp.api.ApiRoutineService;
 import com.pi.gymapp.api.ApiUserService;
 import com.pi.gymapp.api.utils.ApiClient;
 import com.pi.gymapp.db.AppDatabase;
+import com.pi.gymapp.repo.CategoryRepository;
 import com.pi.gymapp.repo.CycleRepository;
 import com.pi.gymapp.repo.ExerciseRepository;
 import com.pi.gymapp.repo.RoutineRepository;
@@ -27,6 +29,7 @@ public class MyApplication extends Application {
     CycleRepository cycleRepository;
     ExerciseRepository exerciseRepository;
     UserRepository userRepository;
+    CategoryRepository categoryRepository;
 
     public AppPreferences getPreferences() {
         return preferences;
@@ -46,6 +49,10 @@ public class MyApplication extends Application {
 
     public ExerciseRepository getExerciseRepository() {
         return exerciseRepository;
+    }
+
+    public CategoryRepository getCategoryRepository() {
+        return categoryRepository;
     }
 
     public AppExecutors getAppExecutors(){
@@ -70,6 +77,8 @@ public class MyApplication extends Application {
 
         ApiUserService userService = ApiClient.create(this, ApiUserService.class);
 
+        ApiCategoryService categoryService = ApiClient.create(this, ApiCategoryService.class);
+
         routineRepository = new RoutineRepository(appExecutors, routineService, database);
 
         cycleRepository = new CycleRepository(appExecutors, cycleService, database);
@@ -77,7 +86,10 @@ public class MyApplication extends Application {
         exerciseRepository = new ExerciseRepository(appExecutors, exerciseService, database);
 
         userRepository = new UserRepository(appExecutors, userService, database);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        categoryRepository = new CategoryRepository(appExecutors, categoryService, database);
+
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
 }

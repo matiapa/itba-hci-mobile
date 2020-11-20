@@ -6,17 +6,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.chip.Chip;
+import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.R;
 import com.pi.gymapp.databinding.RoutinesExploreBinding;
+import com.pi.gymapp.domain.Category;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.domain.RoutineDifficulties;
+import com.pi.gymapp.repo.CategoryRepository;
+import com.pi.gymapp.repo.RoutineRepository;
+import com.pi.gymapp.ui.MainActivity;
+import com.pi.gymapp.ui.category.CategoryViewModel;
+import com.pi.gymapp.utils.RepositoryViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,9 +38,10 @@ public class RoutinesExploreFragment extends Fragment {
     private RoutinesExploreBinding binding;
 
     private List<RoutineFilter> routineFilters;
+    private List<Category> categories;
 
     private boolean filterFavourites;
-    private String filterCategory;
+    private int filterCategory;
     private int filterDifficulty;
 
     private int orderBy;
@@ -45,7 +55,7 @@ public class RoutinesExploreFragment extends Fragment {
         routineFilters = new ArrayList<>();
 
         filterFavourites = false;
-        filterCategory = "none";
+        filterCategory = -1;
         filterDifficulty = -1;
 
         orderBy = 0;
@@ -57,6 +67,8 @@ public class RoutinesExploreFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = RoutinesExploreBinding.inflate(getLayoutInflater());
+
+        fetchCategories();
 
 
         // ------------------------------ Filter and sorting setup ------------------------------
@@ -122,12 +134,36 @@ public class RoutinesExploreFragment extends Fragment {
     }
 
 
+    private void fetchCategories(){
+        MainActivity activity = (MainActivity) getActivity();
+
+        MyApplication application = (MyApplication) getActivity().getApplication();
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
+                CategoryRepository.class, application.getCategoryRepository()
+        );
+        CategoryViewModel categoryViewModel = new ViewModelProvider(this, viewModelFactory)
+                .get(CategoryViewModel.class);
+
+        categoryViewModel.getCategories().observe(getViewLifecycleOwner(), resource -> {
+            switch (resource.status) {
+                case SUCCESS:
+                    categories = resource.data;
+                    break;
+
+                case ERROR:
+                    Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        });
+    }
+
+
     private void changedListParams(){
         RoutineListFragment fragment = new RoutineListFragment();
 
         Bundle bundle = new Bundle();
         bundle.putBoolean("filterFavourites", filterFavourites);
-        bundle.putString("filterCategory", filterCategory);
+        bundle.putInt("filterCategory", filterCategory);
         bundle.putInt("filterDifficulty", filterDifficulty);
 
         bundle.putInt("orderBy", orderBy);
@@ -164,15 +200,17 @@ public class RoutinesExploreFragment extends Fragment {
                         )
                     );
                     applyFilters();
-                    dialog.dismiss();
 
+                    dialog.dismiss();
                     break;
 
                 case 1:
-                    showCategoriesDialog();
+                    showDifficultiesDialog();
+                    break;
 
                 case 2:
-                    showDifficultiesDialog();
+                    showCategoriesDialog();
+                    break;
             }
         });
 
@@ -181,7 +219,33 @@ public class RoutinesExploreFragment extends Fragment {
 
 
     private void showCategoriesDialog(){
+        if(categories == null || categories.isEmpty()){
+            Toast.makeText(getActivity(), getString(R.string.unavailable_categories), Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                getContext(), android.R.layout.select_dialog_singlechoice);
+
+        categories.forEach(d -> adapter.add(d.getName()));
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setNegativeButton(getString(R.string.cancel_button), (dialog, which) -> dialog.dismiss());
+
+        builder.setAdapter(adapter, ((dialog, index) -> {
+            routineFilters.add(
+                new RoutineFilter(
+                    adapter.getItem(index),
+                    () -> { filterCategory = categories.get(index).getId(); },
+                    () -> { filterCategory = -1; }
+                )
+            );
+
+            applyFilters();
+            dialog.dismiss();
+        }));
+
+        builder.show();
     }
 
 

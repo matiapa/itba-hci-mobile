@@ -32,6 +32,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/routineListCardName"
                     android:textStyle="bold"
+                    android:clickable="false"
                     app:chipBackgroundColor="@color/colorAccent"
                     tools:ignore="HardcodedText" />
 
@@ -41,6 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Expert"
+                    android:clickable="false"
                     app:chipBackgroundColor="@color/colorAccent"
                     tools:ignore="HardcodedText" />
 
@@ -50,6 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="★ 4.5"
+                    android:clickable="false"
                     app:chipBackgroundColor="@color/colorAccent"
                     tools:ignore="HardcodedText" />
 

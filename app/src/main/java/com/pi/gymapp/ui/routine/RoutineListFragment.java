@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
-
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,7 +48,7 @@ public class RoutineListFragment extends Fragment {
 
     RoutineDifficulties filterDifficulty;
     boolean filterFavourites;
-    String filterCategory;
+    int filterCategory;
 
 
     @Override
@@ -75,7 +74,7 @@ public class RoutineListFragment extends Fragment {
 
         filterFavourites = getArguments().getBoolean("filterFavourites");
 
-        filterCategory = getArguments().getString("filterCategory");
+        filterCategory = getArguments().getInt("filterCategory");
 
         int filterDifficultyIdx = getArguments().getInt("filterDifficulty");
         filterDifficulty = filterDifficultyIdx != -1 ? RoutineDifficulties.values()[filterDifficultyIdx] : null;
@@ -83,7 +82,7 @@ public class RoutineListFragment extends Fragment {
         // Ordering
 
         int orderByIdx = getArguments().getInt("orderBy");
-        orderBy = RoutineOrder.values()[getArguments().getInt("orderBy")];
+        orderBy = RoutineOrder.values()[orderByIdx];
 
         orderDir = getArguments().getString("orderDir");
 
@@ -147,7 +146,10 @@ public class RoutineListFragment extends Fragment {
                     routines.sort(orderBy.getComparator());
 
                     if(filterDifficulty != null)
-                        filterDifficulty.getFilter().apply(routines);
+                        routines.removeIf(r -> ! r.getDifficulty().equals(filterDifficulty.getApiName()));
+
+                    if(filterCategory != -1)
+                        routines.removeIf(r -> r.getCategoryId() != filterCategory);
 
                     adapter.notifyDataSetChanged();
                     break;

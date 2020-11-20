@@ -5,39 +5,22 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public enum RoutineDifficulties {
-    ROOKIE("Rookie", "rookie", routines -> {
-        routines.removeIf(r -> ! r.getDifficulty().equals("rookie"));
-        return null;
-    }),
+    ROOKIE("Rookie", "rookie"),
 
-    BEGINNER("Beginner", "beginner", routines -> {
-        routines.removeIf(r -> ! r.getDifficulty().equals("beginner"));
-        return null;
-    }),
+    BEGINNER("Beginner", "beginner"),
 
-    INTERMEDIATE("Intermediate", "intermediate", routines -> {
-        routines.removeIf(r -> ! r.getDifficulty().equals("intermediate"));
-        return null;
-    }),
+    INTERMEDIATE("Intermediate", "intermediate"),
 
-    ADVANCED("Advanced", "advanced", routines -> {
-        routines.removeIf(r -> ! r.getDifficulty().equals("advanced"));
-        return null;
-    }),
+    ADVANCED("Advanced", "advanced"),
 
-    EXPERT("Expert", "expert", routines -> {
-        routines.removeIf(r -> ! r.getDifficulty().equals("expert"));
-        return null;
-    });
+    EXPERT("Expert", "expert");
 
 
     private String friendlyName, apiName;
-    private Function<List<Routine>, Void> filter;
 
-    RoutineDifficulties(String name, String fieldName, Function<List<Routine>, Void> filter) {
+    RoutineDifficulties(String name, String fieldName) {
         this.friendlyName = name;
         this.apiName = fieldName;
-        this.filter = filter;
     }
 
 
@@ -47,9 +30,5 @@ public enum RoutineDifficulties {
 
     public String getApiName() {
         return apiName;
-    }
-
-    public Function<List<Routine>, Void> getFilter() {
-        return filter;
     }
 }
