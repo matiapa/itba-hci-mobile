@@ -24,6 +24,10 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
 
     // ----------------------------- List of routines -----------------------------
 
+    public LiveData<Resource<List<Routine>>> getRoutines(String orderBy, String direction, String difficulty) {
+        return repository.getAllRoutines(orderBy, direction, difficulty);
+    }
+
     public LiveData<Resource<List<Routine>>> getRoutines(String orderBy, String direction) {
         return repository.getAllRoutines(orderBy, direction);
     }

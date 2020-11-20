@@ -29,6 +29,12 @@ public interface ApiRoutineService {
             @Query("orderBy") String orderBy, @Query("direction") String direction
     );
 
+    @GET("routines/")
+    LiveData<ApiResponse<PagedList<RoutineModel>>> getAll(
+            @Query("orderBy") String orderBy, @Query("direction") String direction,
+            @Query("difficulty") String difficulty
+    );
+
     @GET("user/current/routines/favourites/")
     LiveData<ApiResponse<PagedList<RoutineModel>>> getFavourites();
 
