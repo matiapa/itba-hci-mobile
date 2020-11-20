@@ -98,6 +98,7 @@
     <string name="wrong_username_password">Ups! Usuario o Contraseña incorrectos</string>
     <string name="unexpected_error">Ups! Algo salio mal</string>
     <string name="VerificationEmailHelper">Por favor ingrese su email</string>
+    <string name="repetitions_remaining">Quedan %d Repeticiones</string>
 
 
 </resources>
