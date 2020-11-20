@@ -1,6 +1,7 @@
 package com.pi.gymapp.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.pi.gymapp.api.utils.ApiClient;
 import com.pi.gymapp.databinding.MainActivityBinding;
 import com.pi.gymapp.api.ApiUserService;
 import com.pi.gymapp.api.models.Credentials;
+import com.pi.gymapp.ui.routine.AllRoutinesFragmentDirections;
+import com.pi.gymapp.ui.routine.RoutineDetailFragmentArgs;
 
 
 import androidx.navigation.NavController;
@@ -36,16 +39,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_activity);
 
         Intent Mainintent = getIntent();
+
         if (Mainintent.getExtras()!=null){
             if (Mainintent.getExtras().containsKey("login")){
                 if (Mainintent.getExtras().get("login").equals(true)){
                     loggedin=true;
                 }
-
             }
         }
+
 
         if (!loggedin){
             Intent intent = new Intent(this, LoginActivity.class);
@@ -100,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 });
                 return true;
             });
+
+
         }
     }
 

@@ -51,8 +51,9 @@
                 <ImageButton
                     android:id="@+id/button_share"
                     android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    app:srcCompat="@drawable/activity_fav_button" />
+                    android:layout_height="60dp"
+                    android:backgroundTint="#00FFFFFF"
+                    app:srcCompat="@drawable/share_button" />
 
             </com.google.android.material.chip.ChipGroup>
 
@@ -99,7 +100,7 @@
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/cycleListFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
             </com.robertlevonyan.views.expandable.Expandable>
 

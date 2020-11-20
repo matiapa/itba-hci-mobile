@@ -52,7 +52,7 @@ public class RoutineDetailFragment extends Fragment {
 
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send."); //TODO
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "http://www.gymapp.com");
             sendIntent.setType("text/plain");
 
             Intent shareIntent = Intent.createChooser(sendIntent, null);
