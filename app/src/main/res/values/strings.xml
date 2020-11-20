@@ -68,6 +68,7 @@
     <string name="favRoutinesTitle">Favourite routines</string>
     <string name="secondsFormat">%.0fs</string>
     <string name="rateFormat">%.2f</string>
+    <string name="dateFormat">%1$tb %1$te, %1$tY</string>
     <string name="signUpPasswordHint">Password</string>
     <string name="signUpUsernameHint">Username</string>
     <string name="signUpEmailHint">Email</string>
@@ -93,5 +94,6 @@
     <string name="unexpected_error">Ups! Something went wrong</string>
     <string name="VerificationEmailHelper">Please provide your email</string>
     <string name="ejs_reamining">Only %d Exercises Remaining</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

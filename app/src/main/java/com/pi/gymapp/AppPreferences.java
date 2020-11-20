@@ -7,6 +7,7 @@ import com.pi.gymapp.R;
 
 public class AppPreferences {
     private final String AUTH_TOKEN = "auth_token";
+    private final String USER_ID = "user-id";
 
     private SharedPreferences sharedPreferences;
 
@@ -22,6 +23,17 @@ public class AppPreferences {
 
     public String getAuthToken() {
         return sharedPreferences.getString(AUTH_TOKEN, null);
+    }
+
+    public void setUserid(Integer userid) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(USER_ID, userid);
+        editor.apply();
+    }
+
+    public Integer getUserId() {
+
+        return sharedPreferences.getInt(USER_ID, -1);
     }
 }
 

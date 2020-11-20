@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 
 import com.pi.gymapp.api.ApiUserService;
+import com.pi.gymapp.api.models.UserChangeData;
 import com.pi.gymapp.api.models.UserData;
 import com.pi.gymapp.api.models.UserModel;
 import com.pi.gymapp.api.utils.ApiResponse;
@@ -95,7 +96,7 @@ public class UserRepository {
     }
 
 
-    public LiveData<Resource<User>> updateCurrent(UserData userData) {
+    public LiveData<Resource<User>> updateCurrent(UserChangeData userData) {
         return new NetworkBoundResource<User, UserEntity, UserModel>(
                 executors, this::entityToDomain, this::modelToEntity, this::modelToDomain
         ) {

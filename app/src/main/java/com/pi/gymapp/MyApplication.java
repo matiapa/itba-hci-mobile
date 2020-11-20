@@ -7,11 +7,13 @@ import androidx.room.Room;
 import com.pi.gymapp.api.ApiCycleService;
 import com.pi.gymapp.api.ApiExerciseService;
 import com.pi.gymapp.api.ApiRoutineService;
+import com.pi.gymapp.api.ApiUserService;
 import com.pi.gymapp.api.utils.ApiClient;
 import com.pi.gymapp.db.AppDatabase;
 import com.pi.gymapp.repo.CycleRepository;
 import com.pi.gymapp.repo.ExerciseRepository;
 import com.pi.gymapp.repo.RoutineRepository;
+import com.pi.gymapp.repo.UserRepository;
 import com.pi.gymapp.utils.AppExecutors;
 import com.pi.gymapp.utils.Constants;
 
@@ -23,6 +25,7 @@ public class MyApplication extends Application {
     RoutineRepository routineRepository;
     CycleRepository cycleRepository;
     ExerciseRepository exerciseRepository;
+    UserRepository userRepository;
 
     public AppPreferences getPreferences() {
         return preferences;
@@ -30,6 +33,10 @@ public class MyApplication extends Application {
 
     public RoutineRepository getRoutineRepository() {
         return routineRepository;
+    }
+
+    public UserRepository getUserRepository() {
+        return userRepository;
     }
 
     public CycleRepository getCycleRepository() {
@@ -60,11 +67,15 @@ public class MyApplication extends Application {
 
         ApiExerciseService exerciseService = ApiClient.create(this, ApiExerciseService.class);
 
+        ApiUserService userService = ApiClient.create(this, ApiUserService.class);
+
         routineRepository = new RoutineRepository(appExecutors, routineService, database);
 
         cycleRepository = new CycleRepository(appExecutors, cycleService, database);
 
-        exerciseRepository = new ExerciseRepository(appExecutors,exerciseService,database);
+        exerciseRepository = new ExerciseRepository(appExecutors, exerciseService, database);
+
+        userRepository = new UserRepository(appExecutors, userService, database);
     }
 
 }
