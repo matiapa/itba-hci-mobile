@@ -36,7 +36,7 @@ public class RoutineRepository {
     private AppDatabase db;
 
     private AppExecutors executors;
-    private RateLimiter<String> rateLimit = new RateLimiter<>(1, TimeUnit.SECONDS);
+    private RateLimiter<String> rateLimit = new RateLimiter<>(5, TimeUnit.MINUTES);;
 
 
     public RoutineRepository(AppExecutors executors, ApiRoutineService api, AppDatabase db) {

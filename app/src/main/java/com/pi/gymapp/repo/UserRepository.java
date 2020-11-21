@@ -29,8 +29,6 @@ public class UserRepository {
     private AppDatabase db;
 
     private AppExecutors executors;
-    private final RateLimiter<String> rateLimit = new RateLimiter<>(10, TimeUnit.MINUTES);
-
 
     public UserRepository(AppExecutors executors, ApiUserService api, AppDatabase db) {
         this.executors = executors;

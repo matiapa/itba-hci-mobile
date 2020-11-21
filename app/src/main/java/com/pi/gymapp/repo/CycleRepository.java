@@ -29,7 +29,7 @@ public class CycleRepository {
     private AppDatabase db;
 
     private AppExecutors executors;
-    private RateLimiter<String> rateLimit = new RateLimiter<>(1, TimeUnit.SECONDS);
+    private RateLimiter<String> rateLimit = new RateLimiter<>(5, TimeUnit.MINUTES);
 
 
     public CycleRepository(AppExecutors executors, ApiCycleService api, AppDatabase db) {
