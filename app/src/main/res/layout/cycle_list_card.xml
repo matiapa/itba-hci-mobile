@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/cycleName"
+            android:id="@+id/reviewDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingVertical="2dp"
@@ -22,7 +22,7 @@
             android:text="Shake The Booty"/>
 
         <TextView
-            android:id="@+id/cycleType"
+            android:id="@+id/reviewScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
@@ -32,7 +32,7 @@
             android:text="Training"/>
 
         <TextView
-            android:id="@+id/cycleDetail"
+            android:id="@+id/reviewDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingVertical="2dp"

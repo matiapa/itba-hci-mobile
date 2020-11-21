@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -20,6 +21,7 @@ import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.repo.RoutineRepository;
 import com.pi.gymapp.ui.MainActivity;
 import com.pi.gymapp.ui.cycle.CycleListFragment;
+import com.pi.gymapp.ui.review.ReviewListFragment;
 import com.pi.gymapp.utils.RepositoryViewModel;
 import com.pi.gymapp.utils.StringUtils;
 
@@ -55,16 +57,26 @@ public class RoutineDetailFragment extends Fragment {
 
         });
 
-        // --------------------------------- Cycle list fragment setup ---------------------------------
+        // ------------------------- Cycle and reviews list fragment setup -------------------------
 
         Bundle args = new Bundle();
         args.putInt("routineId", routineId);
 
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+
+        // Cycles
+
         CycleListFragment cycleListFragment = new CycleListFragment();
         cycleListFragment.setArguments(args);
 
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .add(R.id.cycleListFragment, cycleListFragment).commit();
+        manager.beginTransaction().add(R.id.cycleListFragment, cycleListFragment).commit();
+
+        // Reviews
+
+        ReviewListFragment reviewsListFragment = new ReviewListFragment();
+        reviewsListFragment.setArguments(args);
+
+        manager.beginTransaction().add(R.id.reviewsListFragment, reviewsListFragment).commit();
 
         return binding.getRoot();
     }
@@ -138,6 +150,18 @@ public class RoutineDetailFragment extends Fragment {
             );
         });
 
+
+        binding.rateButton.setOnClickListener(v -> {
+            Bundle args = new Bundle();
+            args.putInt("routineId", routineId);
+
+            RateFragment rateFragment = new RateFragment();
+            rateFragment.setArguments(args);
+
+            rateFragment.show(getActivity().getSupportFragmentManager(), "rateFragment");
+        });
+
+
         binding.buttonFav.setOnClickListener(v -> {
             isFav = !isFav;
 
@@ -146,6 +170,7 @@ public class RoutineDetailFragment extends Fragment {
                     Toast.makeText(activity, getResources().getString(R.string.unexpected_error),
                             Toast.LENGTH_SHORT).show();
             });
+
 
             if(isFav)
                 binding.buttonFav.setImageResource(R.drawable.fav_button_active);

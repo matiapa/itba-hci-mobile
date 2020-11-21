@@ -71,8 +71,8 @@
     <string name="favRoutinesTitle">Rutinas favoritas</string>
 
     <string name="secondsFormat">%.0fs</string>
-    <string name="rateFormat">%.2f</string>
-    <string name="dateFormat">%1$tb %1$te, %1$tY</string>
+    <string name="rateFormat">★ %.2f</string>
+    <string name="rateFormatInt">★ %d</string>
     <string name="signUpEmailHint">Email</string>
     <string name="signUpPasswordHint">Contraseña</string>
     <string name="signUpUsernameHint">Nombre de Usuario</string>
@@ -89,8 +89,6 @@
     <string name="save">Guardar</string>
     <string name="play_routine_button">Iniciar rutina</string>
 
-    <string name="routineListCardName">Rutina</string>
-
     <string name="exerciseimage">imagen del Ejercicio</string>
 
     <string name="routine_detail_cycles_header">Ciclos</string>
@@ -104,13 +102,17 @@
     <string name="cancel_button">Cancelar</string>
 
     <string name="repetitions_remaining">Quedan %d Repeticiones</string>
+    <string name="unavailable_categories">Ups! No se pudo obtener las categorías</string>
+    <string name="review_description_hint">Escribe una reseña</string>
+    <string name="routine_detail_reviews_header">Reseñas</string>
+    <string name="success_message">Listo!</string>
+
     <string name="navDrawerDarkMode">Modo oscuro</string>
-    <string name="unavailable_categories">¡Ups! No se pudo encontrar categoría</string>
     <string name="PlaceHolderTimer">--:--</string>
     <string name="username">Nombre de Usuario</string>
     <string name="male">Masculino</string>
     <string name="female">Femenino</string>
     <string name="other">Otro</string>
-
+    <string name="add_filter">+ Agregar Filtro</string>
 
 </resources>

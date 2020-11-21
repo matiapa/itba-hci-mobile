@@ -27,6 +27,8 @@ import com.pi.gymapp.ui.MainActivity;
 import com.pi.gymapp.utils.RepositoryViewModel;
 import com.pi.gymapp.utils.StringUtils;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ProfileFragment2 extends Fragment{
@@ -75,7 +77,9 @@ public class ProfileFragment2 extends Fragment{
                     binding.userEmail.setText(StringUtils.capitalize(r.getEmail()));
 
                     binding.userPhone.setText(StringUtils.capitalize(Long.toString(r.getPhone())));
-                    binding.userBirthday.setText(String.format(getString(R.string.dateFormat), r.getBirthdate()));
+
+                    DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(binding.userBirthday.getContext());
+                    binding.userBirthday.setText(dateFormat.format(new Date( r.getBirthdate())));
 
                     binding.userFullnameAgain.setText(StringUtils.capitalize(r.getFullName()));
                     binding.userFullname.setText(StringUtils.capitalize(r.getFullName()));

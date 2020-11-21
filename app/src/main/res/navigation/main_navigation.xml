@@ -57,6 +57,9 @@
         <deepLink
             android:id="@+id/deepLink"
             app:uri="http://www.gymapp.com/id" />
+        <action
+            android:id="@+id/action_routineDetailFragment_to_rateFragment"
+            app:destination="@id/rateFragment" />
     </fragment>
     <fragment
         android:id="@+id/allExercisesFragment"
@@ -90,6 +93,20 @@
         android:id="@+id/playRoutineFragment"
         android:name="com.pi.gymapp.ui.execute.PlayRoutineFragment"
         android:label="PlayRoutineFragment" >
+        <argument
+            android:name="routineId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_playRoutineFragment_to_rateFragment"
+            app:destination="@id/rateFragment" />
+        <action
+            android:id="@+id/action_playRoutineFragment_to_routineDetailFragment"
+            app:destination="@id/routineDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rateFragment"
+        android:name="com.pi.gymapp.ui.routine.RateFragment"
+        android:label="RateFragment" >
         <argument
             android:name="routineId"
             app:argType="integer" />

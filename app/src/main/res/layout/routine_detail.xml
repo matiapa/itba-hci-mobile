@@ -133,6 +133,27 @@
 
             </com.robertlevonyan.views.expandable.Expandable>
 
+            <com.robertlevonyan.views.expandable.Expandable
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/backgroundColor"
+                android:backgroundTint="@color/backgroundColor"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/routine_detail_reviews_header"
+                    android:textColor="@color/textColor"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/reviewsListFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.robertlevonyan.views.expandable.Expandable>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -147,6 +168,19 @@
         android:background="@color/backgroundColor"
         app:borderWidth="0dp"
         app:srcCompat="@android:drawable/ic_media_play"
+        android:contentDescription="@string/play_routine_button" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/rateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginVertical="16dp"
+        android:layout_marginEnd="100dp"
+        android:backgroundTint="@color/colorLight"
+        android:background="@color/backgroundColor"
+        app:borderWidth="0dp"
+        app:srcCompat="@android:drawable/btn_star"
         android:contentDescription="@string/play_routine_button" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
