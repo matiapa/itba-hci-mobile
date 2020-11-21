@@ -1,8 +1,10 @@
 package com.pi.gymapp.ui.cycle;
 
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -54,6 +56,7 @@ public class CycleListAdapter extends RecyclerView.Adapter<CycleListAdapter.View
         private int cycleId;
 
         public TextView name, detail, type;
+        public ImageView detailButton;
 
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -61,6 +64,15 @@ public class CycleListAdapter extends RecyclerView.Adapter<CycleListAdapter.View
             name = itemView.findViewById(R.id.reviewDetail);
             detail = itemView.findViewById(R.id.reviewDate);
             type = itemView.findViewById(R.id.reviewScore);
+            detailButton = itemView.findViewById(R.id.cycleDetailButton);
+
+            int nightModeFlags = detailButton.getContext().getResources().getConfiguration().uiMode
+                    & Configuration.UI_MODE_NIGHT_MASK;
+            switch (nightModeFlags) {
+                case Configuration.UI_MODE_NIGHT_YES:
+                    detailButton.setImageResource(R.drawable.baseline_keyboard_arrow_right_white_18dp);
+                    break;
+            }
 
             view.setOnClickListener(this);
         }

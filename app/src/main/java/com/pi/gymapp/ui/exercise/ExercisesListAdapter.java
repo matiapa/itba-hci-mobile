@@ -1,8 +1,10 @@
 package com.pi.gymapp.ui.exercise;
 
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,7 +54,8 @@ public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdap
         private int cycleId;
         private int routineId;
 
-        public TextView title, repetitions, duration;
+        private TextView title, repetitions, duration;
+        private ImageView repetitionsImage, durationImage;
 
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -60,6 +63,19 @@ public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdap
             title = itemView.findViewById(R.id.exerciseTitle);
             repetitions = itemView.findViewById(R.id.exerciseRepetitions);
             duration = itemView.findViewById(R.id.exerciseDuration);
+
+            durationImage = itemView.findViewById(R.id.durationImage);
+            repetitionsImage = itemView.findViewById(R.id.repetitionsImage);
+
+            int nightModeFlags = durationImage.getContext().getResources().getConfiguration().uiMode
+                    & Configuration.UI_MODE_NIGHT_MASK;
+            switch (nightModeFlags) {
+                case Configuration.UI_MODE_NIGHT_YES:
+                    durationImage.setImageResource(R.drawable.baseline_timer_white_18dp);
+                    repetitionsImage.setImageResource(R.drawable.baseline_replay_white_18dp);
+                    break;
+            }
+
             view.setOnClickListener(this);
         }
 
@@ -70,13 +86,13 @@ public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesListAdap
 
             title.setText(exercise.getName());
             duration.setText(Integer.toString(exercise.getDuration()));
-//            Context context = title.getContext();
             repetitions.setText(Integer.toString(exercise.getRepetitions()));
         }
+
         @Override
         public void onClick(View v) {
             Navigation.findNavController(v).navigate(
-                    AllExercisesFragmentDirections.actionAllExercisesFragmentToExerciseDetailFragment(id,cycleId,routineId)
+                AllExercisesFragmentDirections.actionAllExercisesFragmentToExerciseDetailFragment(id,cycleId,routineId)
             );
 
         }

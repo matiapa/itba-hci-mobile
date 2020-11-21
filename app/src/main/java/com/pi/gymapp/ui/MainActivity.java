@@ -1,10 +1,12 @@
 package com.pi.gymapp.ui;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +24,10 @@ import com.pi.gymapp.api.ApiUserService;
 import com.pi.gymapp.ui.routine.RoutinesExploreFragmentDirections;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -118,7 +123,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
+//        binding.navView.getMenu().getItem(0).setIcon(R.drawable.baseline_home_white_18dp);
+
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -155,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
+        findViewById(R.id.nav_view);
 
         switch (id) {
             case R.id.dark_mode:

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rate the routine"
+        android:text="@string/routine_rate_dialog_title"
+        android:textColor="@color/textColor"
         android:textAppearance="?android:textAppearanceLarge" />
 
     <EditText
@@ -19,6 +19,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/review_description_hint"
         android:textAppearance="?android:textAppearanceMedium"
+        android:textColorHint="@color/textColor"
+        android:shadowColor="@color/textColor"
         android:layout_marginTop="20dp" />
 
     <RatingBar
@@ -26,6 +28,7 @@
         android:stepSize="0.5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:forceDarkAllowed="true"
         android:layout_marginTop="20dp"/>
 
     <LinearLayout
@@ -39,7 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Cancel"
+            android:text="@string/skip_review_button"
+            android:textColor="@color/textColor"
             android:textAllCaps="false"/>
 
         <View
@@ -52,7 +56,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="Submit"
+            android:text="@string/send_review_button"
+            android:textColor="@color/textColor"
             android:textAllCaps="false" />
 
     </LinearLayout>

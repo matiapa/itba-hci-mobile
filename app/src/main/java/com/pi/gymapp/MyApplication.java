@@ -89,7 +89,7 @@ public class MyApplication extends Application {
 
         categoryRepository = new CategoryRepository(appExecutors, categoryService, database);
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
 }

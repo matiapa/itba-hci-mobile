@@ -101,12 +101,16 @@
     <string name="unavailable_categories">Ups! Couldn\'t fetch categories</string>
     <string name="review_description_hint">Write a review</string>
     <string name="routine_detail_reviews_header">Reviews</string>
-    <string name="success_message">Done!</string>
 
     <string name="PlaceHolderTimer">--:--</string>
     <string name="username">Username</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="other">Other</string>
+
+    <string name="routine_rate_dialog_title">Rate the routine</string>
+    <string name="skip_review_button">Skip</string>
+    <string name="send_review_button">Submit</string>
+    <string name="success_message">Done!</string>
 
 </resources>

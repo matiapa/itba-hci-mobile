@@ -1,37 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
     <group android:checkableBehavior="single">
-
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
-            android:iconTint="@color/colorHardContrast"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_baseline_perm_identity_24"
-            android:iconTint="@color/colorHardContrast"
             android:title="@string/menu_profile" />
 
         <item
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_baseline_help_24"
-            android:iconTint="@color/colorHardContrast"
             android:title="@string/menu_help" />
         <item
             android:id="@+id/nav_rate_us"
             android:title="@string/menu_rate_us"
-            android:iconTint="@color/colorHardContrast"
             android:icon="@drawable/ic_baseline_star_24" />
         <item
             android:id="@+id/nav_sign_out"
             android:icon="@drawable/ic_baseline_exit_to_app_24"
-            android:iconTint="@color/colorHardContrast"
             android:title="@string/menu_sign_out" />
-
     </group>
-    </menu>
+</menu>

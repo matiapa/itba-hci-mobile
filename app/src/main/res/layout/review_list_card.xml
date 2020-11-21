@@ -7,6 +7,7 @@
     android:minHeight="88dp"
     android:paddingHorizontal="16dp"
     android:orientation="vertical">
+
     <TextView
         android:id="@+id/reviewDetail"
         android:layout_width="wrap_content"
@@ -15,6 +16,7 @@
         android:maxLines="1"
         android:textAppearance="?attr/textAppearanceSubtitle1"
         android:text="So freaking awesome! Got hipe!"
+        android:textColor="@color/textColor"
         tools:ignore="HardcodedText" />
 
     <TextView
@@ -25,6 +27,7 @@
         android:paddingVertical="2dp"
         android:textAppearance="?attr/textAppearanceBody2"
         android:text="★ 5.0"
+        android:textColor="@color/textColor"
         tools:ignore="HardcodedText" />
 
     <TextView
@@ -35,5 +38,6 @@
         android:maxLines="1"
         android:textAppearance="?attr/textAppearanceBody2"
         android:text="20/11/2020"
+        android:textColor="@color/textColor"
         tools:ignore="HardcodedText" />
 </LinearLayout>
