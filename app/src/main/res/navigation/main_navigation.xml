@@ -30,6 +30,7 @@
         android:name="com.pi.gymapp.ui.help.HelpFragment"
         android:label="@string/menu_help"
         tools:layout="@layout/fragment_help" />
+
     <fragment
         android:id="@+id/profileFragment2"
         android:name="com.pi.gymapp.ui.profile.ProfileFragment2"
@@ -61,6 +62,7 @@
             android:id="@+id/action_routineDetailFragment_to_rateFragment"
             app:destination="@id/rateFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/allExercisesFragment"
         android:name="com.pi.gymapp.ui.exercise.AllExercisesFragment"
@@ -75,6 +77,7 @@
             android:id="@+id/action_allExercisesFragment_to_exerciseDetailFragment"
             app:destination="@id/exerciseDetailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/exerciseDetailFragment"
         android:name="com.pi.gymapp.ui.exercise.ExerciseDetailFragment"
@@ -89,6 +92,7 @@
             android:name="routineId"
             app:argType="integer" />
     </fragment>
+
     <fragment
         android:id="@+id/playRoutineFragment"
         android:name="com.pi.gymapp.ui.execute.PlayRoutineFragment"
@@ -103,6 +107,7 @@
             android:id="@+id/action_playRoutineFragment_to_routineDetailFragment"
             app:destination="@id/routineDetailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/rateFragment"
         android:name="com.pi.gymapp.ui.routine.RateFragment"
