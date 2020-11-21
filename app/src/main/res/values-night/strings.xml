@@ -98,5 +98,6 @@
 
     <string name="routine_filter_dialog_help">Choose a filter</string>
     <string name="cancel_button">Cancel</string>
+    <string name="PlaceHolderTimer">--:--</string>
 
 </resources>
