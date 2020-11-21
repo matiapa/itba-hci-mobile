@@ -359,24 +359,26 @@ public class PlayRoutineFragment extends Fragment {
             flag2=false;
         });
 
-        binding.changeviewmode.setOnClickListener(v -> {
-            if (viewmode==Viewmodes.COMPLEX){
-                binding.simpleImageView.setVisibility(View.GONE);
-                binding.expandable.setVisibility(View.GONE);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            binding.changeviewmode.setOnClickListener(v -> {
+                if (viewmode==Viewmodes.COMPLEX){
+                    binding.simpleImageView.setVisibility(View.GONE);
+                    binding.expandable.setVisibility(View.GONE);
 //                binding.playExerciseLeftTime.setPadding(binding.playExerciseLeftTime.getPaddingLeft(),binding.playExerciseLeftTime.getPaddingTop()+20,binding.playExerciseLeftTime.getPaddingRight(),binding.playExerciseLeftTime.getPaddingBottom()+150);
 //                binding.ExecuteRoutineExerciseTitle.setVisibility(View.VISIBLE);
-                binding.exerciseviewlist.setVisibility(View.VISIBLE);
-                viewmode= Viewmodes.SIMPLIFIED;
-            }
-            else {
-                binding.simpleImageView.setVisibility(View.VISIBLE);
-                binding.expandable.setVisibility(View.VISIBLE);
+                    binding.exerciseviewlist.setVisibility(View.VISIBLE);
+                    viewmode= Viewmodes.SIMPLIFIED;
+                }
+                else {
+                    binding.simpleImageView.setVisibility(View.VISIBLE);
+                    binding.expandable.setVisibility(View.VISIBLE);
 //                binding.playExerciseLeftTime.setPadding(binding.playExerciseLeftTime.getPaddingLeft(),binding.playExerciseLeftTime.getPaddingTop()-20,binding.playExerciseLeftTime.getPaddingRight(),binding.playExerciseLeftTime.getPaddingBottom()-150);
 //                binding.ExecuteRoutineExerciseTitle.setVisibility(View.GONE);
-                binding.exerciseviewlist.setVisibility(View.GONE);
-                viewmode= Viewmodes.COMPLEX;
-            }
-        });
+                    binding.exerciseviewlist.setVisibility(View.GONE);
+                    viewmode= Viewmodes.COMPLEX;
+                }
+            });
+        }
 
     }
 

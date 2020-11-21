@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/profileFragment2"
         android:name="com.pi.gymapp.ui.profile.ProfileFragment2"
-        android:label="EditProfile">
+        android:label="@string/edit_profile_title">
         <action
             android:id="@+id/action_profileFragment2_to_nav_profile"
             app:destination="@id/nav_profile"

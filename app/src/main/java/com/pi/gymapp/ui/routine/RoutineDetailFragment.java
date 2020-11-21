@@ -175,7 +175,6 @@ public class RoutineDetailFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
             });
 
-
             if(isFav)
                 binding.buttonFav.setImageResource(R.drawable.fav_button_active);
             else
