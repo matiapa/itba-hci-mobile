@@ -121,6 +121,7 @@ public class RoutineDetailFragment extends Fragment {
                 case ERROR:
                     activity.hideProgressBar();
                     Toast.makeText(activity, resource.message, Toast.LENGTH_SHORT).show();
+                    getActivity().onBackPressed();
                     break;
 
                 default:

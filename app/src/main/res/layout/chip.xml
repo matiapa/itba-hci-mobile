@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/allRoutinesChip"
-    style="@style/Widget.MaterialComponents.Chip.Choice"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:backgroundTint="@color/colorAccentLight"
-    android:checked="false"
-    android:text="@string/all_routines_chip"
-    android:textColor="@color/textColor" />
+xmlns:app="http://schemas.android.com/apk/res-auto"
+style="@style/Widget.MaterialComponents.Chip.Choice"
+android:id="@+id/allRoutinesChip"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:backgroundTint="@color/colorAccentLight"
+android:textColor="@color/textColor"
+android:checked="false"
+app:closeIconEnabled="true"
+android:text="@string/all_routines_chip" />

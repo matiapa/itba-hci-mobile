@@ -16,6 +16,7 @@ public class Routine {
     private long dateCreated;
     private Boolean isFav;
 
+
     public Routine(int id, String name, String detail, double rate, String difficulty,
                    int categoryId, String categoryName, long dateCreated, Boolean isFav) {
         this.id = id;

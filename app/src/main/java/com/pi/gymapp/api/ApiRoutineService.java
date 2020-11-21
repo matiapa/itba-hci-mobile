@@ -2,10 +2,12 @@ package com.pi.gymapp.api;
 
 import androidx.lifecycle.LiveData;
 
+import com.pi.gymapp.api.models.ExecuteRoutine;
 import com.pi.gymapp.api.utils.ApiResponse;
 import com.pi.gymapp.api.models.PagedList;
 import com.pi.gymapp.api.models.RoutineModel;
 
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -27,6 +29,15 @@ public interface ApiRoutineService {
     @GET("routines/")
     LiveData<ApiResponse<PagedList<RoutineModel>>> getAll(
             @Query("orderBy") String orderBy, @Query("direction") String direction
+    );
+
+    @POST("routines/{routineId}/executions")
+    LiveData<ApiResponse<Void>> createExecution(@Path("routineId") int routineId, @Body ExecuteRoutine executeRoutine);
+
+    @GET("routines/")
+    LiveData<ApiResponse<PagedList<RoutineModel>>> getAll(
+            @Query("orderBy") String orderBy, @Query("direction") String direction,
+            @Query("difficulty") String difficulty
     );
 
     @GET("user/current/routines/favourites/")

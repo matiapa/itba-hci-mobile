@@ -105,6 +105,7 @@
 
     <string name="repetitions_remaining">Quedan %d Repeticiones</string>
     <string name="navDrawerDarkMode">Modo oscuro</string>
+    <string name="unavailable_categories">¡Ups! No se pudo encontrar categoría</string>
 
 
 </resources>
