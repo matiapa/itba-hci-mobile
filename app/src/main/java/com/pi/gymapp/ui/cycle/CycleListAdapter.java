@@ -58,9 +58,9 @@ public class CycleListAdapter extends RecyclerView.Adapter<CycleListAdapter.View
         public ViewHolder(@NonNull View view) {
             super(view);
 
-            name = itemView.findViewById(R.id.cycleName);
-            detail = itemView.findViewById(R.id.cycleDetail);
-            type = itemView.findViewById(R.id.cycleType);
+            name = itemView.findViewById(R.id.reviewDetail);
+            detail = itemView.findViewById(R.id.reviewDate);
+            type = itemView.findViewById(R.id.reviewScore);
 
             view.setOnClickListener(this);
         }

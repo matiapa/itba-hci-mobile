@@ -5,12 +5,17 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
+import com.pi.gymapp.api.models.FullReviewModel;
+import com.pi.gymapp.api.models.ReviewModel;
 import com.pi.gymapp.api.utils.ApiResponse;
 import com.pi.gymapp.api.ApiRoutineService;
 import com.pi.gymapp.api.models.PagedList;
 import com.pi.gymapp.api.models.RoutineModel;
 import com.pi.gymapp.db.AppDatabase;
+import com.pi.gymapp.db.entity.ReviewEntity;
 import com.pi.gymapp.db.entity.RoutineEntity;
+import com.pi.gymapp.domain.Review;
+import com.pi.gymapp.utils.AbsentLiveData;
 import com.pi.gymapp.utils.AppExecutors;
 import com.pi.gymapp.utils.NetworkBoundResource;
 import com.pi.gymapp.utils.RateLimiter;
@@ -145,6 +150,7 @@ public class RoutineRepository {
 
     }
 
+    
     public LiveData<Resource<List<Routine>>> getAllRoutines(String orderBy, String direction){
         return getAllRoutines(orderBy, direction, null);
     }
@@ -228,7 +234,7 @@ public class RoutineRepository {
         }.asLiveData();
     }
 
-
+    
     public LiveData<Boolean> fetchIsFav(int routineId){
         return Transformations.map(api.getFavourites(), res ->{
             boolean isFav = res.getData().getResults().stream().anyMatch(r -> r.getId() == routineId);
@@ -241,6 +247,7 @@ public class RoutineRepository {
         });
     }
 
+    
     public LiveData<ApiResponse<Void>> setFav(int routineId, boolean value) {
         executors.diskIO().execute(() ->
                 db.routineDao().setFav(routineId, value)
@@ -252,4 +259,104 @@ public class RoutineRepository {
             return api.unfavourite(routineId);
     }
 
+
+
+    // ----------------------------------- Mappers -----------------------------------
+
+    Review reviewEntityToDomain(ReviewEntity e){
+        return new Review(e.getId(), e.getDate(), e.getScore(), e.getReview(), e.getRoutineId());
+    }
+
+    ReviewEntity reviewModelToEntity(FullReviewModel m){
+        return new ReviewEntity(m.getId(), m.getDate(), m.getScore(), m.getReview(), m.getRoutine().getId());
+    }
+
+    Review reviewModelToDomain(FullReviewModel m){
+        return new Review(m.getId(), m.getDate(), m.getScore(), m.getReview(), m.getRoutine().getId());
+    }
+
+
+    // ----------------------------------- Methods -----------------------------------
+
+    public LiveData<Resource<List<Review>>> getReviews(int routineId) {
+        return new NetworkBoundResource<List<Review>, List<ReviewEntity>, PagedList<FullReviewModel>>(
+            executors,
+            entities -> entities.stream().map(this::reviewEntityToDomain).collect(toList()),
+            model -> model.getResults().stream().map(this::reviewModelToEntity).collect(toList()),
+            model -> model.getResults().stream().map(this::reviewModelToDomain).collect(toList())
+        ){
+            @Override
+            protected void saveCallResult(@NonNull List<ReviewEntity> entities) {
+                db.reviewDao().deleteByRoutineId(routineId);
+                db.reviewDao().insert(entities);
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable List<ReviewEntity> entities) {
+                return ((entities == null) || (entities.size() == 0))
+                        || rateLimit.shouldFetch(RATE_LIMITER_FAV_KEY);
+            }
+
+            @Override
+            protected boolean shouldPersist(@Nullable PagedList<FullReviewModel> model) {
+                return true;
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<List<ReviewEntity>> loadFromDb() {
+                return db.reviewDao().getByRoutineId(routineId);
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<PagedList<FullReviewModel>>> createCall() {
+                return api.getReviews(routineId);
+            }
+        }.asLiveData();
+    }
+
+
+    public LiveData<Resource<Review>> postReview(int routineId, ReviewModel review) {
+        return new NetworkBoundResource<Review, ReviewEntity, FullReviewModel>(
+            executors,
+            this::reviewEntityToDomain,
+            this::reviewModelToEntity,
+            this::reviewModelToDomain
+        ){
+            int reviewId = -1;
+
+            @Override
+            protected void saveCallResult(@NonNull ReviewEntity entities) {
+                reviewId = entities.getId();
+                db.reviewDao().insert(entities);
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable ReviewEntity entities) {
+                return true;
+            }
+
+            @Override
+            protected boolean shouldPersist(@Nullable FullReviewModel model) {
+                return true;
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ReviewEntity> loadFromDb() {
+                if (reviewId == -1)
+                    return AbsentLiveData.create();
+                else
+                    return db.reviewDao().getById(reviewId);
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<FullReviewModel>> createCall() {
+                return api.postReview(routineId, review);
+            }
+        }.asLiveData();
+    }
+    
 }

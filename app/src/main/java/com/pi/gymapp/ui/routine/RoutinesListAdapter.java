@@ -57,7 +57,7 @@ public class RoutinesListAdapter extends RecyclerView.Adapter<RoutinesListAdapte
         public ViewHolder(@NonNull View view) {
             super(view);
 
-            name = itemView.findViewById(R.id.routineName);
+            name = itemView.findViewById(R.id.routineNameChip);
             rate = itemView.findViewById(R.id.routineRateChip);
             difficulty = itemView.findViewById(R.id.routineDifficultyChip);
 

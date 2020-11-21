@@ -1,71 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:layout_width="350dp"
+    android:layout_height="180dp"
+    android:paddingHorizontal="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/exercise"
+    android:gravity="bottom"
     app:cardBackgroundColor="@color/backgroundColor">
 
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:layout_width="350dp"
-        android:layout_height="180dp"
-        android:background="@drawable/exercise">
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
-            android:orientation="vertical">
+        <com.google.android.material.chip.Chip
+            android:id="@+id/routineNameChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Routine"
+            android:textStyle="bold"
+            android:clickable="false"
+            app:chipBackgroundColor="@color/colorSoftContrast"
+            android:textColor="@color/textColor"
+            tools:ignore="HardcodedText" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="10dp">
+        <com.google.android.material.chip.Chip
+            android:id="@+id/routineDifficultyChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expert"
+            android:clickable="false"
+            app:chipBackgroundColor="@color/colorSoftContrast"
+            android:textColor="@color/textColor"
+            tools:ignore="HardcodedText" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/routineName"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/routineListCardName"
-                    android:textColor="@color/textColor"
-                    android:textStyle="bold"
-                    app:chipBackgroundColor="@color/colorSoftContrast"
-                    android:clickable="false"
-                    tools:ignore="HardcodedText" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/routineRateChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="★ 4.5"
+            android:clickable="false"
+            android:textColor="@color/textColor"
+            app:chipBackgroundColor="@color/colorSoftContrast"
+            tools:ignore="HardcodedText" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/routineDifficultyChip"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Expert"
-                    android:textColor="@color/textColor"
-                    app:chipBackgroundColor="@color/colorSoftContrast"
-                    android:clickable="false"
-                    tools:ignore="HardcodedText" />
+    </com.google.android.material.chip.ChipGroup>
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/routineRateChip"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="★ 4.5"
-                    android:textColor="@color/textColor"
-                    app:chipBackgroundColor="@color/colorSoftContrast"
-                    android:clickable="false"
-                    tools:ignore="HardcodedText" />
-
-            </com.google.android.material.chip.ChipGroup>
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+</LinearLayout>
