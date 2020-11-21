@@ -1,5 +1,7 @@
 package com.pi.gymapp.ui.execute;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -84,11 +86,19 @@ public class PlayRoutineFragment extends Fragment {
     private MyApplication application;
 
 
+    @Override
+    public void onDestroy() {
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        super.onDestroy();
 
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+
         binding = PlayRoutineBinding.inflate(getLayoutInflater());
         binding.playExerciseLeftTime.setText("-- : --");
 
@@ -100,9 +110,10 @@ public class PlayRoutineFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
         application = (MyApplication) getActivity().getApplication();
         activity = (MainActivity) getActivity();
-
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
         // Get routine
         routineId = PlayRoutineFragmentArgs.fromBundle(getArguments()).getRoutineId();

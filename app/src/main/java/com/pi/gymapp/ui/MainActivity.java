@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         ApiUserService userService = ApiClient.create(this, ApiUserService.class);
 
         AppPreferences appPreferences = new AppPreferences(getApplicationContext());
+//        appPreferences.setAuthToken(null);
         if (appPreferences.getAuthToken()!=null)
             userService.getCurrentUser().observe(this, r -> {
                 if (r.getError() != null) {

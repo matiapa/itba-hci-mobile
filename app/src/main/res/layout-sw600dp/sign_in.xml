@@ -30,7 +30,7 @@
             android:layout_marginTop="100dp"
             android:hint="@string/signInUsernameHint"
             android:inputType="textPersonName"
-            android:text="username"
+            android:text="@string/username"
             android:textSize="40sp" />
 
         <EditText
@@ -41,7 +41,7 @@
             android:ems="10"
             android:hint="@string/signInPasswordHint"
             android:inputType="textPassword"
-            android:text="Password1"
+            android:text="@string/password"
             android:textSize="40sp" />
 
         <TextView

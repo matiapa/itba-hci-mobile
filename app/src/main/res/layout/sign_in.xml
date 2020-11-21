@@ -29,7 +29,7 @@
             android:hint="@string/signInUsernameHint"
             android:textColorHint="@color/textColor"
             android:textColor="@color/textColor"
-            android:text="username"
+            android:text="@string/username"
             android:inputType="textPersonName" />
 
         <EditText
@@ -41,7 +41,7 @@
             android:hint="@string/signInPasswordHint"
             android:textColorHint="@color/textColor"
             android:textColor="@color/textColor"
-            android:text="Password1"
+            android:text="@string/password"
             android:inputType="textPassword" />
 
         <TextView

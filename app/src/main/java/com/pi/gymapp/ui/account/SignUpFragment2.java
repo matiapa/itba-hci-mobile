@@ -62,8 +62,13 @@ public class SignUpFragment2 extends Fragment {
         DatePicker age = binding.datePicker1;
         String gender = (binding.sexSpinner).getSelectedItem().toString();
 
+        if (!isNameValid(name.getText().toString())){
+            Snackbar.make(view, R.string.name_fail, Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
         if (!isNameValid(name.getText().toString()) || !isPhoneValid(phone.getText().toString())){
-            Snackbar.make(view, "Invalid Input", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view, R.string.phone_fail, Snackbar.LENGTH_LONG).show();
             return;
         }
 
@@ -88,7 +93,7 @@ public class SignUpFragment2 extends Fragment {
 
             if (r.getError()!= null){
 
-                Snackbar.make(view, "Ups! Something went wrong", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.general_error, Snackbar.LENGTH_LONG).show();
 
             }else {
 

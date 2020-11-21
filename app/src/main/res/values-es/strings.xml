@@ -111,6 +111,15 @@
     <string name="male">Masculino</string>
     <string name="female">Femenino</string>
     <string name="other">Otro</string>
+    <string name="password">Contraseña</string>
+    <string name="email_fail">Cuenta de correo Invalida</string>
+    <string name="username_fail">Nombre de usuario invalido</string>
+    <string name="Password_fail">La Contraseña debe contener almenos 8 caracteres</string>
+    <string name="name_fail">Nombre Invalido</string>
+    <string name="phone_fail">Numero de telefono invalido</string>
+    <string name="general_error">Ups! Algo salio mal</string>
+    <string name="email_sent">Correo ha sido enviado</string>
+    <string name="Code_fail">Codigo Incorrecto</string>
 
 
 </resources>
