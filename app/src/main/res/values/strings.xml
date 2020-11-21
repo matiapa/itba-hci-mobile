@@ -121,10 +121,13 @@
     <string name="Code_fail">Invalid Code</string>
 
 
-
     <string name="routine_rate_dialog_title">Rate the routine</string>
     <string name="skip_review_button">Skip</string>
     <string name="send_review_button">Submit</string>
     <string name="success_message">Done!</string>
+
+    <string name="settings">Settings</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="darkmodedescription">Change application into Dark Theme</string>
 
 </resources>
