@@ -5,28 +5,23 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public enum RoutineDifficulties {
-    ROOKIE("Rookie", "rookie"),
+    ROOKIE( "rookie"),
 
-    BEGINNER("Beginner", "beginner"),
+    BEGINNER( "beginner"),
 
-    INTERMEDIATE("Intermediate", "intermediate"),
+    INTERMEDIATE( "intermediate"),
 
-    ADVANCED("Advanced", "advanced"),
+    ADVANCED( "advanced"),
 
-    EXPERT("Expert", "expert");
+    EXPERT( "expert");
 
 
-    private String friendlyName, apiName;
+    private String apiName;
 
-    RoutineDifficulties(String name, String fieldName) {
-        this.friendlyName = name;
+    RoutineDifficulties(String fieldName) {
         this.apiName = fieldName;
     }
 
-
-    public String getFriendlyName() {
-        return friendlyName;
-    }
 
     public String getApiName() {
         return apiName;

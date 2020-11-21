@@ -105,7 +105,6 @@
     <string name="unavailable_categories">Ups! No se pudo obtener las categorías</string>
     <string name="review_description_hint">Escribe una reseña</string>
     <string name="routine_detail_reviews_header">Reseñas</string>
-    <string name="success_message">Listo!</string>
 
     <string name="navDrawerDarkMode">Modo oscuro</string>
     <string name="PlaceHolderTimer">--:--</string>

@@ -254,7 +254,8 @@ public class RoutinesExploreFragment extends Fragment {
                 getContext(), android.R.layout.select_dialog_singlechoice);
 
         List<RoutineDifficulties> difficulties = Arrays.asList(RoutineDifficulties.values());
-        difficulties.forEach(d -> adapter.add(d.getFriendlyName()));
+//        difficulties.forEach(d -> adapter.add(d.getFriendlyName()));
+        Arrays.asList(getResources().getStringArray(R.array.difficulties)).forEach(adapter::add);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setNegativeButton(getString(R.string.cancel_button), (dialog1, which1) -> dialog1.dismiss());

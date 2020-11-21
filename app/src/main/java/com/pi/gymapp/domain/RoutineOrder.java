@@ -4,26 +4,19 @@ import java.util.Comparator;
 
 public enum RoutineOrder {
 
-    RATE("Rating", "averageRating",
-            (o1, o2) -> Double.compare(o2.getRate(), o1.getRate())),
+    RATE("averageRating", (o1, o2) -> Double.compare(o2.getRate(), o1.getRate())),
 
-    DATE_CREATED("Date created","dateCreated",
-            (o1, o2) -> Long.compare(o2.getDateCreated(), o1.getDateCreated()));
+    DATE_CREATED("dateCreated", (o1, o2) -> Long.compare(o2.getDateCreated(), o1.getDateCreated()));
 
 
-    private String friendlyName, apiName;
+    private String apiName;
     private Comparator<Routine> comparator;
 
-    RoutineOrder(String friendlyName, String fieldName, Comparator<Routine> comparator){
-        this.friendlyName = friendlyName;
+    RoutineOrder(String fieldName, Comparator<Routine> comparator){
         this.apiName = fieldName;
         this.comparator = comparator;
     }
 
-
-    public String getFriendlyName() {
-        return friendlyName;
-    }
 
     public String getApiName() {
         return apiName;

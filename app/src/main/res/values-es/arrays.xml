@@ -2,9 +2,10 @@
 <resources>
 
     <string-array name="difficulties">
+        <item>Novato</item>
         <item>Principiante</item>
         <item>Intermedio</item>
-        <item>Difícil</item>
+        <item>Avanzado</item>
         <item>Experto</item>
     </string-array>
 

@@ -1,20 +1,16 @@
 package com.pi.gymapp.ui;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.pi.gymapp.AppPreferences;
 import com.pi.gymapp.R;
 import com.pi.gymapp.api.models.Error;
@@ -25,10 +21,7 @@ import com.pi.gymapp.api.ApiUserService;
 import com.pi.gymapp.ui.routine.RoutinesExploreFragmentDirections;
 
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -42,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityBinding binding;
     private AppBarConfiguration mAppBarConfiguration;
 
+    private boolean darkMode = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         ApiUserService userService = ApiClient.create(this, ApiUserService.class);
 
         AppPreferences appPreferences = new AppPreferences(getApplicationContext());
-//        appPreferences.setAuthToken(null);
         if (appPreferences.getAuthToken()!=null)
             userService.getCurrentUser().observe(this, r -> {
                 if (r.getError() != null) {
@@ -63,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             });
         else
             login();
-
 
         binding = MainActivityBinding.inflate(getLayoutInflater());
 
@@ -125,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-//        binding.navView.getMenu().getItem(0).setIcon(R.drawable.baseline_home_white_18dp);
+        // binding.navView.getMenu().getItem(0).setIcon(R.drawable.baseline_home_white_18dp);
 
     }
 
@@ -135,6 +128,47 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.overflow,menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem checkable = menu.findItem(R.id.dark_mode);
+
+        int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        darkMode = mode == Configuration.UI_MODE_NIGHT_YES;
+
+        checkable.setChecked(darkMode);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch(id) {
+            case R.id.dark_mode:
+                darkMode = !darkMode;
+                item.setChecked(darkMode);
+
+                if (darkMode) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                break;
+            default:
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -154,44 +188,6 @@ public class MainActivity extends AppCompatActivity {
 
         finish();
         startActivity(intent);
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.overflow,menu);
-        return true;
-    }
-
-    private boolean isChecked = false;
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        findViewById(R.id.nav_view);
-
-        switch (id) {
-            case R.id.dark_mode:
-                isChecked = !item.isChecked();
-                item.setChecked(isChecked);
-
-                int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-                if (mode == Configuration.UI_MODE_NIGHT_YES) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }
-                else if (mode == Configuration.UI_MODE_NIGHT_NO) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                break;
-            default:
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem checkable = menu.findItem(R.id.dark_mode);
-        checkable.setChecked(isChecked);
-        return true;
     }
 
 }

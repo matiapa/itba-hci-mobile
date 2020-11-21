@@ -25,7 +25,7 @@ public class AppPreferences {
         return sharedPreferences.getString(AUTH_TOKEN, null);
     }
 
-    public void setUserid(Integer userid) {
+    public void setUserId(Integer userid) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(USER_ID, userid);
         editor.apply();
