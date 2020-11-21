@@ -10,11 +10,11 @@ public class Review implements Comparable<Review> {
 
     private int id;
     private long date;
-    private double score;
+    private int score;
     private String review;
     private int routineId;
 
-    public Review(int id, long date, double score, String review, int routineId) {
+    public Review(int id, long date, int score, String review, int routineId) {
         this.id = id;
         this.date = date;
         this.score = score;
@@ -30,7 +30,7 @@ public class Review implements Comparable<Review> {
         return date;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 

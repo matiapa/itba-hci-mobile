@@ -8,9 +8,9 @@ public class ReviewModel {
     private String review;
 
     @Expose
-    private double score;
+    private int score;
 
-    public ReviewModel(String review, double score) {
+    public ReviewModel(String review, int score) {
         this.review = review;
         this.score = score;
     }
@@ -23,11 +23,11 @@ public class ReviewModel {
         this.review = review;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
     }
 }

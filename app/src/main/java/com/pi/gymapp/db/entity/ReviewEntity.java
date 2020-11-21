@@ -11,11 +11,11 @@ public class ReviewEntity {
 
     @PrimaryKey private int id;
     @ColumnInfo (name = "date") private long date;
-    @ColumnInfo (name = "score") private double score;
+    @ColumnInfo (name = "score") private int score;
     @ColumnInfo (name = "review") private String review;
     @ColumnInfo (name = "routine") private int routineId;
 
-    public ReviewEntity(int id, long date, double score, String review, int routineId) {
+    public ReviewEntity(int id, long date, int score, String review, int routineId) {
         this.id = id;
         this.date = date;
         this.score = score;
@@ -31,7 +31,7 @@ public class ReviewEntity {
         return date;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 

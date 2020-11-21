@@ -62,7 +62,7 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Vi
 
         public void bindTo(Review review) {
             detail.setText(review.getReview());
-            score.setText(String.format(score.getContext().getString(R.string.rateFormat), review.getScore()));
+            score.setText(String.format(score.getContext().getString(R.string.rateFormatInt), review.getScore()));
 
             DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(score.getContext());
             date.setText(dateFormat.format(new Date(review.getDate())));

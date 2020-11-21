@@ -14,6 +14,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
@@ -26,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="239dp"
                 android:adjustViewBounds="true"
+                android:background="@color/backgroundColor"
                 android:contentDescription="@string/playExerciseImageHint"
                 android:src="@drawable/exercise" />
 
@@ -36,6 +38,7 @@
                 android:layout_gravity="center"
                 android:padding="15dp"
                 android:text="@string/instructionsPanelHeaderText"
+                android:textColor="@color/textColor"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="24sp"
@@ -52,6 +55,8 @@
 
             <com.robertlevonyan.views.expandable.Expandable
                 android:id="@+id/expandable"
+                android:background="@color/backgroundColor"
+                android:backgroundTint="@color/backgroundColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -62,6 +67,8 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
                     android:layout_gravity="center"
+                    android:background="@color/backgroundColor"
+                    android:textColor="@color/textColor"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:text="@string/instructionsPanelHeaderText" />
 
@@ -70,6 +77,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
+                    android:background="@color/backgroundColor"
+                    android:textColor="@color/textColor"
                     android:layout_marginStart="15dp"
                     android:text="..."/>
 
@@ -81,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginTop="25dp"
+                android:textColor="@color/textColor"
                 android:text="--:--"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
@@ -90,6 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
+                android:textColor="@color/textColor"
                 android:text="@string/repetitions_remaining"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             <TextView
@@ -98,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
+                android:textColor="@color/textColor"
                 android:text="@string/ejs_reamining"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -113,6 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
+                    android:background="@color/backgroundColor"
                     android:src="@drawable/control_buttons_frame"
                     android:layout_centerInParent="true"
                     android:contentDescription="@string/playExerciseButtonHint" />

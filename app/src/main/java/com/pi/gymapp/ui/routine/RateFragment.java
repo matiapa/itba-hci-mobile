@@ -84,8 +84,11 @@ public class RateFragment extends DialogFragment {
         // --------------------------------- Buttons setup ---------------------------------
 
         binding.sumbitButton.setOnClickListener(v -> {
+
+            int rate = (int) Math.floor(binding.ratingBar.getRating() * 2);
+
             ReviewModel review = new ReviewModel(
-                    binding.review.getText().toString(), binding.ratingBar.getRating()
+                    binding.review.getText().toString(), rate
             );
 
             routineViewModel.postReview(routineId, review).observe(getViewLifecycleOwner(), resource -> {

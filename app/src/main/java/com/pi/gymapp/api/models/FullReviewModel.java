@@ -10,7 +10,7 @@ public class FullReviewModel {
     private long date;
 
     @Expose
-    private double score;
+    private int score;
 
     @Expose
     private String review;
@@ -18,7 +18,7 @@ public class FullReviewModel {
     @Expose
     private RoutineModel routine;
 
-    public FullReviewModel(int id, long date, double score, String review, RoutineModel routine) {
+    public FullReviewModel(int id, long date, int score, String review, RoutineModel routine) {
         this.id = id;
         this.date = date;
         this.score = score;
@@ -42,11 +42,11 @@ public class FullReviewModel {
         this.date = date;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
     }
 

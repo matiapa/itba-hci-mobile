@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,6 +19,7 @@
             android:text="@string/exerciseDetailsWorkingMuscles"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
+            android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,6 +30,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="400dp"
             android:text="@string/exerciseDetailsInstructions"
+            android:textColor="@color/textColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +43,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="440dp"
             android:text="@string/exerciseDetailsStep1"
+            android:textColor="@color/textColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

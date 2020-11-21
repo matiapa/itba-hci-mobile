@@ -21,13 +21,31 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/simpleImageView"
-                android:layout_width="238dp"
-                android:layout_height="396dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/playExerciseImageHint"
-                android:src="@drawable/exercise" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/simpleImageView"
+                    android:layout_width="238dp"
+                    android:layout_height="350dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/playExerciseImageHint"
+                    android:src="@drawable/exercise" />
+
+
+
+                <Button
+                    android:id="@+id/changeviewmode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="change view" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,7 +83,7 @@
                         android:id="@+id/content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginStart="5dp"
                         android:layout_marginLeft="15dp"
                         android:text="..." />
 
@@ -77,8 +95,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:gravity="center"
-                    android:text="--:--"
+                    android:text="@string/PlaceHolderTimer"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+
+                <TextView
+                    android:id="@+id/playExerciseRepetitions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:text="@string/repetitions_remaining"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <TextView
                     android:id="@+id/playExerciseLeftRoutines"
@@ -144,18 +172,9 @@
             </LinearLayout>
 
 
-            <Button
-                android:id="@+id/changeviewmode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:text="change view" />
+
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

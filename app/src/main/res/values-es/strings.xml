@@ -72,6 +72,7 @@
 
     <string name="secondsFormat">%.0fs</string>
     <string name="rateFormat">★ %.2f</string>
+    <string name="rateFormatInt">★ %d</string>
     <string name="signUpEmailHint">Email</string>
     <string name="signUpPasswordHint">Contraseña</string>
     <string name="signUpUsernameHint">Nombre de Usuario</string>
@@ -105,5 +106,11 @@
     <string name="review_description_hint">Escribe una reseña</string>
     <string name="routine_detail_reviews_header">Reseñas</string>
 
+    <string name="navDrawerDarkMode">Modo oscuro</string>
+    <string name="PlaceHolderTimer">--:--</string>
+    <string name="username">Nombre de Usuario</string>
+    <string name="male">Masculino</string>
+    <string name="female">Femenino</string>
+    <string name="other">Otro</string>
 
 </resources>

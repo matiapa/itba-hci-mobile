@@ -16,12 +16,15 @@ import com.pi.gymapp.MyApplication;
 
 import com.pi.gymapp.databinding.ExerciseListAllBinding;
 
+import com.pi.gymapp.domain.Cycle;
 import com.pi.gymapp.domain.Exercise;
 
+import com.pi.gymapp.repo.CycleRepository;
 import com.pi.gymapp.repo.ExerciseRepository;
 
 import com.pi.gymapp.ui.MainActivity;
 import com.pi.gymapp.ui.account.SignUpFragment2Args;
+import com.pi.gymapp.ui.cycle.CycleViewModel;
 import com.pi.gymapp.utils.RepositoryViewModel;
 
 
@@ -33,9 +36,11 @@ import java.util.List;
 public class AllExercisesFragment extends Fragment {
     private ExerciseListAllBinding binding;
     private ExerciseViewModel exerciseViewModel;
+    private CycleViewModel cycleViewModel;
     private int cycleId;
     private int routineId;
     private boolean observed=false;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -77,10 +82,20 @@ public class AllExercisesFragment extends Fragment {
 
         // --------------------------------- ViewModel setup ---------------------------------
 
+
+
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModel.Factory<>(
                 ExerciseRepository.class, application.getExerciseRepository()
         );
+
+
         exerciseViewModel = new ViewModelProvider(this, viewModelFactory).get(ExerciseViewModel.class);
+
+        viewModelFactory = new RepositoryViewModel.Factory<>(
+                CycleRepository.class, application.getCycleRepository()
+        );
+
+        cycleViewModel = new ViewModelProvider(this,viewModelFactory).get(CycleViewModel.class);
 
         cycleId = AllExercisesFragmentArgs.fromBundle(getArguments()).getCycleId();
         routineId = AllExercisesFragmentArgs.fromBundle(getArguments()).getRoutineId();
@@ -102,6 +117,22 @@ public class AllExercisesFragment extends Fragment {
                     Collections.sort(exercises);
 
                     adapter.notifyDataSetChanged();
+                    break;
+            }
+        });
+        cycleViewModel.setRoutineId(routineId);
+        cycleViewModel.setCycleId(cycleId);
+        cycleViewModel.getCycle().observe(getViewLifecycleOwner(), resource -> {
+            switch (resource.status) {
+                case LOADING:
+                    activity.showProgressBar();
+                    break;
+
+                case SUCCESS:
+                    activity.hideProgressBar();
+                    Cycle cycle=resource.data;
+
+                    ((MainActivity) getActivity()).getSupportActionBar().setTitle(cycle.getName());
                     break;
             }
         });

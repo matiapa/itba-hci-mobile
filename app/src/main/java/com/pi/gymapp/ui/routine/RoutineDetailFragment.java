@@ -145,11 +145,13 @@ public class RoutineDetailFragment extends Fragment {
         // --------------------------------- Button handlers setup ---------------------------------
 
         binding.playButton.setOnClickListener(view ->{
-//            Navigation.findNavController(view).navigate(
-//                    RoutineDetailFragmentDirections.actionRoutineDetailFragmentToPlayRoutineFragment(routineId)
-//                    RoutineDetailFragmentDirections.actionRoutineDetailFragmentToRateFragment(routineId)
-//            );
+            Navigation.findNavController(view).navigate(
+                    RoutineDetailFragmentDirections.actionRoutineDetailFragmentToPlayRoutineFragment(routineId)
+            );
+        });
 
+
+        binding.rateButton.setOnClickListener(v -> {
             Bundle args = new Bundle();
             args.putInt("routineId", routineId);
 
@@ -158,6 +160,7 @@ public class RoutineDetailFragment extends Fragment {
 
             rateFragment.show(getActivity().getSupportFragmentManager(), "rateFragment");
         });
+
 
         binding.buttonFav.setOnClickListener(v -> {
             isFav = !isFav;

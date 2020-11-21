@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/backgroundColor">
 
     <ProgressBar
         android:id="@+id/loading"
@@ -26,6 +27,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/signInUsernameHint"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
             android:text="username"
             android:inputType="textPersonName" />
 
@@ -36,6 +39,8 @@
             android:layout_marginTop="25dp"
             android:ems="10"
             android:hint="@string/signInPasswordHint"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
             android:text="Password1"
             android:inputType="textPassword" />
 
@@ -47,7 +52,7 @@
             android:gravity="center"
             android:text="@string/signInForgotPassLabel"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorSecondary"
+            android:textColor="@color/colorHardContrast"
             android:textSize="16sp" />
 
         <Button

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     android:orientation="vertical">
 
     <ProgressBar
@@ -26,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:gravity="center"
+            android:textColor="@color/textColor"
             android:text="@string/signUpStepAboutLabel"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -36,6 +38,8 @@
             android:layout_marginTop="25dp"
             android:ems="10"
             android:hint="@string/signUpEditNameHint"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
             android:inputType="textPersonName" />
 
         <EditText
@@ -44,12 +48,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:ems="10"
+            android:textColor="@color/textColor"
             android:hint="@string/signUpPhoneHint"
+            android:textColorHint="@color/textColor"
             android:inputType="phone" />
         <TextView
             android:id="@+id/ageText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
             android:layout_marginTop="25dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
@@ -60,6 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:datePickerMode="spinner"
+            android:background="@color/colorLight"
             android:calendarViewShown="false"/>
 
         <TextView
@@ -69,6 +77,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:textColor="@color/textColor"
             android:text="@string/signUpSexHint" />
 
         <Spinner
@@ -76,6 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/sex"
+            android:background="@color/colorLight"
             android:layout_marginTop="10dp"/>
 
         <Button

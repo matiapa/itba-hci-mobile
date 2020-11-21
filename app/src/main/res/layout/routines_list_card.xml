@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:background="@drawable/exercise"
     android:gravity="bottom"
-    app:cardBackgroundColor="@color/colorSecondary">
+    app:cardBackgroundColor="@color/backgroundColor">
 
     <com.google.android.material.chip.ChipGroup
         android:layout_width="match_parent"
@@ -23,7 +23,8 @@
             android:text="My Routine"
             android:textStyle="bold"
             android:clickable="false"
-            app:chipBackgroundColor="@color/colorAccent"
+            app:chipBackgroundColor="@color/colorSoftContrast"
+            android:textColor="@color/textColor"
             tools:ignore="HardcodedText" />
 
         <com.google.android.material.chip.Chip
@@ -33,7 +34,8 @@
             android:layout_height="wrap_content"
             android:text="Expert"
             android:clickable="false"
-            app:chipBackgroundColor="@color/colorAccent"
+            app:chipBackgroundColor="@color/colorSoftContrast"
+            android:textColor="@color/textColor"
             tools:ignore="HardcodedText" />
 
         <com.google.android.material.chip.Chip
@@ -43,7 +45,8 @@
             android:layout_height="wrap_content"
             android:text="★ 4.5"
             android:clickable="false"
-            app:chipBackgroundColor="@color/colorAccent"
+            android:textColor="@color/textColor"
+            app:chipBackgroundColor="@color/colorSoftContrast"
             tools:ignore="HardcodedText" />
 
     </com.google.android.material.chip.ChipGroup>
