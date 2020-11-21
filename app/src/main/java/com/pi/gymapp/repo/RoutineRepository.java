@@ -229,6 +229,7 @@ public class RoutineRepository {
     }
 
 
+
     public LiveData<Boolean> fetchIsFav(int routineId){
         return Transformations.map(api.getFavourites(), res ->{
             boolean isFav = res.getData().getResults().stream().anyMatch(r -> r.getId() == routineId);

@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
         <RelativeLayout
-            android:id="@+id/profile_left_side"
-            android:layout_width="wrap_content"
-            android:layout_height="414dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="500dp"
-            android:layout_marginRight="500dp"
-            android:layout_marginBottom="0dp"
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
             android:background="@color/colorAccent"
             android:paddingBottom="20dp">
 
@@ -34,274 +25,271 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp">
 
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_margin="9dp"
-                    android:adjustViewBounds="true"
-                    android:background="@color/colorAccent"
-                    android:padding="3dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/profile" />
-
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/user_fullname"
-                android:layout_width="207dp"
-                android:layout_height="68dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/imgUser"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginEnd="-10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="33dp"
                 android:fontFamily="sans-serif-light"
                 android:text="Joey Tribbiani"
                 android:textColor="@color/colorPrimary"
                 android:textSize="32sp" />
 
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:background="@color/colorAccent"
+                android:padding="3dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/profile" />
+
         </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/profile_right_side"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="-500dp"
-        android:layout_marginLeft="-500dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_toEndOf="@+id/profile_left_side"
-        android:layout_toRightOf="@+id/profile_left_side"
-        android:paddingBottom="20dp">
-
         <LinearLayout
+            android:id="@+id/linlay1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
+            android:orientation="horizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Username"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/user_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Friend"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorPrimary" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/user_fullname_again"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Joey Tribbiani"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorPrimary" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/email"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/user_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="joey@sharenofood.com"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorPrimary" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/phone_number"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/user_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="11-6543-1234"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorPrimary" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/birthday"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/user_birthday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Date"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorPrimary" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/gender"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13sp" />
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-                <RadioGroup
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:weightSum="1"
-                    android:id="@+id/radioGroup">
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
 
-                    <RadioButton
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:id="@+id/radioButtonMale"
-                        android:text="Male"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-                    <RadioButton
-                        android:layout_width="wrap_content"
+                        android:text="Username"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/user_username"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:id="@+id/radioButtonFemale"
-                        android:text="Female"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:id="@+id/radioButtonOther"
-                        android:text="Other"
+                        android:text="Friend"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                </RadioGroup>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/colorPrimary" />
+
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorPrimary" />
-
-                <Button
-                    android:id="@+id/profileButtonEdit"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Edit" />
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/user_fullname_again"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Joey Tribbiani"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/colorPrimary" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/user_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="joey@sharenofood.com"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/colorPrimary" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/phone_number"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/user_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="11-6543-1234"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/colorPrimary" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/birthday"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/user_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Date"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/colorPrimary" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gender"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:weightSum="1">
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:id="@+id/radioButtonMale"
+                                android:text="Male"
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:id="@+id/radioButtonFemale"
+                                android:text="Female"
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:id="@+id/radioButtonOther"
+                                android:text="Other"
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/profileButtonCancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profileBottonEdit"/>
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-    </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
-    </ScrollView>
+</ScrollView>
 
-</RelativeLayout>

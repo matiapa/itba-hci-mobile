@@ -2,6 +2,7 @@ package com.pi.gymapp.ui.routine;
 
 import androidx.lifecycle.LiveData;
 
+import com.pi.gymapp.api.models.ReviewModel;
 import com.pi.gymapp.api.utils.ApiResponse;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.repo.RoutineRepository;
@@ -54,7 +55,15 @@ public class RoutineViewModel extends RepositoryViewModel<RoutineRepository> {
     public LiveData<ApiResponse<Void>> setFav(int routineId, boolean value){
         return repository.setFav(routineId, value);
     }
+    //-------------------------------- Routine Reviews -----------------------------
 
+    public void sendReview(ReviewModel review){
+        repository.sendReview(review);
+    }
+
+    public ALGO routineReviews(int routineId){
+        repository.getRutineReviews(routineId);
+    }
 
     // ----------------------------- List of paged routines -----------------------------
 
