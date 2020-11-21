@@ -134,5 +134,6 @@
     <string name="settings">Configuracion</string>
     <string name="dark_mode">Modo Oscuro</string>
     <string name="darkmodedescription">Cambiar la aplicacion a modo Oscuro</string>
+    <string name="open_routine_intent_label">Abrir rutina</string>
 
 </resources>

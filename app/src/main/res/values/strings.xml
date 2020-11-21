@@ -132,4 +132,6 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="darkmodedescription">Change application into Dark Theme</string>
 
+    <string name="open_routine_intent_label">Open routine</string>
+
 </resources>
