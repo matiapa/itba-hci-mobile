@@ -100,5 +100,10 @@
     <string name="cancel_button">Cancel</string>
     <string name="navDrawerDarkMode">DarkMode</string>
     <string name="unavailable_categories">Ups! Couldn\'t fetch categories</string>
+    <string name="PlaceHolderTimer">--:--</string>
+    <string name="username">Username</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
 
 </resources>
