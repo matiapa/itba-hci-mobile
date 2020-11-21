@@ -43,7 +43,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:text="@string/skip_review_button"
-            android:textColor="@color/textColor"
             android:textAllCaps="false"/>
 
         <View
@@ -57,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="@string/send_review_button"
-            android:textColor="@color/textColor"
             android:textAllCaps="false" />
 
     </LinearLayout>
