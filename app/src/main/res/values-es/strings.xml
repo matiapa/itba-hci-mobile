@@ -113,5 +113,6 @@
     <string name="male">Masculino</string>
     <string name="female">Femenino</string>
     <string name="other">Otro</string>
+    <string name="add_filter">+ Agregar Filtro</string>
 
 </resources>
