@@ -9,6 +9,12 @@
         <item>Experto</item>
     </string-array>
 
+    <string-array name="cycleTypes">
+        <item>Calentamiento</item>
+        <item>Ejercicio</item>
+        <item>Enfriamiento</item>
+    </string-array>
+
     <string-array name="sex">
         <item>Masculino</item>
         <item>Femenino</item>

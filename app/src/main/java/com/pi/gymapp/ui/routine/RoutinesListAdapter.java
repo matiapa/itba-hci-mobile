@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pi.gymapp.R;
+import com.pi.gymapp.api.ApiKeywords;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.utils.StringUtils;
 
@@ -68,7 +69,7 @@ public class RoutinesListAdapter extends RecyclerView.Adapter<RoutinesListAdapte
             id = routine.getId();
 
             name.setText(routine.getName());
-            difficulty.setText(StringUtils.capitalize(routine.getDifficulty()));
+            difficulty.setText(ApiKeywords.getDifficulty(difficulty.getContext(), routine.getDifficulty()));
 
             Context context = name.getContext();
             rate.setText(String.format(context.getString(R.string.rateFormat), routine.getRate()));

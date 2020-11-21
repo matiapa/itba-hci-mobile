@@ -121,10 +121,11 @@
     <string name="Code_fail">Invalid Code</string>
 
 
-
     <string name="routine_rate_dialog_title">Rate the routine</string>
     <string name="skip_review_button">Skip</string>
     <string name="send_review_button">Submit</string>
     <string name="success_message">Done!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
