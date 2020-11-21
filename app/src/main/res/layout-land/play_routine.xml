@@ -34,6 +34,12 @@
                     android:contentDescription="@string/playExerciseImageHint"
                     android:src="@drawable/exercise" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/exerciseviewlist"
+                    android:layout_width="238dp"
+                    android:layout_height="350dp"
+                    android:visibility="gone" />
+
 
 
                 <Button

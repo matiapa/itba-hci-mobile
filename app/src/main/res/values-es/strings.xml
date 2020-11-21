@@ -105,6 +105,7 @@
     <string name="unavailable_categories">Ups! No se pudo obtener las categorías</string>
     <string name="review_description_hint">Escribe una reseña</string>
     <string name="routine_detail_reviews_header">Reseñas</string>
+    <string name="success_message">Listo!</string>
 
     <string name="navDrawerDarkMode">Modo oscuro</string>
     <string name="PlaceHolderTimer">--:--</string>
@@ -112,6 +113,17 @@
     <string name="male">Masculino</string>
     <string name="female">Femenino</string>
     <string name="other">Otro</string>
+    <string name="add_filter">+ Agregar Filtro</string>
+    <string name="password">Contraseña</string>
+    <string name="email_fail">Cuenta de correo Invalida</string>
+    <string name="username_fail">Nombre de usuario invalido</string>
+    <string name="Password_fail">La Contraseña debe contener almenos 8 caracteres</string>
+    <string name="name_fail">Nombre Invalido</string>
+    <string name="phone_fail">Numero de telefono invalido</string>
+    <string name="general_error">Ups! Algo salio mal</string>
+    <string name="email_sent">Correo ha sido enviado</string>
+    <string name="Code_fail">Codigo Incorrecto</string>
+
 
     <string name="routine_rate_dialog_title">Puntuar la rutina</string>
     <string name="skip_review_button">Saltear</string>

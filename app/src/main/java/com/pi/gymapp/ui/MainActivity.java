@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         ApiUserService userService = ApiClient.create(this, ApiUserService.class);
 
         AppPreferences appPreferences = new AppPreferences(getApplicationContext());
+//        appPreferences.setAuthToken(null);
         if (appPreferences.getAuthToken()!=null)
             userService.getCurrentUser().observe(this, r -> {
                 if (r.getError() != null) {
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Intent mainIntent = getIntent();
         Uri data = mainIntent.getData();
 
-        if (data!=null && data.getLastPathSegment()!=null) {
+        if (data != null && data.getLastPathSegment() != null) {
             RoutinesExploreFragmentDirections.ActionNavHomeToRoutineDetailFragment navAction =
                     RoutinesExploreFragmentDirections.actionNavHomeToRoutineDetailFragment(
                             Integer.parseInt(data.getLastPathSegment())
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.navView.getMenu().findItem(R.id.nav_rate_us).setOnMenuItemClickListener(menuItem -> {
             Intent rateIntent = new Intent(
-            "android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps")
+                    "android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps")
             );
 
             startActivity(rateIntent);
@@ -101,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
 
         binding.navView.getMenu().findItem(R.id.nav_sign_out).setOnMenuItemClickListener(menuItem -> {
 
-            userService.logout().observe(this,r->{
-                if (r.getError()!= null){
-                    Log.d("UI","Logout failed");
+            userService.logout().observe(this, r -> {
+                if (r.getError() != null) {
+                    Log.d("UI", "Logout failed");
 
                     Toast.makeText(this, getResources().getString(R.string.unexpected_error),
-                        Toast.LENGTH_SHORT).show();
-                }else {
+                            Toast.LENGTH_SHORT).show();
+                } else {
                     AppPreferences preferences = new AppPreferences(this);
                     preferences.setAuthToken(null);
 
@@ -170,23 +172,20 @@ public class MainActivity extends AppCompatActivity {
             case R.id.dark_mode:
                 isChecked = !item.isChecked();
                 item.setChecked(isChecked);
-                AppCompatDelegate.setDefaultNightMode(id);
 
-                /*
                 int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
                 if (mode == Configuration.UI_MODE_NIGHT_YES) {
-
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }
                 else if (mode == Configuration.UI_MODE_NIGHT_NO) {
-
-                }*/
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
                 break;
             default:
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {

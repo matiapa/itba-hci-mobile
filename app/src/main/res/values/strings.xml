@@ -107,6 +107,20 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="other">Other</string>
+    <string name="add_filter">+ Add Filter</string>
+    <string name="password">Password</string>
+
+    <string name="email_fail">Invalid email</string>
+    <string name="username_fail">Invalid username</string>
+    <string name="Password_fail">Password must be at least 8 characters long</string>
+    <string name="name_fail">Invalid Name</string>
+    <string name="phone_fail">Invalid Phone number</string>
+    <string name="general_error">"Ups! Something went wrong"</string>
+    <string name="email_sent">Email has been sent!</string>
+
+    <string name="Code_fail">Invalid Code</string>
+
+
 
     <string name="routine_rate_dialog_title">Rate the routine</string>
     <string name="skip_review_button">Skip</string>

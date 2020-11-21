@@ -11,11 +11,18 @@
     <string-array name="sex">
         <item>Masculino</item>
         <item>Femenino</item>
+        <item>Otro</item>
     </string-array>
 
     <string-array name="routineOrders">
         <item>Puntuación</item>
         <item>Fecha de creación</item>
+    </string-array>
+
+    <string-array name="routineFilters">
+        <item>Favoritos</item>
+        <item>Dificultad</item>
+        <item>Categoria</item>
     </string-array>
 
 </resources>

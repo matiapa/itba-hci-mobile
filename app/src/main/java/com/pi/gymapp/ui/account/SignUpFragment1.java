@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,13 +46,13 @@ public class SignUpFragment1 extends Fragment {
         EditText password_input = binding.passwordSignup;
 
         if (!isEmailValid(email_input.getText().toString())){
-            Snackbar.make(view, "Invalid email", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view, R.string.email_fail, Snackbar.LENGTH_LONG).show();
             return;
         }else if (!isUsernameValid(user_input.getText().toString())){
-            Snackbar.make(view, "Invalid username", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view, R.string.username_fail, Snackbar.LENGTH_LONG).show();
             return;
         }else if (!isPasswordValid(password_input.getText().toString())){
-            Snackbar.make(view, "Password must be at least 8 characters long",
+            Snackbar.make(view, R.string.Password_fail,
                     Snackbar.LENGTH_LONG).show();
             return;
         }
@@ -69,11 +71,13 @@ public class SignUpFragment1 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+        setRetainInstance(true);
         binding = SignUpS1Binding.inflate(getLayoutInflater());
 
-        binding.signInButton.setOnClickListener(v -> nextStep(v));
+        binding.signInButton.setOnClickListener(this::nextStep);
 
         return binding.getRoot();
     }
+
 
 }

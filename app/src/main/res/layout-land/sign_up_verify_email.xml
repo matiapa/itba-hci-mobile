@@ -5,22 +5,21 @@
     android:background="@color/backgroundColor"
     android:orientation="vertical">
 
-
     <ProgressBar
         android:id="@+id/loading"
-        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:indeterminate="true"
-        android:visibility="gone" />
+        style="?android:attr/progressBarStyleHorizontal"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:gravity="center"
@@ -30,79 +29,64 @@
                 android:id="@+id/stepAboutLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:text="@string/signUpStepAboutLabel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/textColor" />
 
-            <EditText
-                android:id="@+id/signUpName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:ems="10"
-                android:hint="@string/signUpEditNameHint"
-                android:inputType="textPersonName"
-                android:textColor="@color/textColor"
-                android:textColorHint="@color/textColor" />
-
-            <EditText
-                android:id="@+id/signUpPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:ems="10"
-                android:hint="@string/signUpPhoneHint"
-                android:inputType="phone"
-                android:textColor="@color/textColor"
-                android:textColorHint="@color/textColor" />
-
             <TextView
-                android:id="@+id/ageText"
+                android:id="@+id/VerificationEmailHelper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="25dp"
-                android:text="@string/signUpAgeHint"
+                android:layout_marginTop="20dp"
+                android:text="@string/VerificationEmailHelper"
                 android:textColor="@color/textColor" />
 
-            <DatePicker
-                android:id="@+id/datePicker1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:background="@color/colorLight"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner" />
-
-            <TextView
-                android:id="@+id/sexText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="25dp"
-                android:text="@string/signUpSexHint"
-                android:textColor="@color/textColor" />
-
-            <Spinner
-                android:id="@+id/sexSpinner"
+            <EditText
+                android:id="@+id/VerificationEmailEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorLight"
-                android:entries="@array/sex" />
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/textColor" />
+
+            <TextView
+                android:id="@+id/VerificationCodeHelper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/VerificationCodeHelper"
+                android:textColor="@color/textColor" />
+
+            <EditText
+                android:id="@+id/VerificationCodeEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="text" />
 
             <Button
                 android:id="@+id/signInButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/colorAccent"
                 android:text="@string/nextStepButton" />
 
+            <Button
+                android:id="@+id/resendVerificationButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorAccent"
+                android:text="@string/resend_verification_email" />
+
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>
