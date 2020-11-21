@@ -5,7 +5,7 @@
     android:id="@+id/cardView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/colorSecondary">
+    app:cardBackgroundColor="@color/backgroundColor">
 
     <LinearLayout
         android:layout_margin="10dp"
@@ -31,8 +31,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/routineListCardName"
+                    android:textColor="@color/textColor"
                     android:textStyle="bold"
-                    app:chipBackgroundColor="@color/colorAccent"
+                    app:chipBackgroundColor="@color/colorSoftContrast"
                     tools:ignore="HardcodedText" />
 
                 <com.google.android.material.chip.Chip
@@ -41,7 +42,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Expert"
-                    app:chipBackgroundColor="@color/colorAccent"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/colorSoftContrast"
                     tools:ignore="HardcodedText" />
 
                 <com.google.android.material.chip.Chip
@@ -50,7 +52,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="★ 4.5"
-                    app:chipBackgroundColor="@color/colorAccent"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/colorSoftContrast"
                     tools:ignore="HardcodedText" />
 
             </com.google.android.material.chip.ChipGroup>

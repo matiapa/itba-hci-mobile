@@ -18,7 +18,7 @@
                 android:id="@+id/profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
+                android:background="@color/colorSoftContrast"
                 android:paddingBottom="20dp">
 
                 <RelativeLayout
@@ -49,7 +49,7 @@
                     android:layout_marginTop="15sp"
                     android:fontFamily="sans-serif-light"
                     android:text="Joey Tribbiani"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/textColor"
                     android:textSize="32sp" />
 
             </RelativeLayout>
@@ -62,7 +62,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/backgroundColor">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -83,7 +84,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Username"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/textColor"
                             android:textSize="13sp" />
 
                         <TextView
@@ -92,14 +93,14 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:text="Friend"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="18sp" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="15dp"
-                            android:background="@color/colorPrimary" />
+                            android:background="@color/backgroundColor" />
 
                     </LinearLayout>
 
@@ -113,7 +114,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/name"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/textColor"
                             android:textSize="13sp" />
 
                         <TextView
@@ -122,14 +123,14 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:text="Joey Tribbiani"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="18sp" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="15dp"
-                            android:background="@color/colorPrimary" />
+                            android:background="@color/backgroundColor" />
 
                     </LinearLayout>
 
@@ -143,7 +144,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/email"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/textColor"
                             android:textSize="13sp" />
 
                         <TextView
@@ -152,14 +153,14 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:text="joey@sharenofood.com"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="18sp" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="15dp"
-                            android:background="@color/colorPrimary" />
+                            android:background="@color/backgroundColor" />
 
                     </LinearLayout>
 
@@ -173,7 +174,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/phone_number"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/textColor"
                             android:textSize="13sp" />
 
                         <TextView
@@ -182,14 +183,14 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:text="11-6543-1234"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="18sp" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="15dp"
-                            android:background="@color/colorPrimary" />
+                            android:background="@color/backgroundColor" />
 
                     </LinearLayout>
 
@@ -203,7 +204,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/birthday"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/textColor"
                             android:textSize="13sp" />
 
                         <TextView
@@ -212,14 +213,14 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:text="Date"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="18sp" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="15dp"
-                            android:background="@color/colorPrimary" />
+                            android:background="@color/backgroundColor" />
 
                     </LinearLayout>
 
@@ -233,7 +234,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/gender"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/textColor"
                             android:textSize="13sp" />
 
                         <LinearLayout
@@ -253,7 +254,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-light"
                                 android:text="Male"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/textColor"
                                 android:textSize="18sp" />
 
                             <RadioButton
@@ -262,7 +263,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-light"
                                 android:text="Female"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/textColor"
                                 android:textSize="18sp" />
 
                             <RadioButton
@@ -271,7 +272,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-light"
                                 android:text="Other"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/textColor"
                                 android:textSize="18sp" />
                         </RadioGroup>
 

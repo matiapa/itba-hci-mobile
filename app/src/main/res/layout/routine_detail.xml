@@ -2,12 +2,14 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/backgroundColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
         android:orientation="vertical">
 
         <LinearLayout
@@ -28,7 +30,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category"
-                    app:chipBackgroundColor="@color/colorAccent"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/colorSoftContrast"
                     tools:ignore="HardcodedText" />
 
                 <com.google.android.material.chip.Chip
@@ -37,7 +40,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Expert"
-                    app:chipBackgroundColor="@color/colorAccent"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/colorSoftContrast"
                     tools:ignore="HardcodedText" />
 
                 <com.google.android.material.chip.Chip
@@ -46,7 +50,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="★ 4.5"
-                    app:chipBackgroundColor="@color/colorAccent"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/colorSoftContrast"
                     tools:ignore="HardcodedText" />
 
             </com.google.android.material.chip.ChipGroup>
@@ -80,12 +85,15 @@
 
             <com.robertlevonyan.views.expandable.Expandable
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/backgroundColor"
+                android:background="@color/backgroundColor">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textColor="@color/textColor"
                     android:text="@string/instructionsPanelHeaderText"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -95,6 +103,7 @@
                     android:layout_height="wrap_content"
                     android:lines="3"
                     android:text="..."
+                    android:textColor="@color/textColor"
                     tools:ignore="HardcodedText" />
 
             </com.robertlevonyan.views.expandable.Expandable>
@@ -102,16 +111,20 @@
             <com.robertlevonyan.views.expandable.Expandable
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/backgroundColor"
+                android:backgroundTint="@color/backgroundColor"
                 android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/routine_detail_cycles_header"
+                    android:textColor="@color/textColor"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/cycleListFragment"
+                    android:background="@color/backgroundColor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -127,7 +140,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="@color/colorLight"
+        android:background="@color/backgroundColor"
         app:borderWidth="0dp"
         app:srcCompat="@android:drawable/ic_media_play"
         android:contentDescription="@string/play_routine_button" />

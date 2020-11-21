@@ -104,6 +104,7 @@
     <string name="cancel_button">Cancelar</string>
 
     <string name="repetitions_remaining">Quedan %d Repeticiones</string>
+    <string name="navDrawerDarkMode">Modo oscuro</string>
 
 
 </resources>

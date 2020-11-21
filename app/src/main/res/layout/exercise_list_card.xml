@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="137dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/backgroundColor">
 
         <ImageView
             android:id="@+id/exerciseImage"
@@ -22,7 +23,8 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@color/backgroundColor"/>
 
         <LinearLayout
             android:layout_width="198dp"
@@ -37,6 +39,7 @@
                 android:layout_marginRight="10dp"
                 android:gravity="center|start|center_vertical"
                 android:text="@string/routineWarmUpListRopeJump"
+                android:textColor="@color/textColor"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <LinearLayout
@@ -51,6 +54,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="01:00"
+                    android:textColor="@color/textColor"
                     android:textStyle="bold"
                     app:drawableLeftCompat="@drawable/ic_baseline_timer_24" />
 
@@ -61,6 +65,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="5"
+                    android:textColor="@color/textColor"
                     android:textStyle="bold"
                     app:drawableLeftCompat="@drawable/ic_baseline_replay_24" />
 

@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:text="@string/helpAboutUs"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/textColor"
             android:textSize="50sp" />
 
         <TextView
@@ -34,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="25sp"
+            android:textColor="@color/textColor"
             android:text="@string/helpAboutUsInfo" />
 
         <Space
@@ -46,6 +49,7 @@
             android:layout_height="wrap_content"
             android:text="@string/helpContactUs"
             android:textSize="50sp"
+            android:textColor="@color/textColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -53,6 +57,7 @@
             android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
             android:text="@string/helpContactUsInfo" />
 
         <Space
@@ -65,6 +70,7 @@
             android:layout_height="wrap_content"
             android:text="@string/helpFAQ"
             android:textSize="50sp"
+            android:textColor="@color/textColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -74,6 +80,7 @@
             android:textSize="25sp"
             android:text="@string/helpQ1"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/textColor"
             android:textStyle="bold" />
 
         <TextView
@@ -81,6 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="25sp"
+            android:textColor="@color/textColor"
             android:text="@string/helpA1" />
 
         <Space
@@ -94,6 +102,7 @@
             android:text="@string/helpQ2"
             android:textSize="25sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/textColor"
             android:textStyle="bold" />
 
         <TextView
@@ -101,6 +110,7 @@
             android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
             android:text="@string/helpA2" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

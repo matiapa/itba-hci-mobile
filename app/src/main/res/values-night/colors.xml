@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <color name="colorPrimary">#1e2831</color>
-    <color name="colorSecondary">#00574B</color>
-    <color name="colorAccent">#FBD46D</color>
-    <color name="colorAccentLight">#EEEEEE</color>
+    <color name="colorSecondary">#FBD46D</color>
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorLight">#FBD46D</color>
+
+    <color name="colorAccentLight">#00574B</color>
+    <color name="colorSoftContrast">#00574B</color>
+    <color name="colorHardContrast">#FBD46D</color>
+
 
     <color name="backgroundColor">#212121</color>
-    <color name="textColor">#FFFFFF</color>
+    <color name="textColor">#FCFCFC</color>
 </resources>

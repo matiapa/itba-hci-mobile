@@ -4,6 +4,10 @@
     <color name="colorSecondary">#00574B</color>
     <color name="colorAccent">#FBD46D</color>
     <color name="colorAccentLight">#EEEEEE</color>
+    <color name="colorSoftContrast">#FBD46D</color>
+    <color name="colorHardContrast">#00574B</color>
+
+    <color name="colorLight">#FBD46D</color>
 
 
     <color name="backgroundColor">#FCFCFC</color>
