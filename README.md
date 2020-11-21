@@ -1,7 +1,11 @@
 # Gymapp
 
-Mobile application to find exercise routines.
+Mobile application to find and execute exercise routines, created by the user from the web for themselves and for other users.
 
+## Dependencies
+
+* gradle
+* AndroidStudio
 
 ## Installation
 
