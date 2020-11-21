@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/signInUsernameHint"
-            android:text="username"
+            android:text="@string/username"
             android:inputType="textPersonName" />
 
         <EditText
@@ -36,7 +36,7 @@
             android:layout_marginTop="25dp"
             android:ems="10"
             android:hint="@string/signInPasswordHint"
-            android:text="Password1"
+            android:text="@string/password"
             android:inputType="textPassword" />
 
         <TextView

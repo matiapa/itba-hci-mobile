@@ -38,10 +38,10 @@ public class VerifyEmail extends Fragment {
         EditText verification_email = binding.VerificationEmailEdit;
 
         if (verification_code.getText().toString().equals("") ) {
-            Snackbar.make(view, "Invalid email", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view, R.string.email_fail, Snackbar.LENGTH_LONG).show();
             return;
         } else if (verification_code.getText().toString().equals("") ) {
-            Snackbar.make(view, "Invalid code", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view, R.string.Code_fail, Snackbar.LENGTH_LONG).show();
             return;
         }
 
@@ -57,7 +57,7 @@ public class VerifyEmail extends Fragment {
 
             if (r.getError() != null) {
 
-                Snackbar.make(view, "Invalid Code", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.Code_fail, Snackbar.LENGTH_LONG).show();
 
             } else {
 
@@ -93,9 +93,9 @@ public class VerifyEmail extends Fragment {
             binding.resendVerificationButton.setEnabled(true);
 
             if (r.getError() != null) {
-                Snackbar.make(view, "Ups! Something went wrong", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.general_error, Snackbar.LENGTH_LONG).show();
             } else {
-                Snackbar.make(view, "Email has been sent!", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.email_fail, Snackbar.LENGTH_LONG).show();
             }
         });
 
