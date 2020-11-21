@@ -120,6 +120,24 @@
 
             </com.robertlevonyan.views.expandable.Expandable>
 
+            <com.robertlevonyan.views.expandable.Expandable
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/routine_detail_reviews_header"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/reviewsListFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.robertlevonyan.views.expandable.Expandable>
+
         </LinearLayout>
 
     </LinearLayout>

@@ -48,10 +48,11 @@ public interface ApiRoutineService {
     // Reviews and Ratings
 
     @GET("routines/{routineId}/ratings")
-    LiveData<ApiResponse<PagedList<FullReviewModel>>> getReviews(@Path("routineId") int routineId, @Query("page") int page, @Query("size") int size);
+    LiveData<ApiResponse<PagedList<FullReviewModel>>> getReviews(@Path("routineId") int routineId);
 
     @POST("routines/{routineId}/ratings")
-    LiveData<ApiResponse<FullReviewModel>> setReview(@Path("routineId") int routineId, @Body ReviewModel reviewModel);
+    LiveData<ApiResponse<FullReviewModel>> postReview(@Path("routineId") int routineId,
+         @Body ReviewModel reviewModel);
 
     // Updaters
 

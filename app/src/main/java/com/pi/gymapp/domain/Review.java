@@ -1,21 +1,20 @@
-package com.pi.gymapp.db.entity;
+package com.pi.gymapp.domain;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.pi.gymapp.api.models.RoutineModel;
+import com.pi.gymapp.R;
 
-@Entity
-public class ReviewEntity {
+public class Review implements Comparable<Review> {
 
-    @PrimaryKey private int id;
-    @ColumnInfo (name = "date") private long date;
-    @ColumnInfo (name = "score") private double score;
-    @ColumnInfo (name = "review") private String review;
-    @ColumnInfo (name = "routine") private int routineId;
+    private int id;
+    private long date;
+    private double score;
+    private String review;
+    private int routineId;
 
-    public ReviewEntity(int id, long date, double score, String review, int routineId) {
+    public Review(int id, long date, double score, String review, int routineId) {
         this.id = id;
         this.date = date;
         this.score = score;
@@ -39,7 +38,14 @@ public class ReviewEntity {
         return review;
     }
 
-    public int getRoutineId() {
+    public int getRoutine() {
         return routineId;
     }
+
+
+    @Override
+    public int compareTo(Review o) {
+        return Long.compare(o.date, date);
+    }
+
 }
