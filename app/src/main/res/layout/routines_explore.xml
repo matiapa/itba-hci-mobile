@@ -27,7 +27,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorHardContrast"
-                    android:text="+ Add Filter"/>
+                    android:text="@string/add_filter"/>
 
                 <View
                     android:layout_width="0dp"
