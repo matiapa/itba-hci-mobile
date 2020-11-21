@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_profile, R.id.nav_help)
+                R.id.nav_home, R.id.nav_profile, R.id.nav_help,R.id.blankFragment2)
                 .setDrawerLayout(binding.drawerLayout)
                 .build();
 
@@ -138,32 +138,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem checkable = menu.findItem(R.id.dark_mode);
-
-        int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-        darkMode = mode == Configuration.UI_MODE_NIGHT_YES;
-
-        checkable.setChecked(darkMode);
-        return true;
-    }
+//    @Override
+//    public boolean onPrepareOptionsMenu(Menu menu) {
+//        MenuItem checkable = menu.findItem(R.id.dark_mode);
+//
+//        int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+//        darkMode = mode == Configuration.UI_MODE_NIGHT_YES;
+//
+//        checkable.setChecked(darkMode);
+//        return true;
+//    }
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         switch(id) {
-            case R.id.dark_mode:
-                darkMode = !darkMode;
-                item.setChecked(darkMode);
+            case R.id.preferences:
+                navController.navigate(R.id.blankFragment2);
+                break;
+            case R.id.nav_help:
 
-                if (darkMode) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                } else{
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }
+
+                navController.navigate(R.id.nav_help);
                 break;
             default:
         }

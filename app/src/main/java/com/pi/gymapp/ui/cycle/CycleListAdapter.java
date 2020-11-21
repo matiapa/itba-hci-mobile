@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pi.gymapp.R;
+import com.pi.gymapp.api.ApiKeywords;
 import com.pi.gymapp.domain.Cycle;
 import com.pi.gymapp.ui.routine.RoutineDetailFragmentDirections;
 import com.pi.gymapp.utils.StringUtils;
@@ -83,7 +84,8 @@ public class CycleListAdapter extends RecyclerView.Adapter<CycleListAdapter.View
 
             name.setText(cycle.getName());
             detail.setText(cycle.getDetail());
-            type.setText(StringUtils.capitalize(cycle.getType()));
+
+            type.setText(ApiKeywords.getCycleType(type.getContext(), cycle.getType()));
         }
 
         @Override

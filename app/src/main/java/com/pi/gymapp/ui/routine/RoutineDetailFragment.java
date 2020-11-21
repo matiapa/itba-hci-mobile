@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 
 import com.pi.gymapp.MyApplication;
 import com.pi.gymapp.R;
+import com.pi.gymapp.api.ApiKeywords;
 import com.pi.gymapp.databinding.RoutineDetailBinding;
 import com.pi.gymapp.domain.Routine;
 import com.pi.gymapp.repo.RoutineRepository;
@@ -123,7 +124,10 @@ public class RoutineDetailFragment extends Fragment {
                     ((MainActivity) getActivity()).getSupportActionBar().setTitle(r.getName());
 
                     binding.routineCategoryChip.setText(StringUtils.capitalize(r.getCategoryName()));
-                    binding.routineDifficultyChip.setText(StringUtils.capitalize(r.getDifficulty()));
+
+                    binding.routineDifficultyChip.setText(ApiKeywords.getDifficulty(
+                            binding.routineDifficultyChip.getContext(), r.getDifficulty()));
+
                     binding.routineRateChip.setText(String.format(getString(R.string.rateFormat), r.getRate()));
 
                     binding.routineDescription.setText(r.getDetail());
