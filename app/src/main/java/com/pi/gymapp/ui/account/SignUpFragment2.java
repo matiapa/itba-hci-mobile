@@ -1,6 +1,7 @@
 package com.pi.gymapp.ui.account;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -114,6 +115,14 @@ public class SignUpFragment2 extends Fragment {
 
         binding = SignUpS2Binding.inflate(getLayoutInflater());
         binding.signInButton.setOnClickListener(v -> finishSignUp(v));
+
+        int nightModeFlags = getContext().getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK;
+        switch (nightModeFlags) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                binding.datePicker1.setBackgroundColor(getResources().getColor(R.color.colorLight));
+                break;
+        }
 
         return binding.getRoot();
     }

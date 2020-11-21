@@ -9,7 +9,8 @@
     <color name="colorSoftContrast">#00574B</color>
     <color name="colorHardContrast">#FBD46D</color>
 
-
     <color name="backgroundColor">#212121</color>
     <color name="textColor">#FCFCFC</color>
+
+    <color name="spinner_text_color">#FFFFFF</color>
 </resources>

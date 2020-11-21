@@ -128,6 +128,11 @@
     <string name="skip_review_button">Saltear</string>
     <string name="send_review_button">Enviar</string>
     <string name="success_message">Listo!</string>
+
     <string name="edit_profile_title">Editar Perfil</string>
+
+    <string name="settings">Configuracion</string>
+    <string name="dark_mode">Modo Oscuro</string>
+    <string name="darkmodedescription">Cambiar la aplicacion a modo Oscuro</string>
 
 </resources>

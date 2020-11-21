@@ -1,5 +1,6 @@
 package com.pi.gymapp.ui.profile;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;

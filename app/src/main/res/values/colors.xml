@@ -9,7 +9,8 @@
 
     <color name="colorLight">#FBD46D</color>
 
-
     <color name="backgroundColor">#FCFCFC</color>
     <color name="textColor">#000000</color>
+
+    <color name="spinner_text_color">#000000</color>
 </resources>
