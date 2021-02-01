@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:avancer/models/deposit_method.dart';
 import 'package:avancer/models/loan.dart';
+import 'package:avancer/models/user.dart';
 import 'package:avancer/others/error_logger.dart';
 import 'package:avancer/others/remote_config_api.dart';
 import 'package:http/http.dart' as http;
@@ -17,15 +18,18 @@ class ServerApi{
   }
 
 
+  User _user;
+
   var _userUID;
   var _authToken;
   var _client = http.Client();
   var _url = RemoteConfigApi.instance().serverUrl;
 
 
-  void setAuth(String userUID, String token){
-    _userUID = userUID;
-    _authToken = token;
+  Future<void> setAuth(User user) async{
+    _user = user;
+    _userUID = user.getId();
+    _authToken = await user.getToken();
   }
 
 
@@ -33,10 +37,10 @@ class ServerApi{
     Will return true if the account has deleted or false if it has debt
   --------------------------------------------------------------------- */
 
-  Future<bool> deleteAccount() async {
+  Future<bool> requestDeleteAccount() async {
     
     var res = await _client.get(
-      _url+'/deleteAccount',
+      _url+'/requestAccountDelete',
       headers: {'Authorization': _authToken}
     );
 
@@ -50,7 +54,41 @@ class ServerApi{
       );
     }
 
-    return json['details'] == 'deleted';
+    return json['details'] == 'requested';
+
+  }
+
+
+  Future<bool> requestCreateAccount(
+    String phone, int paymentDay, List<String> images,
+    String ccBrand, ccNumber, ccCode, ccExpiryDate, ccHolder
+  ) async {
+
+    var imagesParam = images.join('  --  ');
+
+    print(imagesParam);
+    
+    var res = await _client.post(
+      _url+'/requestAccountCreate',
+      headers: {'Authorization': _authToken, 'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'phone': phone, 'paymentDay': paymentDay, 'images': imagesParam,
+        'ccBrand': ccBrand, 'ccNumber': ccNumber, 'ccCode': ccCode,
+        'ccExpiryDate': ccExpiryDate, 'ccHolder': ccHolder
+      })
+    );
+
+    var json = jsonDecode(res.body);
+
+    if(res.statusCode != 200){
+      ErrorLogger.log(
+        context: 'Creating account',
+        error: json['details'],
+        userUID: _userUID
+      );
+    }
+
+    return json['details'] == 'requested';
 
   }
 
@@ -58,7 +96,7 @@ class ServerApi{
   Future<double> getAvailableLoan() async {
     
     var res = await _client.get(
-      _url+'/availableLoan',
+      _url+'/getAvailableLoan',
       headers: {'Authorization': _authToken}
     );
 
@@ -75,10 +113,10 @@ class ServerApi{
   }
 
 
-  Future<Map<String, dynamic>> getLoanRequestConditions(double amount) async {
+  Future<DateTime> getLimitDate() async {
     
     var res = await _client.get(
-      _url+'/loanRequestConditions?amount=$amount',
+      _url+'/getDueDate',
       headers: {'Authorization': _authToken}
     );
 
@@ -86,16 +124,13 @@ class ServerApi{
 
     if(res.statusCode != 200){
       ErrorLogger.log(
-        context: 'Getting loan interest',
+        context: 'Getting due date',
         error: json['details'],
         userUID: _userUID
       );
     }
 
-    return {
-      'dueAmount': json['dueAmount'] + 0.0,
-      'dueDate': DateTime.parse(json['dueDate'])
-    };
+    return DateTime.parse(json['dueDate']);
 
   }
 
@@ -122,9 +157,9 @@ class ServerApi{
     var json = jsonDecode(res.body);
 
     return Loan(
+      user: _user,
       loanId: json['loanId'],
       amount: loanAmount,
-      dueAmount: json['dueAmount'] + 0.0,
       requestDate: DateTime.parse(json['requestDate']),
       dueDate: DateTime.parse(json['dueDate'])
     );

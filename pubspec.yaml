@@ -1,8 +1,8 @@
 name: avancer
-description: A new Flutter project.
+description: An app for requesting loans
 
 publish_to: 'none'
-version: 0.0.7+1
+version: 0.0.9+3
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -12,11 +12,12 @@ dependencies:
     sdk: flutter
   provider: ^4.1.3
 
-  firebase_auth: ^0.16.1
+  firebase_auth: 0.16.1
   firebase_remote_config: ^0.3.1
   firebase_crashlytics: ^0.1.3+3
   firebase_performance: ^0.3.2
-  cloud_firestore: ^0.13.6
+  firebase_storage: 3.1.6
+  cloud_firestore: 0.13.6
   
   sprintf: ^4.0.2
   date_range_picker: ^1.0.6
@@ -26,6 +27,8 @@ dependencies:
   shared_preferences: ^0.5.8
   package_info: ^0.4.1
   url_launcher: ^5.5.0
+  multi_image_picker: 4.7.14
+  flutter_credit_card: 0.1.4
   
 
 dev_dependencies:

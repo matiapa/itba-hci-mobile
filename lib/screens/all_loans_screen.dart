@@ -225,7 +225,7 @@ class _AllLoansScreenState extends State<AllLoansScreen> {
         return sprintf('Solicitado el %s', [Utils.formatDate(loan.getRequestDate())]);
 
       case LoanState.GRANTED:
-        return sprintf('Debes devolverlo el %s', [Utils.formatDate(loan.getDueDate())]);
+        return sprintf('Debes devolverlo el %s', [Utils.formatDate(loan.getLimitDate())]);
 
       case LoanState.REPAID:
         return 'Préstamo devuelto';

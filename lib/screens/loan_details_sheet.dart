@@ -92,34 +92,24 @@ class LoanDetails extends StatelessWidget{
 
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(sprintf('Monto a devolver \$%0.2f', [loan.getDueAmount()])),
+              child: Text('Si devolvés hoy pagás: ${sprintf('\$%0.2f', [loan.getDueToday()])}'),
             ),
 
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('Fecha límite de devolución: ${Utils.formatDate(loan.getDueDate())}'),
+              child: Text('Si devolvés en fecha límite pagás: ${sprintf('\$%0.2f', [loan.getDueOnLimit()])}'),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Fecha límite de devolución: ${Utils.formatDate(loan.getLimitDate())}'),
             )
 
           ]
         );
 
       case LoanState.REPAID:
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Divider(),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(sprintf('Monto devuelto \$%0.2f', [loan.getDueAmount()])),
-            )
-
-          ]
-        );
+        return Container();
 
       default:
         return Container();
@@ -149,9 +139,9 @@ class LoanDetails extends StatelessWidget{
             ),
 
             FlatButton(
-              child: Text('Pagar con Mercadopago'),
+              child: Text('Pagar con Rapipago'),
               textColor: Theme.of(context).primaryColor,
-              onPressed: () => showMPPaymentDialog(context),
+              onPressed: () => showRapipagoPaymentDialog(context),
             ),
 
             FlatButton(
@@ -256,11 +246,12 @@ class LoanDetails extends StatelessWidget{
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              initialValue: sprintf('\$%0.2f', [loan.getDueAmount()]),
+              initialValue: sprintf('\$%0.2f', [loan.getDueToday()]),
               decoration: InputDecoration(labelText: 'Monto a pagar'),
               readOnly: true,
             ),
           ),
+
 
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -306,7 +297,7 @@ class LoanDetails extends StatelessWidget{
   }
 
 
-  void showMPPaymentDialog(BuildContext context){
+  void showRapipagoPaymentDialog(BuildContext context){
 
     showDialog(
       context: context,
@@ -316,7 +307,7 @@ class LoanDetails extends StatelessWidget{
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              initialValue: sprintf('\$%0.2f', [loan.getDueAmount()]),
+              initialValue: sprintf('\$%0.2f', [loan.getDueToday()]),
               decoration: InputDecoration(labelText: 'Monto a pagar'),
               readOnly: true,
             ),
@@ -325,8 +316,8 @@ class LoanDetails extends StatelessWidget{
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              initialValue: RemoteConfigApi.instance().mpEmail,
-              decoration: InputDecoration(labelText: 'Email de MercadoPago'),
+              initialValue: RemoteConfigApi.instance().rapipagoId,
+              decoration: InputDecoration(labelText: 'Identificador de Rapipago'),
               readOnly: true,
             ),
           ),

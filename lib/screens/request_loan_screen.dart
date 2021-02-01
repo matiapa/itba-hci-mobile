@@ -1,6 +1,5 @@
 import 'package:avancer/models/user.dart';
 import 'package:avancer/others/error_logger.dart';
-import 'package:avancer/others/remote_config_api.dart';
 import 'package:avancer/widgets/dots_loading_indicator.dart';
 import 'package:avancer/models/loan.dart';
 import 'package:avancer/others/utils.dart';
@@ -9,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:avancer/models/deposit_method.dart';
 import 'package:avancer/screens/new_deposit_method_dialog.dart';
 import 'package:sprintf/sprintf.dart';
-import 'package:avancer/widgets/future_or_builder.dart';
 
 class RequestLoanScreen extends StatefulWidget {
 
@@ -31,6 +29,7 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
     Utils.checkInternetConnection(context);
 
     var loan = Loan(
+      user: Provider.of<User>(context),
       amount: widget.amount,
       requestDate: DateTime.now(),
     );
@@ -85,6 +84,9 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                 child: RaisedButton(
                   child: Text(
                     'Solicitar Retiro',
+                    style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 22, color: Colors.white
+                    ),
                   ),
                   onPressed: depositMethod != null 
                     ? () => requestLoan(context, user, loan)
@@ -145,42 +147,73 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
 
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Deberás devolver',
-                  style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.normal),
-                )
-              ),
-            ),
+            FutureBuilder(
+              future: loan.fetchLimitDate(),
+              builder: (context, snapshot){
 
-            Align(
-              alignment: Alignment.centerLeft,
-              child: FutureOrBuilder<double>(
-                future: loan.getDueAmount(),
-                errorWidget: Text('No disponible'),
-                builder: (context, amount){
+                if(snapshot.connectionState != ConnectionState.done)
+                  return DotsLoadingIndicator();
 
-                  return Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                if(snapshot.hasError)
+                  return Text('Se produjo un error obteniendo el interés y la fecha de devolución');
+
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
                         child: Text(
-                          '\$${sprintf("%.2f", [amount])}',
+                          'Deberás devolver',
+                          style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.normal),
+                        )
+                      ),
+                    ),
+
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
+                            child: Text(
+                              '${sprintf("\$%.2f", [loan.getDueOnLimit()])}',
+                              style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+
+                          IconButton(
+                            icon: Icon(Icons.help, size: 18),
+                            onPressed: () => showHelpDialog(context),
+                          ),
+                        ],
+                      )
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 16, 8, 4),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Antes de la fecha',
+                          style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.normal),
+                        )
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          Utils.formatDate(loan.getLimitDate()),
                           style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.bold),
-                        ),
+                        )
                       ),
-
-                      IconButton(
-                        icon: Icon(Icons.help, size: 18),
-                        onPressed: () => showDueAmountHelpDialog(context, loan.getAmount()),
-                      ),
-                    ],
-                  );
-                }
-              )
+                    )
+                  ]
+                );
+              },
             ),
 
             Padding(
@@ -188,37 +221,7 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Antes de la fecha',
-                  style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.normal),
-                )
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: FutureOrBuilder<DateTime>(
-                  future: loan.getDueDate(),
-                  errorWidget: Text('No disponible'),
-                  builder: (context, date){
-
-                    return Text(
-                      Utils.formatDate(date),
-                      style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.bold),
-                    );
-
-                  }
-                )
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Tu nuevo monto disponible de hoy será',
+                  'Tu nuevo monto disponible desde hoy será',
                   style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.normal),
                 )
               ),
@@ -358,15 +361,25 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
     
   }
 
-  void showDueAmountHelpDialog(BuildContext context, double loanAmount){
-
-    var rc = RemoteConfigApi.instance();
+  void showHelpDialog(BuildContext context){
 
     showDialog(
       context: context,
       child: AlertDialog(
-        title: Text('Desglose'),
-        content: Text('Comisión Avancer (${rc.lowInterest * 100}%): \$${rc.lowInterest * loanAmount} '),
+        title: Text('¿Cómo se calcula el interés?'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('El interés es mensual, cuanto antes devuelvas el préstamo, menor será la comisión.' 
+              + 'El interés se calcula en base a tu historial crediticio.'),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Text('Tasa actual: ${Provider.of<User>(context, listen: false).getInterest() * 100}%',
+                style: Theme.of(context).textTheme.bodyText1),
+            )
+          ],
+        ),
       )
     );
 
@@ -412,8 +425,8 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
       builder: (context){
         return AlertDialog(
           title: Text('IMPORTANTE'),
-          content: Text('Recordá que tenés hasta el ${Utils.formatDate(loan.getDueDate())} para devolver el préstamo. '
-           + 'Podrás hacerlo mediante transferencia bancaria o MercadoPago.'),
+          content: Text('Recordá que tenés hasta el ${Utils.formatDate(loan.getLimitDate())} para devolver el préstamo. '
+           + 'Podrás hacerlo mediante transferencia bancaria o Rapipago.'),
            actions: <Widget>[
              FlatButton(
                child: Text('Aceptar'),

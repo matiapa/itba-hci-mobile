@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/507707570/android.cloud_firestore.iml" filepath="$PROJECT_DIR$/.idea/modules/507707570/android.cloud_firestore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1368873304/android.cloud_firestore_web.iml" filepath="$PROJECT_DIR$/.idea/modules/-1368873304/android.cloud_firestore_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-689332497/android.device_info.iml" filepath="$PROJECT_DIR$/.idea/modules/-689332497/android.device_info.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1640868463/android.firebase_auth.iml" filepath="$PROJECT_DIR$/.idea/modules/-1640868463/android.firebase_auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-107294168/android.firebase_auth_web.iml" filepath="$PROJECT_DIR$/.idea/modules/-107294168/android.firebase_auth_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1415159401/android.firebase_core.iml" filepath="$PROJECT_DIR$/.idea/modules/1415159401/android.firebase_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1813580830/android.firebase_core_web.iml" filepath="$PROJECT_DIR$/.idea/modules/1813580830/android.firebase_core_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1256627410/android.firebase_crashlytics.iml" filepath="$PROJECT_DIR$/.idea/modules/1256627410/android.firebase_crashlytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/156643650/android.firebase_performance.iml" filepath="$PROJECT_DIR$/.idea/modules/156643650/android.firebase_performance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/807853740/android.firebase_remote_config.iml" filepath="$PROJECT_DIR$/.idea/modules/807853740/android.firebase_remote_config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-341515311/android.package_info.iml" filepath="$PROJECT_DIR$/.idea/modules/-341515311/android.package_info.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-931252303/android.path_provider_linux.iml" filepath="$PROJECT_DIR$/.idea/modules/-931252303/android.path_provider_linux.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1653888528/android.shared_preferences.iml" filepath="$PROJECT_DIR$/.idea/modules/-1653888528/android.shared_preferences.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/196000064/android.shared_preferences_linux.iml" filepath="$PROJECT_DIR$/.idea/modules/196000064/android.shared_preferences_linux.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1840367694/android.shared_preferences_macos.iml" filepath="$PROJECT_DIR$/.idea/modules/-1840367694/android.shared_preferences_macos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/94295911/android.shared_preferences_web.iml" filepath="$PROJECT_DIR$/.idea/modules/94295911/android.shared_preferences_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1994334143/android.url_launcher.iml" filepath="$PROJECT_DIR$/.idea/modules/1994334143/android.url_launcher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1650433583/android.url_launcher_linux.iml" filepath="$PROJECT_DIR$/.idea/modules/-1650433583/android.url_launcher_linux.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-508139434/android.url_launcher_macos.iml" filepath="$PROJECT_DIR$/.idea/modules/-508139434/android.url_launcher_macos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/955890957/android.url_launcher_web.iml" filepath="$PROJECT_DIR$/.idea/modules/955890957/android.url_launcher_web.iml" />
+    </modules>
+  </component>
+</project>

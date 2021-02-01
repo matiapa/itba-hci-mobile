@@ -108,6 +108,7 @@ class _NewDepositMethodScreenState extends State<NewDepositMethodScreen> {
             maxLength: 22,
             keyboardType: TextInputType.number,
             inputFormatters: [
+              // ignore: deprecated_member_use
               WhitelistingTextInputFormatter.digitsOnly
             ],
             validator: (s) => ! RegExp("[0-9]{22}").hasMatch(s)
@@ -123,6 +124,7 @@ class _NewDepositMethodScreenState extends State<NewDepositMethodScreen> {
             maxLength: 11,
             keyboardType: TextInputType.number,
             inputFormatters: [
+              // ignore: deprecated_member_use
               WhitelistingTextInputFormatter.digitsOnly
             ],
             validator: (s) => ! RegExp("(20|23|24|27|30|33|34)[0-9]{8}[0-9]").hasMatch(s)

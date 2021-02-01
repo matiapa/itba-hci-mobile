@@ -23,9 +23,8 @@ class WelcomeScreen extends StatelessWidget {
       slides: [
         Slide(
           description:
-          "Avancer te permite retirar hasta el ${rc.salaryFraction*100}% de tu salario ya ganado de manera inmediata." +
-          " A medida que pasan los días, vas a tener más dinero disponible para retirar." +
-          " La tarifa es fija y del ${rc.lowInterest*100}%",
+          "Avancer te permite retirar hasta el ${rc.salaryFraction*100}% de tu salario ya ganado." +
+          " A medida que pasan los días, vas a tener más dinero disponible para retirar.",
           pathImage: "assets/welcome_images/savings.png",
           backgroundColor: Theme.of(context).primaryColor,
           marginTitle: EdgeInsets.fromLTRB(0, topImageMargin, 0, bottomImageMargin)
@@ -33,14 +32,22 @@ class WelcomeScreen extends StatelessWidget {
 
         Slide(
           description: "Tenés hasta el día posterior al cobro de tu salario para hacer la devolución." +
-          " El no cumplimiento de los plazos genera intereses tardíos y afecta negativamente tu calificación crediticia.",
+          " Si solicitas un adelanto hasta 4 días antes del cobro de tu salario, la fecha de devolución cambia para el próximo mes. "
+          +" Todo te lo va a indicar la app.",
           pathImage: "assets/welcome_images/calendar.png",
           backgroundColor: Theme.of(context).primaryColor,
           marginTitle: EdgeInsets.fromLTRB(0, topImageMargin, 0, bottomImageMargin)
         ),
 
         Slide(
-          description: "Podés devolver el préstamo a través de transferencia bancaria o por Mercado Pago",
+          description: "A medida que uses la app, y devuelvas lo solicitado en tiempo y forma, tu tarifa será cada vez más baja.",
+          pathImage: "assets/welcome_images/calculator.png",
+          backgroundColor: Theme.of(context).primaryColor,
+          marginTitle: EdgeInsets.fromLTRB(0, topImageMargin, 0, bottomImageMargin)
+        ),
+
+        Slide(
+          description: "El monto del adelanto se debita de tu cuenta en la fecha de vencimiento. También podés precancelarlo antes de dicha fecha, a través de transferencia bancaria o Rapipago",
           pathImage: "assets/welcome_images/payments.png",
           backgroundColor: Theme.of(context).primaryColor,
           marginTitle: EdgeInsets.fromLTRB(0, topImageMargin, 0, bottomImageMargin)

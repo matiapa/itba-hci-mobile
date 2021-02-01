@@ -37,7 +37,7 @@ class RemoteConfigApi {
 
   String get bankAlias => rc.getString('bank_alias');
 
-  String get mpEmail => rc.getString('mp_email');
+  String get rapipagoId => rc.getString('rapipago_id');
 
   // ------------------------------------------ CONTACT ------------------------------------------
 

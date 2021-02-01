@@ -130,6 +130,7 @@ class MyApp extends StatelessWidget {
     await RemoteConfigApi.instance().initialize();
     await LocalStorageApi.instance().initialize();
 
+
     // Check for mandatory updates
 
     var appVersion = versionStrToInt((await PackageInfo.fromPlatform()).version);
@@ -152,17 +153,17 @@ class MyApp extends StatelessWidget {
       await Navigator.of(context).pushNamed('/welcome');
     }
 
-    // Get firebase user
-
-    var user = Provider.of<User>(context, listen: false);
-    await user.loadFirebaseUser();
-    await user.initializeData();
 
     // Check for login
 
-    while(! Provider.of<User>(context, listen: false).isSignedIn()){
+    var user = Provider.of<User>(context, listen: false);
+
+    await user.loadCurrentUser();
+
+    while(! user.isSignedIn())
       await Navigator.of(context).pushNamed('/signin');
-    }
+
+    await user.initializeData();
 
   }
 

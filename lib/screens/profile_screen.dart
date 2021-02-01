@@ -122,6 +122,19 @@ class ProfileScreen extends StatelessWidget {
 
           FlatButton(
             textColor: Theme.of(context).primaryColor,
+            child: Text('CAMBIAR SUELDO'),
+            onPressed: (){
+              Utils.showSimpleDialog(context,
+                title: "Cambio de sueldo",
+                description: "Enviá tu último recibo de sueldo a contacto@avancer.com.ar,"
+                  +" te avisaremos cuando hayamos procesado el cambio.",
+                dismissable: true
+              );
+            },
+          ),
+
+          FlatButton(
+            textColor: Theme.of(context).primaryColor,
             child: Text('CAMBIAR CONTRASEÑA'),
             onPressed: (){
               updatePassword(context, user);
@@ -421,7 +434,7 @@ class ProfileScreen extends StatelessWidget {
 
     try{
 
-      await user.signIn(user.email(), passwords['current']);
+      await user.signIn(user.getEmail(), passwords['current']);
 
       try{
       
@@ -503,7 +516,7 @@ class ProfileScreen extends StatelessWidget {
 
     try{
 
-      await user.signIn(user.email(), params['password']);
+      await user.signIn(user.getEmail(), params['password']);
 
       try{
       

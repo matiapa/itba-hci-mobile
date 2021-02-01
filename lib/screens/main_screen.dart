@@ -113,6 +113,7 @@ class MainScreen extends StatelessWidget {
                 ),
                 keyboardType: TextInputType.number,
                 inputFormatters: [
+                  // ignore: deprecated_member_use
                   WhitelistingTextInputFormatter.digitsOnly
                 ],
               ),
@@ -442,7 +443,7 @@ class MainScreen extends StatelessWidget {
       return 0;
 
     return selectedLoans
-      .map((loan) => loan.getDueAmount() as double)
+      .map((loan) => loan.getDueOnLimit())
       .reduce((amount1, amount2) => amount1 + amount2);
 
   }
@@ -481,7 +482,7 @@ class MainScreen extends StatelessWidget {
           return sprintf('Solicitado el %s', [Utils.formatDate(loan.getRequestDate())]);
 
         case LoanState.GRANTED:
-          return sprintf('Debes devolverlo el %s', [Utils.formatDate(loan.getDueDate())]);
+          return sprintf('Debes devolverlo el %s', [Utils.formatDate(loan.getLimitDate())]);
 
         case LoanState.REPAID:
           return 'Préstamo devuelto';

@@ -68,27 +68,38 @@ class Utils{
   }
 
 
-  static showLoadingDialog(BuildContext context, {@required String title, @required String description}){
-    showDialog(
-      barrierDismissible: false,
+  static _showBareDialog(BuildContext context, {@required String title, @required String description,
+     @required bool loading, @required dismissable}){
+    return showDialog(
+      barrierDismissible: dismissable,
       context: context,
       child: AlertDialog(
-        title: Text('Iniciando sesión'),
+        title: Text(title),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('Por favor, espera'),
+              child: Text(description),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircularProgressIndicator(),
-            )
+            loading
+              ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircularProgressIndicator(),
+              )
+              : Container()
           ],
         ),
       )
     );
+  }
+
+  static showSimpleDialog(BuildContext context, {@required String title, @required String description, dismissable=false}){
+    return _showBareDialog(context, title: title, description: description, loading: false, dismissable: dismissable);
+  }
+
+  static showLoadingDialog(BuildContext context, {@required String title, @required String description}){
+    return _showBareDialog(context, title: title, description: description, loading: true, dismissable: false);
   }
 
 }

@@ -1,10 +1,10 @@
 import 'package:avancer/models/user.dart';
 import 'package:avancer/others/error_logger.dart';
 import 'package:avancer/others/utils.dart';
+import 'package:avancer/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SignInScreen extends StatefulWidget {
 
@@ -27,6 +27,7 @@ class _SignInScreenState extends State<SignInScreen> {
     
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -100,19 +101,20 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           ),
 
+
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text('Al registrarte aceptás los:'),
+                            padding: const EdgeInsets.symmetric(vertical:16.0),
+                            child: RaisedButton(                    
+                              child: Text('Registrarse'),
+                              onPressed: (){
+                                Navigator.of(context).push(new MaterialPageRoute(
+                                  builder: (context) => new SignUpScreen()
+                                ));
+                              }
+                            ),
                           ),
 
-                          FlatButton(
-                            child: Text(
-                              'Términos y Condiciones',
-                              style: Theme.of(context).textTheme.button.copyWith(color: Colors.black)
-                            ),
-                            onPressed: () => launch('https://www.avancer.com.ar/terminos-y-condiciones'),
-                          )
-
+                        
                         ]
                       ),
                     ),
@@ -139,6 +141,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
     );
   }
+
 
   AlertDialog buildUpdatePasswordDialog(BuildContext context) {
 
@@ -209,6 +212,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   }
 
+
   Future<void> signIn(BuildContext context) async {
 
     var _user = Provider.of<User>(context, listen: false);
@@ -231,7 +235,21 @@ class _SignInScreenState extends State<SignInScreen> {
         _passwordInputController.text.length>0 ? _passwordInputController.text : 'pass'
       );
 
-      // Check if password must be changed
+      // Check if user is approved
+
+      if(! await _user.checkIfUserApproved()){
+
+        await _user.signOut();
+
+        await Utils.showSimpleDialog(context,
+          title: "Tu cuenta tovadía no ha sido aprobada",
+          description: "Te enviaremos un mail cuando ya puedas utilizar Avancer"
+        );
+
+      }
+
+
+      // // Check if password must be changed
 
       try{
 
@@ -252,8 +270,6 @@ class _SignInScreenState extends State<SignInScreen> {
           await _user.updatePassword(newPass);
 
         }
-
-        //Navigator.of(context).popUntil(ModalRoute.withName('/main'));
 
         // Dismiss dialog
         Navigator.of(context).pop();
@@ -277,30 +293,36 @@ class _SignInScreenState extends State<SignInScreen> {
 
     }catch(error){
 
-      PlatformException _exception = error;
       String _failureReason;
 
-      switch (_exception.code) {
-        case 'ERROR_INVALID_EMAIL':
-          _failureReason = 'Email inválido';
-          break;
+      if(error is PlatformException){
+        PlatformException _exception = error;
 
-        case 'ERROR_WRONG_PASSWORD':
-          _failureReason = 'Contraseña erronea';
-          break;
+        switch (_exception.code) {
+          case 'ERROR_INVALID_EMAIL':
+            _failureReason = 'Email inválido';
+            break;
 
-        case 'ERROR_USER_NOT_FOUND':
-          _failureReason = 'Email no encontrado';
-          break;
+          case 'ERROR_WRONG_PASSWORD':
+            _failureReason = 'Contraseña erronea';
+            break;
 
-        case 'ERROR_USER_DISABLED':
-          _failureReason = 'Usuario deshabilitado';
-          break;
+          case 'ERROR_USER_NOT_FOUND':
+            _failureReason = 'Email no encontrado';
+            break;
 
-        default:
-          _failureReason = 'Ha surgido un error';
-          ErrorLogger.log(context: 'Signing in', error: "$_failureReason: ${_exception.message}");
-          break;
+          case 'ERROR_USER_DISABLED':
+            _failureReason = 'Usuario deshabilitado';
+            break;
+
+          default:
+            _failureReason = 'Ha surgido un error';
+            ErrorLogger.log(context: 'Signing in', error: "$_failureReason: ${_exception.message}");
+            break;
+        }
+      }else{
+        _failureReason = 'Ha surgido un error inesperado';
+        ErrorLogger.log(context: 'Signing in', error: "Unexpected error");
       }
 
       Navigator.of(context).pop();
